@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="large-offset-3 large-6 columns dates-view">
+        <h1>This is the dates view.</h1>
+
+
+        <input class="calendar-input" type="text" name="clndr-start" placeholder="My revision will start on...">
+        <input class="calendar-input" type="text" name="clndr-end" placeholder="And the end-party will be on...">
+
+        <div class="clndr-holder-start"></div>
+        <div class="clndr-holder-end"></div>
+    </div>
+</div>
+
+
+<!-- UnderscoreJS Clndr template -->
+<script type="text/html" id='clndr-template'>
+    <div class="clndr-controls">
+      <div class="clndr-previous-button">&lsaquo;</div>
+      <div class="clndr-month"><%= month %></div>
+      <div class="clndr-next-button">&rsaquo;</div>
+    </div>
+    <div class="clndr-grid">
+      <div class="days-of-the-week">
+        <% _.each(daysOfTheWeek, function(day) { %><div class="header-day"><%= day %></div><% }); %>
+        <div class="days">
+          <% _.each(days, function(day) { %><div class="<%= day.classes %>" id="<%= day.id %>"><%= day.day %></div><% }); %>
+        </div>
+      </div>
+    </div>
+</script>
+<!-- end of template -->
