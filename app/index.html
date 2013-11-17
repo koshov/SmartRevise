@@ -9,12 +9,13 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css'>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
+
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/foundation-icons/foundation-icons.css">
         <!-- endbuild -->
 </head>
   <body ng-app="SmartReviseApp">
@@ -28,7 +29,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="row">
+      <div class="large-offset-2 large-8 columns container" ng-view></div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -56,8 +59,11 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/landing.js"></script>
         <script src="scripts/controllers/dates.js"></script>
+        <script src="scripts/controllers/exams.js"></script>
+        <script src="scripts/directives/focus.js"></script>
+        <script src="scripts/controllers/setup.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -2,6 +2,9 @@
 
 angular.module('SmartReviseApp')
   .controller('DatesCtrl', function ($scope, $http) {
+        $scope.revisionStart = "";
+        $scope.revisionEnd = "";
+
         var template = $("#clndr-template").html();
         function create_calendar(jq_selector) {
           var result = $(jq_selector).clndr({
@@ -22,8 +25,10 @@ angular.module('SmartReviseApp')
             calendar.calendarContainer.addClass("calendar-hidden");
             if (name == '.clndr-holder-start'){
               $('input[name=clndr-start]').val(date);
+              $scope.revisionStart = date;
           } else if (name == '.clndr-holder-end'){
               $('input[name=clndr-end]').val(date);
+              $scope.revisionEnd = date;
           }
         }
 

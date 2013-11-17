@@ -44,7 +44,20 @@ app.configure('production', function(){
 });
 
 // Routes
-app.get('/api/awesomeThings', api.awesomeThings);
+// app.get('/api/awesomeThings', api.awesomeThings);
+app.get('/api/exam', api.getExams);
+app.get('/api/exam/add/:name', api.addExam);
+app.get('/api/exam/del/:name', api.delExam);
+
+// // Rewrite all non-API requests to Angular
+// app.get('*', function(req, res, next) {
+//   res.sendfile(__dirname + '/app/index.html');
+// });
+
+// 404
+app.use(function(req, res, next){
+  res.send(404, 'Sorry cant find that!');
+});
 
 // Start server
 var port = process.env.PORT || 3000;

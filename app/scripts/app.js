@@ -5,18 +5,20 @@ angular.module('SmartReviseApp', [
   'ngResource',
   'ngSanitize'
 ])
-  .config(function ($routeProvider, $locationProvider) {
-    // $locationProvider.html5Mode(true);
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/landing.html',
+        controller: 'LandingCtrl'
       })
-      .when('/dates', {
-        templateUrl: 'views/dates.html',
-        controller: 'DatesCtrl'
+      .when('/setup', {
+        templateUrl: 'views/setup.html',
+        controller: 'SetupCtrl'
       })
       .otherwise({
         redirectTo: '/',
       });
-  });
+  })
+  // .config(function ($locationProvider) {
+  //   $locationProvider.html5Mode(true);
+  // });

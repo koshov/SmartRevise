@@ -354,6 +354,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
+      'sass:nested',
       'autoprefixer',
       'express:dev',
       'open',
