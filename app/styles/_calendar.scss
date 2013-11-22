@@ -11,17 +11,12 @@ $calendar_height: 6 * $day-height + 54px;
     text-align: center;
   }
 
-  .clndr-holder-start{
+  .clndr-holder{
     overflow: hidden;
     position: relative;
     top: -55px;
   }
-  .clndr-holder-end{
-    overflow: hidden;
-    position: relative;
-    top: 4px;
-  }
-    .clndr-holder-start *, .clndr-holder-end * {
+    .clndr-holder *{
       box-sizing: border-box;
       transition: .3s;
       width: $calendar_width;

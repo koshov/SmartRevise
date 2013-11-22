@@ -16,9 +16,12 @@ angular.module('SmartReviseApp')
     $scope.nextStep = function() {
         $scope.currentStep = 1;
     }
-
     $scope.prevStep = function() {
         $scope.currentStep = 0;
     }
+
+    // Step 1
+    $scope.revisionStart = "asds";
+    $scope.revisionEnd = "";
 
   });

@@ -2,17 +2,18 @@
 <form name="setupForm">
 
     <!-- Dates step -->
-    <div ng-controller="DatesCtrl" class="dates-setup" ng-show="steps[currentStep].name == 'dates'">
+    <div class="dates-setup" ng-show="steps[currentStep].name == 'dates'">
         <h4>Please specify your revision period</h4>
 
-        <input class="calendar-input" type="text" name="clndr-start" placeholder="My revision will start on..." ng-model="revisionStart" focus required>
-        <input class="calendar-input" type="text" name="clndr-end" placeholder="And the end-party will be on..." ng-model="revisionEnd" required>
+        <input class="calendar-input" type="text" name="clndr-start" placeholder="My revision will start on..." clndr clndr-date="revisionStart" focus required>
+        <input class="calendar-input" type="text" name="clndr-end" placeholder="And the end-party will be on..." clndr required>
 
-        <span>{{revisionStart}}</span>
-        <span>{{revisionEnd}}</span>
+        <div ng-bind="revisionStart"></div>
+        <div ng-bind="revisionEnd"></div>
 
-        <div class="clndr-holder-start"></div>
-        <div class="clndr-holder-end"></div>
+        <div class="clndr-start clndr-holder"></div>
+        <div class="clndr-end clndr-holder"></div>
+
     </div>
 
     <!-- Exams step -->
