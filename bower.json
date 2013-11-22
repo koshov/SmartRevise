@@ -11,7 +11,8 @@
     "clndr": "~1.1.0",
     "jquery": "~2.0.3",
     "moment": "~2.4.0",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "foundation": "zurb/bower-foundation"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",

@@ -77,7 +77,8 @@ module.exports = function (grunt) {
           '.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.scss'
         },
         options: {
-          outputStyle: 'compressed'
+          outputStyle: 'compressed',
+          loadPath: "<%= yeoman.app %>/bower_components/foundation/scss"
         }
       },
 
@@ -88,6 +89,8 @@ module.exports = function (grunt) {
         options: {
           // compass: true,
           sourcemap: true,
+          loadPath: "<%= yeoman.app %>/bower_components/foundation/scss",
+          quiet: true
           // outputStyle: 'nested'
         }
       }
