@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SmartReviseApp')
-  .controller('SetupCtrl', function ($scope, $http) {
+  .controller('SetupCtrl', function ($scope, $location) {
     $scope.steps = [
         {
             'name': 'dates',
@@ -25,7 +25,11 @@ angular.module('SmartReviseApp')
     $scope.currentStep = 0;
 
     $scope.nextStep = function() {
-        $scope.currentStep = 1;
+        if ($scope.currentStep == 0) {
+            $scope.currentStep = 1;
+        } else if ($scope.currentStep == 1) {
+            $location.path( "view" );
+        }
     }
     $scope.prevStep = function() {
         $scope.currentStep = 0;

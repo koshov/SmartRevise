@@ -15,6 +15,10 @@ angular.module('SmartReviseApp', [
         templateUrl: 'views/setup.html',
         controller: 'SetupCtrl'
       })
+      .when('/view', {
+        templateUrl: 'views/view.html',
+        controller: 'ViewCtrl'
+      })
       .otherwise({
         redirectTo: '/',
       });

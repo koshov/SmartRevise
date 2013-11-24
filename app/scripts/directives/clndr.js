@@ -19,7 +19,9 @@ angular.module('SmartReviseApp')
             events: [{date: moment()}],
             clickEvents: {
               click: function(target){
-                if( !$(target.element).hasClass('inactive') ) {
+                if( !$(target.element).hasClass('inactive')
+                    && !$(target.element).hasClass('next-month')
+                    && !$(target.element).hasClass('last-month')) {
                   toggle_calendar(this, jq_selector, target.date._i);
                 }
               }
