@@ -14,7 +14,7 @@ $calendar_height: 6 * $day-height + 54px;
   .clndr-holder{
     overflow: hidden;
     position: relative;
-    top: -55px;
+    top: -17px;
   }
     .clndr-holder *{
       box-sizing: border-box;
@@ -25,17 +25,20 @@ $calendar_height: 6 * $day-height + 54px;
     .clndr {
       position: relative;
       width: $calendar_width;
-      height: $calendar_height;
+      // height: $calendar_height;
       font-size: 1.2em;
       background-color: $dark;
       color: $light1;
       cursor: default;
+
+      .inactive {
+        color: #5C5C5C;
+      }
     }
       .calendar-hidden {
         top: -$calendar_height;
         height: 0px;
       }
-
       .clndr-controls {
         margin-bottom: 12px;
         div {
@@ -80,7 +83,7 @@ $calendar_height: 6 * $day-height + 54px;
         padding-top:5px;
         padding-left: 7px;
 
-        &:hover {
+        &:hover, &.event {
           background-color: $step3Color;
         }
       }

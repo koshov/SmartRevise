@@ -5,10 +5,21 @@ angular.module('SmartReviseApp')
     $scope.steps = [
         {
             'name': 'dates',
-            'invalid': true
+            'invalid': function() {
+                var start = moment($scope.revisionStart, 'L');
+                var end = moment($scope.revisionEnd, 'L');
+
+                return (start.isValid() &&
+                        end.isValid() &&
+                        end.diff(start, 'days') > 0) ? false : true;
+            }
         },
         {
-            'name': 'exams'
+            'name': 'exams',
+            'invalid': function() {
+                // Kind of a bad hack to use $$childHead
+                return $scope.$$childHead.exams.length ? false : true;
+            }
         }
     ];
     $scope.currentStep = 0;
@@ -21,7 +32,7 @@ angular.module('SmartReviseApp')
     }
 
     // Step 1
-    $scope.revisionStart = "asds";
+    $scope.revisionStart = "";
     $scope.revisionEnd = "";
 
   });

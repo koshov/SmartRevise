@@ -4,8 +4,9 @@ angular.module('SmartReviseApp')
   .directive('clndr', function () {
     return {
       restrict: 'A',
-      scope: false,
+      replace: false,
       link: function postLink(scope, element, attrs, parentCtrl) {
+
 
         var template = angular.element("#clndr-template").html();
 
@@ -13,11 +14,18 @@ angular.module('SmartReviseApp')
           var result = angular.element('.'+jq_selector).clndr({
             template: template,
             weekOffset: 1,
+            startWithMonth: moment(),
             adjacentDaysChangeMonth: true,
+            events: [{date: moment()}],
             clickEvents: {
               click: function(target){
-                toggle_calendar(this, jq_selector, target.date._i);
+                if( !$(target.element).hasClass('inactive') ) {
+                  toggle_calendar(this, jq_selector, target.date._i);
+                }
               }
+            },
+            constraints: {
+              startDate: moment().subtract('days', 1)
             }
           });
             result.calendarContainer.addClass("calendar-hidden");
@@ -26,8 +34,9 @@ angular.module('SmartReviseApp')
 
         function toggle_calendar(calendar, name, date) {
             calendar.calendarContainer.addClass("calendar-hidden");
-            element.val(date);
-            scope.revisionStart = date;
+            element.val(moment(date).format('L'));
+            // Trigger input event in order to update ng-model
+            element.trigger('input');
         }
 
         var calendar_start = create_calendar(element[0].name);
@@ -35,7 +44,6 @@ angular.module('SmartReviseApp')
         element.click(function(event) {
             calendar_start.calendarContainer.removeClass("calendar-hidden");
         });
-
       }
     };
   });
