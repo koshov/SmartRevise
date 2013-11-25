@@ -44,7 +44,8 @@ app.configure('production', function(){
 });
 
 // Routes
-// app.get('/api/awesomeThings', api.awesomeThings);
+app.get('/api/dates', api.getDates);
+app.get('/api/dates/set/:start/:end', api.setDates);
 app.get('/api/exam', api.getExams);
 app.get('/api/exam/add/:name', api.addExam);
 app.get('/api/exam/del/:name', api.delExam);
