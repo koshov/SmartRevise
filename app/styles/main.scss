@@ -15,3 +15,22 @@ body {
 h1 {
     font-size: 1.8em;
 }
+
+button.delete,
+.button.delete {
+    background-color: $darkColor;
+    border-color: $darkColor;
+    color: white;
+}
+
+
+// TODO: Put these in an import
+
+.view-exam-group {
+    border-bottom: 1px solid $light1;
+    padding-top: 16px;
+}
+
+input[type="range"] {
+    height: 2.3125rem;
+}

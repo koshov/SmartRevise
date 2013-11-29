@@ -46,9 +46,9 @@ app.configure('production', function(){
 // Routes
 app.get('/api/dates', api.getDates);
 app.get('/api/dates/set/:start/:end', api.setDates);
-app.get('/api/exam', api.getExams);
-app.get('/api/exam/add/:name', api.addExam);
-app.get('/api/exam/del/:name', api.delExam);
+app.get('/api/exams', api.getExams);
+app.get('/api/exams/add/:title', api.addExam);
+app.get('/api/exams/del/:title', api.delExam);
 
 // // Rewrite all non-API requests to Angular
 // app.get('*', function(req, res, next) {

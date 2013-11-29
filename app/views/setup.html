@@ -18,8 +18,8 @@
         <h4>Please specify your revision subjects</h4>
 
         <div ng-repeat="exam in exams" class="row collapse">
-            <span class="small-10 columns">{{exam.name}}</span>
-            <button class="tiny small-2 columns" ng-click="$parent.removeExam($index)">Delete</button>
+            <span class="small-10 columns">{{exam.title}}</span>
+            <button class="tiny small-2 columns" ng-click="$parent.removeExam($index)"><i class="fi-x small"></i> Delete</button>
         </div>
 
         <form name="addExamForm">

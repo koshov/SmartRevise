@@ -43,33 +43,30 @@ angular.module('SmartReviseApp')
     $scope.setDates = function() {
         var start = moment($scope.revisionStart).format('YYYY-MM-DD');
         var end = moment($scope.revisionEnd).format('YYYY-MM-DD');
-        $http.get('/api/dates/set/' + start + '/' + end)
-            .success(function(exams) {
-                console.log('Yes be!');
-            });
+        $http.get('/api/dates/set/' + start + '/' + end);
     }
 
     // Step 2
     $scope.exams = []
-    $http.get('/api/exam')
+    $http.get('/api/exams')
         .success(function(exams) {
             $scope.exams = exams;
         });
 
     $scope.addExam = function() {
         // TODO: validate name first!
-        $http.get('/api/exam/add/' + $scope.examName)
+        $http.get('/api/exams/add/' + $scope.examName)
             .success(function(exams) {
-                $scope.exams.push({name:$scope.examName});
+                $scope.exams.push({title:$scope.examName});
                 $scope.examName = '';
             });
     };
 
     $scope.removeExam = function(index) {
-        $http.get('/api/exam/del/' + $scope.exams[index].name)
+        $http.get('/api/exams/del/' + $scope.exams[index].title)
             .success(function(exams) {
                 $scope.exams.splice(index,1);
-                $http.get('/api/exam')
+                $http.get('/api/exams')
                     .success(function(exams) {
                         $scope.exams = exams;
                     });
