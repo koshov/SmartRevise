@@ -11,6 +11,5 @@ Dayliy start/end time
 Free days/portions of days
 
 ===== Low Priority =====
-TODO: Calendar hide on focus lost
+Calendar hide on focus lost
 
-rRename api/exam to examS
