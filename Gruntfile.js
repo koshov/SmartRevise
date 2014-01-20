@@ -10,6 +10,7 @@
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
+  grunt.loadNpmTasks('grunt-shell-spawn');
 
   grunt.initConfig({
     yeoman: {
@@ -36,6 +37,14 @@ module.exports = function (grunt) {
     open: {
       server: {
         url: 'http://localhost:<%= express.options.port %>'
+      }
+    },
+    shell: {
+      mongo: {
+        command: 'mongod --dbpath db/',
+        options: {
+          async: true,
+        }
       }
     },
     watch: {
@@ -355,6 +364,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'shell:mongo',
       'clean:server',
       'concurrent:server',
       'sass:nested',
