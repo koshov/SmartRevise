@@ -15,9 +15,9 @@ angular.module('SmartReviseApp')
         $scope.$on('SpecialEvent', function() {
             var examsLen = $scope.srExams.length;
             for (var i = 0; i < examsLen; i++) {
-                $scope.srExams[i].start = new Date($scope.srDates.year, $scope.srDates.month, $scope.srDates.date + $scope.srExams[i].startNum);
-                $scope.srExams[i].end = new Date($scope.srDates.year, $scope.srDates.month, $scope.srDates.date + $scope.srExams[i].len-1 + $scope.srExams[i].startNum);
-                // console.log($scope.srExams[i]);
+                $scope.srExams[i].start = new Date($scope.srDates.year, $scope.srDates.month, $scope.srDates.date + $scope.srExams[i].startNum, 9);
+                $scope.srExams[i].end = new Date($scope.srDates.year, $scope.srDates.month, $scope.srDates.date + $scope.srExams[i].len-1 + $scope.srExams[i].startNum, 18);
+                // console.log($sco¡pe.srExams[i]);
                 $('#calendar').fullCalendar( 'renderEvent', $scope.srExams[i]);
 
             };
