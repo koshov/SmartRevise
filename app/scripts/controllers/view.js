@@ -134,7 +134,7 @@ angular.module('SmartReviseApp')
                     {name: "Revise Lecture Notes", portion: 0.25},
                     {name: "Attempt Past Papers", portion: 0.25}
                 ],
-                date: moment("2014-01-24 12:30"),
+                date: moment("2014-01-23 12:30"),
                 duration: moment.duration(2, "hours")
             },
 
@@ -148,7 +148,7 @@ angular.module('SmartReviseApp')
         var lastExam = exams[exams.length - 1];
         // Change time of revisionStart in order to count days correctly
         // TODO: check if this is actually true
-        var revisionLength = lastExam.date.diff( moment(revisionStart.format()).hour(startHour).minute(startMinute) , "days") + 1;
+        var revisionLength = lastExam.date.diff( moment(revisionStart.format()).hours(startHour).minutes(startMinute) , "days") + 1;
         console.log("Revision lenght -", revisionLength, "days" );
 
         // Divide Revision/Exam period in chunks between exams
@@ -209,13 +209,30 @@ angular.module('SmartReviseApp')
             // Else add day to current revision chunk
             else {
                 var currentChunk = revisionChunks[revisionChunks.length-1];
-                currentChunk.slices.push({
-                    end: moment(examinedDate.format()).hours(endHour).minutes(endMinute),
-                    start: moment(examinedDate.format()).hours(startHour).minutes(startMinute)
-                });
-                var newSlice = currentChunk.slices[currentChunk.slices.length - 1]
-                revisionTime += newSlice.end.diff(newSlice.start, "minutes");
-                console.log(revisionTime);
+                if (i < revisionLength-1) {
+                    currentChunk.slices.push({
+                        end: moment(examinedDate.format()).hours(endHour).minutes(endMinute),
+                        start: moment(examinedDate.format()).hours(startHour).minutes(startMinute)
+                    });
+                    var newSlice = currentChunk.slices[currentChunk.slices.length - 1]
+                    revisionTime += newSlice.end.diff(newSlice.start, "minutes");
+                    console.log(revisionTime);
+                } else {
+                    // First day's revision begins now
+                    var todayHour = moment().hours(),
+                        todayMinute = Math.ceil(moment().minutes() / 30) * 30,
+                        todayStart = moment(moment().format("YYYY-MM-DD")).hours(todayHour).minutes(todayMinute),
+                        todayEnd = moment(examinedDate.format()).hours(endHour).minutes(endMinute);
+                    if (todayEnd.diff(todayStart) > 0) {
+                        currentChunk.slices.push({
+                            end: todayEnd,
+                            start: todayStart
+                        });
+                        var newSlice = currentChunk.slices[currentChunk.slices.length - 1]
+                        revisionTime += newSlice.end.diff(newSlice.start, "minutes");
+                        console.log(revisionTime);
+                    }
+                }
             };
 
             // Decrement the current date
@@ -231,9 +248,8 @@ angular.module('SmartReviseApp')
             exams[i].time = revisionTime * exams[i].portion;
         };
 
-        // TODO: Starting from last chunk proportionally (to remaining hours of each subject) split time between exams, keeping track of spent hours(?)
-        // NOTE: Round up from .5
-        // TODO: Allocate last exam remaining portion
+        // Starting from last chunk proportionally (to remaining hours of each subject)
+        //   split time between exams, keeping track of spent hours
         $scope.revisionStore = []
         for (var i = 0; i < revisionChunks.length; i++) {
             for (var j = 0; j < revisionChunks[i].slices.length; j++) {
@@ -258,9 +274,9 @@ angular.module('SmartReviseApp')
                         // Make sure subjectTime is a multiple of smallestChunk to prevent irregular revision lengths
                         subjectTime = Math.floor(subjectTime/smallestChunk) * smallestChunk;
                         // Not needed if there is enough time for all exams
-                        // if (revisionChunks[i].exams[k].time - subjectTime <= 0) {
-                        //     var subjectTime = revisionChunks[i].exams[k].time;
-                        // }
+                        if (revisionChunks[i].exams[k].time - subjectTime <= 0) {
+                            var subjectTime = Math.ceil(revisionChunks[i].exams[k].time / smallestChunk) * smallestChunk;
+                        }
                         if (subjectTime > 0) {
                             revisionChunks[i].exams[k].time -= subjectTime;
                             $scope.revisionStore.push({
@@ -276,6 +292,14 @@ angular.module('SmartReviseApp')
                     }
                 };
             };
+        };
+        // Alert in case an exam is scheduled too soon
+        for (var i = 0; i < exams.length; i++) {
+            if (exams[i].time > 120) {
+                // TODO: display this to user
+                var warning = "Whoops! The " + exams[i].title + " exam is scheduled too early and we could not allocate " + (exams[i].time / 60) + " hours of revision."
+                console.debug(warning);
+            }
         };
         console.log($scope.revisionStore);
         for (var i = 0; i < exams.length; i++) {
