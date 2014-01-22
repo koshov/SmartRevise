@@ -3,7 +3,8 @@
 angular.module('SmartReviseApp', [
   'ngCookies',
   'ngResource',
-  'ngSanitize'
+  'ngSanitize',
+  'ui.bootstrap.datetimepicker'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -26,3 +27,8 @@ angular.module('SmartReviseApp', [
   // .config(function ($locationProvider) {
   //   $locationProvider.html5Mode(true);
   // });
+  .run(function($timeout) {
+      $timeout(function() {
+          $(document).foundation();
+      }, 500);
+  });

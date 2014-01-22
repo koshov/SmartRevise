@@ -1,25 +1,18 @@
 <h1>SmartRevise setup</h1>
 <form name="setupForm">
 
-    <!-- Dates step -->
-    <div class="dates-setup" ng-show="steps[currentStep].name == 'dates'">
-        <h4>Please specify your revision period</h4>
-
-        <input class="calendar-input" type="text" name="clndr-start" placeholder="My revision will start on..." clndr ng-model="revisionStart" focus required>
-        <div class="clndr-start clndr-holder"></div>
-
-        <input class="calendar-input" type="text" name="clndr-end" placeholder="And the end-party will be on..." clndr ng-model="revisionEnd" required>
-        <div class="clndr-end clndr-holder"></div>
-
-    </div>
-
-    <!-- Exams step -->
-    <div ng-show="steps[currentStep].name == 'exams'">
+    <!-- Exams -->
+    <div class="dates-setup">
         <h4>Please specify your revision subjects</h4>
 
         <div ng-repeat="exam in exams" class="row collapse">
-            <span class="small-10 columns">{{exam.title}}</span>
-            <button class="tiny small-2 columns" ng-click="$parent.removeExam($index)"><i class="fi-x small"></i> Delete</button>
+            <span class="small-6 columns">{{exam.title}}</span>
+            <button href="" data-dropdown="drop" class="tiny small-3 columns">{{exam.date || "Select Exam Date"}}</button>
+                <div id="drop" data-dropdown-content class="f-dropdown">
+                    <datetimepicker ng-model="exam.date"></datetimepicker>
+                </div>
+            <button class="tiny alert small-2 small-offset-1 columns" ng-click="$parent.removeExam($index)"><i class="fi-x small"></i> Delete</button>
+
         </div>
 
         <form name="addExamForm">
@@ -36,8 +29,7 @@
 
     <!-- Navigation -->
     <div class="row collapse">
-        <button class="button secondary small-5 column" ng-disabled="currentStep == 0" ng-click="prevStep()">Back</button>
-        <button class="button success small-5 small-offset-2 column" ng-disabled="steps[currentStep].invalid()" ng-click="nextStep()">Next</button>
+        <button class="button success small-5 small-offset-7 column" ng-disabled="step.invalid()" ng-click="nextStep()">Next</button>
     </div>
 </form>
 

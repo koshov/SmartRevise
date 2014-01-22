@@ -13,7 +13,8 @@
     "moment": "~2.4.0",
     "underscore": "~1.5.2",
     "foundation": "zurb/bower-foundation",
-    "fullcalendar": "~1.6.4"
+    "fullcalendar": "~1.6.4",
+    "angular-bootstrap-datetimepicker": "latest"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",

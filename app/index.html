@@ -13,10 +13,11 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 
-        <link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css">
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/foundation-icons/foundation-icons.css">
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css">
+        <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
         <!-- endbuild -->
 </head>
   <body ng-app="SmartReviseApp">
@@ -46,7 +47,7 @@
     </script>
 
     <script src="bower_components/jquery/jquery.js"></script>
-    <!-- <script src="bower_components/foundation/js/foundation.min.js"></script> -->
+    <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
         <!-- build:js scripts/modules.js -->
@@ -55,8 +56,9 @@
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/moment/moment.js"></script>
-        <script src="bower_components/clndr/clndr-1.1.0.min.js"></script>
         <script src="bower_components/fullcalendar/fullcalendar.js"></script>
+        <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+        <script src="bower_components/foundation/js/foundation/foundation.dropdown.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -69,5 +71,6 @@
         <script src="scripts/directives/focus.js"></script>
         <script src="scripts/directives/fullclndr.js"></script>
         <!-- endbuild -->
+
 </body>
 </html>
