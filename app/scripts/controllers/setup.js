@@ -32,6 +32,13 @@ angular.module('SmartReviseApp')
             });
     };
 
+    $scope.hasDate = function(index) {
+        if ($scope.exams[index].date == undefined) {
+            return true;
+        }
+        return false;
+    };
+
     $scope.removeExam = function(index) {
         $http.get('/api/exams/del/' + $scope.exams[index].title)
             .success(function(exams) {
@@ -41,6 +48,6 @@ angular.module('SmartReviseApp')
                         $scope.exams = exams;
                     });
             });
-    }
+    };
 
   });
