@@ -23,7 +23,20 @@ angular.module('SmartReviseApp')
         return false;
     };
 
-    $scope.invalid = function() {
+    $scope.examInvalid = function() {
+        function validName() {
+            for (var i = 0; i < $rootScope.exams.length; i++) {
+                if ($rootScope.exams[i].title === $scope.examName) return false;
+            };
+            return true;
+        }
+
+        if ($scope.examName !== undefined && $scope.examName !== '' && validName()) return false;
+        return true;
+    }
+
+    $scope.setupInvalid = function() {
+        // Validate Setup
         return $rootScope.exams.length ? false : true;
     }
 

@@ -29,7 +29,7 @@
                     <input type="text" ng-model="examName" placeholder="e.g. History of Art 101" name="examName" required>
                 </div>
                 <div class="small-3 columns">
-                    <button class="button success prefix" ng-disabled="setupForm.examName.$invalid" ng-click="addExam()"><i class="fi-plus small"></i> Add</button>
+                    <button class="button success prefix" ng-disabled="examInvalid()" ng-click="addExam()"><i class="fi-plus small"></i> Add</button>
                 </div>
             </div>
         </form>
@@ -37,7 +37,7 @@
 
     <!-- Navigation -->
     <div class="row collapse">
-        <button class="button success small-5 small-offset-7 column" ng-disabled="invalid()" ng-click="nextStep()">Next</button>
+        <button class="button success small-5 small-offset-7 column" ng-disabled="setupInvalid()" ng-click="nextStep()">Next</button>
     </div>
 </form>
 
