@@ -1,53 +1,32 @@
 'use strict';
 
 angular.module('SmartReviseApp')
-  .controller('SetupCtrl', function ($scope, $http, $location) {
+  .controller('SetupCtrl', function ($scope, $rootScope, $http, $location) {
 
-    $scope.step = {
-        name: 'exams',
-        invalid: function() {
-            return $scope.exams.length ? false : true;
-        }
-    };
-
-    $scope.nextStep = function() {
-        $location.path( "view" );
-    };
-
-    $scope.exams = []
-    $http.get('/api/exams')
-        .success(function(exams) {
-            $scope.exams = exams;
-        });
+    $rootScope.exams = []
 
     $scope.addExam = function() {
         // TODO: validate name first!
-        $http.get('/api/exams/add/' + $scope.examName)
-            .success(function(exams) {
-                $scope.exams.push({
-                    title: $scope.examName,
-                    date: ""
-                });
-                $scope.examName = '';
-            });
-    };
-
-    $scope.hasDate = function(index) {
-        if ($scope.exams[index].date == undefined) {
-            return true;
-        }
-        return false;
+        $rootScope.exams.push({
+            title: $scope.examName,
+            date: ''
+        });
     };
 
     $scope.removeExam = function(index) {
-        $http.get('/api/exams/del/' + $scope.exams[index].title)
-            .success(function(exams) {
-                $scope.exams.splice(index,1);
-                $http.get('/api/exams')
-                    .success(function(exams) {
-                        $scope.exams = exams;
-                    });
-            });
+        $rootScope.exams.splice(index,1);
     };
 
+    $scope.hasDate = function(index) {
+        if ($rootScope.exams[index].date == '') return true;
+        return false;
+    };
+
+    $scope.invalid = function() {
+        return $rootScope.exams.length ? false : true;
+    }
+
+    $scope.nextStep = function() {
+        $location.path( 'view' );
+    };
   });

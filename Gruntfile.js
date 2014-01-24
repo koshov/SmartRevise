@@ -370,7 +370,7 @@ module.exports = function (grunt) {
       'sass:nested',
       'autoprefixer',
       'express:dev',
-      'open',
+      // 'open',
       'watch'
     ]);
   });
