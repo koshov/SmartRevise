@@ -5,6 +5,8 @@ Persistency
 Pass data to DB using JSON
 Add calendar icon on setup page
 
+What happens if exam is outside revision times, e.g. 6am??
+
 ===== Medium Priority =====
 Remove Dates from DB
 Dayliy start/end time
@@ -14,6 +16,8 @@ Free days/portions of days
 Google Calendar
 Calendar hide on focus lost
 fullCalendar week starts on Sunday
+
+dropdownSelector in setup.html is not ecaluated in datetimepicker.js
 
 Add ability to add blocking events in calendar
 
@@ -27,3 +31,10 @@ TOPICS
 - RESTfull API
 - User authentication
 - JSON security http://docs.angularjs.org/api/ng.$http
+
+
+
+$http.get('/api/exams')
+    .success(function(exams) {
+        $scope.exams = exams;
+    });

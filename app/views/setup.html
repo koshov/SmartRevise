@@ -8,15 +8,18 @@
         <div ng-repeat="exam in exams" class="row collapse">
             <span class="examTitle small-5 columns">{{exam.title}}</span>
             <div class="small-4 columns">
-                <button href="" data-dropdown="drop" id="dropBtn" class="prefix secondary">
+                <button href="" data-dropdown="{{'drop'+$index}}" id="{{'dropButton'+$index}}" class="prefix secondary dropButton">
                     <span ng-show="$parent.hasDate($index)"><i class="fi-calendar"></i> Exam Date</span>
                     {{exam.date}}
                 </button>
-                <datetimepicker id="drop" data-dropdown-content class="f-dropdown" ng-model="exam.date" data-datetimepicker-config="{ dropdownSelector: '#dropBtn' }"></datetimepicker>
+                <datetimepicker data-dropdown-content class="f-dropdown" id="{{'drop'+$parent.$index}}" ng-model="exam.date" data-datetimepicker-config="{ dropdownSelector: '.dropButton' }"></datetimepicker>
             </div>
             <div class="small-3 columns">
                 <button class="prefix alert" ng-click="$parent.removeExam($index)"><i class="fi-x"></i> Delete</button>
             </div>
+            <script type="text/javascript">
+                $(document).foundation();
+            </script>
 
         </div>
 

@@ -3,8 +3,6 @@
 angular.module('SmartReviseApp')
   .controller('ViewCtrl', function ($rootScope, $scope, $http) {
     // Populate scope
-    $scope.dates = {}
-    $scope.exams = []
     $scope.eventColors = [
         '#bedb39',
         '#004358',
@@ -12,40 +10,24 @@ angular.module('SmartReviseApp')
         '#fd7400',
         '#ffe11a'
     ]
+    var exams = $rootScope.exams;
+    for (var i = exams.length - 1; i >= 0; i--) {
+        exams[i].portion = 100/exams.length;
+        exams[i].components = [
+            {name: 'Read Textbook', portion: 0.25},
+            {name: 'Solve Tutorials', portion: 0.25},
+            {name: 'Revise Lecture Notes', portion: 0.25},
+            {name: 'Attempt Past Papers', portion: 0.25}
+        ];
+        exams[i].duration = moment.duration(2, "hours");
+        exams[i].color = $scope.eventColors[i % $scope.eventColors.length];
+        exams[i].allDay = false;
+    };
 
-    $http.get('/api/dates')
-        .success(function(dates) {
-            $scope.dates = dates;
 
-            $scope.dates.date = moment(dates.start).date();
-            $scope.dates.month = moment(dates.start).month();
-            $scope.dates.year = moment(dates.start).year();
+    algo();
 
-            $scope.dates.dif = moment(dates.end).diff(moment(dates.start), 'days');
 
-            // Load Exams after dates due to dependency on 'dif'
-            $http.get('/api/exams')
-                .success(function(exams) {
-                    $scope.dates.portion = $scope.dates.dif / exams.length;
-                    for (var i = exams.length - 1; i >= 0; i--) {
-                        exams[i].portion = 100/exams.length;
-                        exams[i].components = [
-                            {name: 'Read Textbook', portion: 0.25},
-                            {name: 'Solve Tutorials', portion: 0.25},
-                            {name: 'Revise Lecture Notes', portion: 0.25},
-                            {name: 'Attempt Past Papers', portion: 0.25}
-                        ];
-                        exams[i].start = new Date($scope.dates.year, $scope.dates.month, $scope.dates.date + i*$scope.dates.portion);
-                        exams[i].end = new Date($scope.dates.year, $scope.dates.month, $scope.dates.date+$scope.dates.portion-1 + i*$scope.dates.portion);
-                        exams[i].startNum = 0;
-                        exams[i].len = $scope.dates.portion;
-                        exams[i].color = $scope.eventColors[i % $scope.eventColors.length];
-                        exams[i].allDay = false;
-                    };
-                    // $scope.exams = exams;
-                    algo();
-                });
-        });
 
     $scope.repartition = function(ind) {
         // // Calculater portion reminders

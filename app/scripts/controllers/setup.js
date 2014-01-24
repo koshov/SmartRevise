@@ -11,6 +11,7 @@ angular.module('SmartReviseApp')
             title: $scope.examName,
             date: ''
         });
+        $scope.examName = '';
     };
 
     $scope.removeExam = function(index) {
