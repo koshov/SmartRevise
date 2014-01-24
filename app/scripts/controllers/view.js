@@ -10,8 +10,16 @@ angular.module('SmartReviseApp')
         '#fd7400',
         '#ffe11a'
     ]
+    if ($rootScope.exams === undefined) {
+        if (locache.get('exams')) {
+            $rootScope.exams = locache.get('exams');
+        } else {
+            $location.path( 'setup' );
+        }
+    }
     var exams = $rootScope.exams;
     for (var i = exams.length - 1; i >= 0; i--) {
+        exams[i].date = moment(exams[i].date);
         exams[i].portion = 100/exams.length;
         exams[i].components = [
             {name: 'Read Textbook', portion: 0.25},
@@ -24,8 +32,7 @@ angular.module('SmartReviseApp')
         exams[i].allDay = false;
     };
 
-
-    algo();
+    algo(exams);
 
 
 
@@ -62,7 +69,7 @@ angular.module('SmartReviseApp')
         $rootScope.$broadcast('SpecialEvent');
     };
 
-    function algo() {
+    function algo(pExams) {
         // Dummy exam data
         var revisionStart = moment(),
             startHour = 9,
@@ -72,55 +79,8 @@ angular.module('SmartReviseApp')
             smallestChunk = 30,
 
             revisionChunks = [],
-            exams =
-        [
-            {
-                title: "TTS",
-                portion: 0.4,
-                components: [
-                    {name: "Read Textbook", portion: 0.25},
-                    {name: "Solve Tutorials", portion: 0.25},
-                    {name: "Revise Lecture Notes", portion: 0.25},
-                    {name: "Attempt Past Papers", portion: 0.25}
-                ],
-                date: moment("2014-01-27 14:30"),
-                duration: moment.duration(2, "hours")
-            },
-            {
-                title: "IAR",
-                portion: 0.2,
-                components: [
-                    {name: "Read Textbook", portion: 0.35},
-                    {name: "Solve Tutorials", portion: 0.35},
-                    {name: "Revise Lecture Notes", portion: 0.3}
-                ],
-                date: moment("2014-01-29 9:30"),
-                duration: moment.duration(2, "hours")
-            },
-            {
-                title: "DS",
-                portion: 0.2,
-                components: [
-                    {name: "Read Textbook", portion: 0.35},
-                    {name: "Solve Tutorials", portion: 0.35},
-                    {name: "Revise Lecture Notes", portion: 0.3}
-                ],
-                date: moment("2014-01-27 9:30"),
-                duration: moment.duration(2, "hours")
-            },
-            {
-                title: "EXC",
-                portion: 0.2,
-                components: [
-                    {name: "Read Textbook", portion: 0.5},
-                    {name: "Revise Lecture Notes", portion: 0.25},
-                    {name: "Attempt Past Papers", portion: 0.25}
-                ],
-                date: moment("2014-01-23 12:30"),
-                duration: moment.duration(2, "hours")
-            },
 
-        ];
+            exams = pExams;
 
         // === Algorithm ===
 
@@ -283,7 +243,7 @@ angular.module('SmartReviseApp')
                 console.debug(warning);
             }
         };
-        console.log($scope.revisionStore);
+        // console.log($scope.revisionStore);
         for (var i = 0; i < exams.length; i++) {
             $scope.revisionStore.push({
                 title: exams[i].title + " exam",

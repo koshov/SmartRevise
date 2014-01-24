@@ -3,9 +3,9 @@ Reigtration and authentication
 Persistency
 
 Pass data to DB using JSON
-Add calendar icon on setup page
 
 What happens if exam is outside revision times, e.g. 6am??
+Setup same date exams?
 
 ===== Medium Priority =====
 Remove Dates from DB
@@ -14,8 +14,9 @@ Free days/portions of days
 
 ===== Low Priority =====
 Google Calendar
-Calendar hide on focus lost
-fullCalendar week starts on Sunday
+fullcalendar firstHour get value from settings
+
+Setup proper validation with errors
 
 dropdownSelector in setup.html is not ecaluated in datetimepicker.js
 

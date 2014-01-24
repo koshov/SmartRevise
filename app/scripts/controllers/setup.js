@@ -3,7 +3,7 @@
 angular.module('SmartReviseApp')
   .controller('SetupCtrl', function ($scope, $rootScope, $http, $location) {
 
-    $rootScope.exams = []
+    $rootScope.exams = locache.get('exams') || [];
 
     $scope.addExam = function() {
         // TODO: validate name first!
@@ -36,11 +36,19 @@ angular.module('SmartReviseApp')
     }
 
     $scope.setupInvalid = function() {
-        // Validate Setup
-        return $rootScope.exams.length ? false : true;
+        function validDates() {
+            for (var i = 0; i < $rootScope.exams.length; i++) {
+                if ($rootScope.exams[i].date === '') return false;
+            };
+            return true;
+        }
+
+        if ($rootScope.exams.length && validDates()) return false;
+        return true;
     }
 
     $scope.nextStep = function() {
+        locache.set('exams', $rootScope.exams);
         $location.path( 'view' );
     };
   });
