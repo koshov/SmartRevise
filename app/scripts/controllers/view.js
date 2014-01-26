@@ -37,36 +37,31 @@ angular.module('SmartReviseApp')
 
 
     $scope.repartition = function(ind) {
-        // // Calculater portion reminders
-        // var newRemaining = 100 - $scope.exams[ind].portion;
-        // var oldRemaining = 0;
-        // for (var i = $scope.exams.length - 1; i >= 0; i--) {
-        //     if (i != ind) {
-        //         oldRemaining += $scope.exams[i].portion;
-        //     }
-        // }
+        // Calculater portion reminders
+        var exams = $scope.exams;
+        var newRemaining = 100 - exams[ind].portion;
+        var oldRemaining = 0;
+        for (var i = exams.length - 1; i >= 0; i--) {
+            if (i != ind) {
+                oldRemaining += exams[i].portion;
+            };
+        };
 
-        // // Loop through all exams and repartition
-        // var examsLen = $scope.exams.length;
-        // for (var i = 0; i < examsLen; i++) {
-        //     if (i != ind) {
-        //         if (oldRemaining > 0){
-        //             $scope.exams[i].portion = newRemaining * ($scope.exams[i].portion/oldRemaining);
-        //         } else {
-        //             $scope.exams[i].portion = newRemaining / $scope.exams.length-1;
-        //         }
-        //     }
-
-        //     // Update exam start and length
-        //     $scope.exams[i].len = $scope.dates.dif * $scope.exams[i].portion / 100
-        //     if (i != 0){
-        //         $scope.exams[i].startNum = $scope.exams[i-1].startNum + $scope.exams[i-1].len;
-        //     }
-        // }
-        algo();
+        // Loop through all exams and repartition
+        var examsLen = exams.length;
+        for (var i = 0; i < examsLen; i++) {
+            if (i != ind) {
+                if (oldRemaining > 0){
+                    exams[i].portion = newRemaining * (exams[i].portion/oldRemaining);
+                } else {
+                    exams[i].portion = newRemaining / exams.length-1;
+                };
+            };
+        };
+        algo(exams);
 
         // Broadcast event to directive
-        $rootScope.$broadcast('SpecialEvent');
+        // $rootScope.$broadcast('SpecialEvent');
     };
 
     function algo(pExams) {
@@ -243,7 +238,6 @@ angular.module('SmartReviseApp')
                 console.debug(warning);
             }
         };
-        // console.log($scope.revisionStore);
         for (var i = 0; i < exams.length; i++) {
             $scope.revisionStore.push({
                 title: exams[i].title + " exam",
@@ -253,7 +247,7 @@ angular.module('SmartReviseApp')
                 color: "#bedb39"
             });
         };
-        $scope.exams = $scope.revisionStore;
+        $scope.calendarEvents = $scope.revisionStore;
     }
 
 
