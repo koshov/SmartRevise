@@ -4,6 +4,41 @@
 \documentclass[bsc,frontabs,twoside,singlespacing,parskip]{infthesis}     % for BSc, BEng etc.
 % \documentclass[minf,frontabs,twoside,singlespacing,parskip]{infthesis}  % for MInf
 
+% Code snippet settings
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, this, throw, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  sensitive=true
+}
+
+\lstset{frame=tb,
+  language=JavaScript,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=2
+}
+% End - Code snippet settings
+
 \begin{document}
 
 \title{Revision Planner Cross-Platform Web App}
@@ -46,52 +81,58 @@ page as given here, and including a table of contents and bibliography.
 
 \chapter{Introduction}
 
-		
+	TODO
 
 	\section{Application overview}
 	
-	The aim of the SmartRevise application is to allow a user to enter a list of subjects and the dates of their corresponding exams and have a revision schedule generated for them. Ideally the application should be accessible from a wide range of devices with varying screen-sizes and computational resources, schedules should be flexible - e.g. users can enter times when they are not available or change subject priorities, and all that has to be presented in a clear, aesthetic and easy to understand form.
-	
-	There are several key problems that need to be solved in order to successfully achieve the conceptual aims of the project and to ensure that the minimal viable product could potentially survive and be successful in a commercial setting.
-	
-	\textbf{Application portability}
-	
-	With the introduction of powerful portable devices that achieve desktop-grade performance in terms of web browsing, it is no longer safe to make assumptions about the screen size or the browser of a given user. Therefore the design of SmartRevise has to be very agile and flexible: the interface elements need to have adequate size in case the user is navigating via touch, the interface has to be fluid, so that it makes the best of both desktop and mobile screens, the technology behind the application should use well adopted web-standards that have been integrated in the majority of modern browsers.
+		The aim of the SmartRevise application is to allow a user to enter a list of subjects and the dates of their corresponding exams and have a revision schedule generated for them. Ideally the application should be accessible from a wide range of devices with varying screen-sizes and computational resources, schedules should be flexible - e.g. users can enter times when they are not available or change subject priorities, and all that has to be presented in a clear, aesthetic and easy to understand form.
 		
-	\textbf{Solving the scheduling problem}
+		There are several key problems that need to be solved in order to successfully achieve the conceptual aims of the project and to ensure that the minimal viable product could potentially survive and be successful in a commercial setting.
 	
-	Arguably the most critical task for successful completion of the project is developing a correct and efficient scheduling algorithm that is compact enough to be understood and discussed in its entirety. One might be tempted to implement a full-blown constraint satisfaction framework that allows the user to define sets of constraints imposing conditions on variables. A number of search techniques such as backtracking or local search could be used to derive a solution to a system of constraints on a finite domain. However I will argue in Section \ref{algo} that such solution is not required to successfully solve the problem as defined in this report. Furthermore constraint satisfaction algorithms are inherently incomplete, that is an algorithm may solve a problem or prove that it is unsatisfiable, but there are some exceptions when a solution can never be derived. Therefore I have decided to focus on user experience, responsiveness and managed to develop an algorithm that is a fraction of the size of a traditional constraint satisfaction toolkit and is provably correct.
+	\section{Application portability}
 	
-	\textbf{Integration with existing organisation tools}
+		With the introduction of powerful portable devices that achieve desktop-grade performance in terms of web browsing, it is no longer safe to make assumptions about the screen size or the browser of a given user. Therefore the design of SmartRevise has to be very agile and flexible: the interface elements need to have adequate size in case the user is navigating via touch, the interface has to be fluid, so that it makes the best of both desktop and mobile screens, the technology behind the application should use well adopted web-standards that have been integrated in the majority of modern browsers.
+		
+	\section{Solving the scheduling problem}
 	
-	A lot of students use free tools such as Google Calendar or Apple Calendar to organise their schedules and have the information served to all digital devices they use. Google provides an API for developing applications using Calendar's infrastructure and the set up process required for a user to connect their Google Calendar with an external application is mostly effortless and arguably intuitive. Therefore on of the design goals for SmartRevise would be integration with Google's Calendar API and adding support for exporting the generated calendar events to a User's calendar. Additionally, creating a calendar experience within SmartRevise that resembles Google's will make the user's interaction less difficult and considerably more intuitive.
+		Arguably the most critical task for successful completion of the project is developing a correct and efficient scheduling algorithm that is compact enough to be understood and discussed in its entirety. One might be tempted to implement a full-blown constraint satisfaction framework that allows the user to define sets of constraints imposing conditions on variables. A number of search techniques such as backtracking or local search could be used to derive a solution to a system of constraints on a finite domain. However I will argue in Section \ref{algo} that such solution is not required to successfully solve the problem as defined in this report. Furthermore constraint satisfaction algorithms are inherently incomplete, that is an algorithm may solve a problem or prove that it is unsatisfiable, but there are some exceptions when a solution can never be derived. Therefore I have decided to focus on user experience, responsiveness and managed to develop an algorithm that is a fraction of the size of a traditional constraint satisfaction toolkit and is provably correct.
+	
+	\section{Integration with existing organisation tools}
+	
+		A lot of students use free tools such as Google Calendar or Apple Calendar to organise their schedules and have the information served to all digital devices they use. Google provides an API for developing applications using Calendar's infrastructure and the set up process required for a user to connect their Google Calendar with an external application is mostly effortless and arguably intuitive. Therefore on of the design goals for SmartRevise would be integration with Google's Calendar API and adding support for exporting the generated calendar events to a User's calendar. Additionally, creating a calendar experience within SmartRevise that resembles Google's will make the user's interaction less difficult and considerably more intuitive.
 
 
 \chapter{Background}
 
-	
+		In this chapter a brief outline of the available scheduling algorithms, revision planning tools and technology choices will be given. In Section \ref{scheduling} the reader may find a high-level summary of existing project-management techniques and some arguments about their applicability in the current project.
+		
+		In section \ref{apps} we discuss existing software with similar functionality and how that compares to the specification for SmartRevise.
 
-	\section{Scheduling}
+	\section{Scheduling}\label{scheduling}
 	
-	\section{Constraint satisfaction}
+		TODO
 	
-	\section{Existing applications}
-	In order to identify potential pitfalls and set realistic standards for the success criteria of this project, two commercial revision-organiser applications were studied. Both GetRevising (http://www.getrevising.co.uk/) and ExamTime (htttp://www.examtime.com/) are browser-based web applications that feature organisation functionality for a number of activities typical for exam revision. The applications are free to use and require registration in order to create a revision plan.
+	%\section{Constraint satisfaction}
 	
-	\textbf{ExamTime}
+		% TODO
 	
-	ExamTime is the simpler of the two applications. After registering with the service, the user is prompted to add subjects to their dashboard. Subjects are in fact collections of mind maps, quizzes, flash cards and notes, organised under topics.
+	\section{Existing applications}\label{apps}
 	
-	There is a calendar view where the user can manually add calendar events for exams, revision sessions or other activities. The application does not allow for the automatic generation of a revision schedule and the user has to complete this activity by themselves.
+		In order to identify potential pitfalls and set realistic standards for the success criteria of this project, two commercial revision-organiser applications were studied. Both GetRevising (http://www.getrevising.co.uk/) and ExamTime (htttp://www.examtime.com/) are browser-based web applications that feature organisation functionality for a number of activities typical for exam revision. The applications are free to use and require registration in order to create a revision plan.
 	
-	\textbf{Get Revising}
+	\begin{description}
+		\item[ExamTime] \hfill \\
+		ExamTime is the simpler of the two applications. After registering with the service, the user is prompted to add subjects to their dashboard. Subjects are in fact collections of mind maps, quizzes, flash cards and notes, organised under topics.
+		
+		There is a calendar view where the user can manually add calendar events for exams, revision sessions or other activities. The application does not allow for the automatic generation of a revision schedule and the user has to complete this activity by themselves.
 	
-	Get Revising offers a larger number of features such as Flashcards, Revision Notes, Quizzes, Mind maps and the ability to share resources between students. It also has some built-in layouts for common GCSE, A Level and University programmes that include subjects, known exam dates and simple content structure for well-known courses.
-	
-	The user of the study planner feature of Get Revising can set School hours that should be excluded from the revision schedule and the application has the ability to split the time prior to exam dates equally between selected subjects. 
-	
-	However Get Revising does not allow for a deeper level of detail when it comes to creating a schedule - only events for revising a particular subject can be created, therefore a user cannot include items such as\textit{read textbook, solve tutorials, do past papers, etc.}
-	
+		\item[Get Revising] \hfill \\
+		Get Revising offers a larger number of features such as Flashcards, Revision Notes, Quizzes, Mind maps and the ability to share resources between students. It also has some built-in layouts for common GCSE, A Level and University programmes that include subjects, known exam dates and simple content structure for well-known courses.
+		
+		The user of the study planner feature of Get Revising can set School hours that should be excluded from the revision schedule and the application has the ability to split the time prior to exam dates equally between selected subjects. 
+		
+		However Get Revising does not allow for a deeper level of detail when it comes to creating a schedule - only events for revising a particular subject can be created, therefore a user cannot include items such as\textit{read textbook, solve tutorials, do past papers, etc.}
+	\end{description}
 	
 
 
@@ -101,32 +142,149 @@ page as given here, and including a table of contents and bibliography.
 	Due to the advancement of faster, more powerful web-browsers, featuring robust engines for running efficiently large amounts of  code and with the continuos effort by organisations such as Mozilla and Chromium to drive web standards further and develop powerful open-source technologies for the next generation of Web, it is no longer infeasible to develop an entire application stack using a single programming language - ECMAScript, or more commonly known as JavaScript.
 	
 	Some of the arguments in support of such design decision include the ability to exchange JavaScript objects between server and client without having to convert them during transport, being able to plug community libraries at all levels of the project without having to worry about compatibility or portability, but most of all due to the sheer convenience of having an entire application stack built with the exact same tools and following the same design philosophy. 
+	
+	A more traditional way to solve the problem defined in this report would be to create a server-centric application that relies on technologies such as PHP, Python or Java to do the majority of the work on the server and send the rendered HTML templates as static files to the client. While this solution is widely used in practice, recent years have seen a change in the web application design approach, targeted at thinner back-ends and outsourcing the majority of the application logic to the user's browser.
 
 	\section{Project architecture}
 	
-	SmartRevise is a client-side JavaScript application based on the Google AngularJS framework that is served by a NodeJS server. The entire application is downloaded by the client upon establishing connection with the server and the user's browser is responsible for rendering views and navigating between them. A similar approach is used by Google for their Gmail application and it allows for offloading the rendering responsibility from the server to the client. Additionally, after downloading the application, the only data that is exchanged with the server is in the form of JavaScript objects. Since the front-end can be cached by the browser, this solution can decrease traffic and improve the user's experience. On the other hand, since all further server requests are executed via an API to the database, it is trivial to implement memory caching, load-balancing and advanced protection to the leaner and less complicated back-end.
-	
-	Application deployment, provisioning of the environment and dependency management is also handled by JavaScript services such as Grunt and Bower. Further details about configuring and using those can be found in section \ref{tools}.
-	
-	\section{Client-side application}
-	
-	
-	
-	\section{Server and REST API}
-	
-	
+		SmartRevise is a client-side JavaScript application based on the Google AngularJS framework that is served by a NodeJS server. The entire application is downloaded by the client upon establishing connection with the server and the user's browser is responsible for rendering views and navigating between them. A similar approach is used by Google for their Gmail application and it allows for offloading the rendering responsibility from the server to the client. Additionally, after downloading the application, the only data that is exchanged with the server is in the form of JavaScript objects. Since the front-end can be cached by the browser, this solution can decrease traffic and improve the user's experience. On the other hand, since all further server requests are executed via an API to the database, it is trivial to implement memory caching, load-balancing and advanced protection to the leaner and less complicated back-end.
+		
+		Application deployment, provisioning of the environment and dependency management is also handled by JavaScript services such as Grunt and Bower. Further details about configuring and using those can be found in section \ref{tools}.
 	
 	\section{Algorithm}\label{algo}
 	
+		The algorithm that was developed for SmartRevise revision scheduling solves the problem on incompleteness, typically associated with constraint satisfaction,  by limiting the domain and introducing a single relaxed constraint - amount of hours spent on each subject. The algorithm successfully finds schedules that appear intuitively correct and runs efficiently without any noticeable delays. Most of all, the entire scheduling software is executed in the user's browser, which makes the application self-contained and less reliant on a centralised server with high performance.
+		
+		The SmartRevise algorithm takes the following input arguments:
+		
+		\begin{description}
+			\item[Exams] \hfill \\
+				An array of \textbf{Exam} objects. Each object has the following attributes: \\
+				\textit{Title} - name of subject\\
+				\textit{Date} - date and hour of examination\\
+				\textit{Duration} - duration of examination\\
+				\textit{Portion} - a floating point number [0,1], the relative portion of revision time that will be spent on subject\\
+				\textit{Components} - sub-tasks that need be completed as part of the revision for the subject
+			\item[Revision start] \hfill \\
+				Usually the current time
+			\item[Daily start and end time] \hfill \\
+				Used to define waking hours available for revision, e.g. 9AM - 6PM
+			\item[Additional blocking events] \textit{optional} \hfill \\
+				Events that indicate a period when the student is not available
+		\end{description}
 	
+		The pseudo-code outlined in Listing \ref{algoCode} presents the basic structure of the SmartRevise scheduling algorithm:
+	
+	\begin{lstlisting}[caption="SmartRevise scheduling algorithm", label=algoCode]
+Exams.sort(exam.date, ascending);
+var revisionEnd = Exams[exams.length - 1];
+var revisionLength = difference(revisionStart, revisionEnd);
+
+// Divide revision period in "chunks" of time between exams
+// Examine days in reverse order starting from last day
+for (var day=revisionLength; day>0; day--) {
+	if (day.hasNoExams) {
+		currentChunk.slices.push( day );
+	} else {
+		currentChunk.slices.push( period(exam.date+exam.duration, day.end) );
+		currentChunk = new Chunk
+	}
+}
+
+// Calculate total revision time
+var revisionTime;
+for (chunk in chunks) {
+	for (slice in chunk.slices) {
+		revisionTime += chunk.length;
+	}
+}
+
+// Determine revision time per subject
+for (exam in exams) {
+	exam.time = revisionTime * exam.portion;
+}
+
+// Starting from last chunk proportionally (to remaining hours of each subject) split time between exams, keeping track of spent hours
+var events = [];
+for (chunk in chunks.reverse) {
+	for (slice in chunk.slices){
+		// Determine the total remaining revision time for the exams remaining after the current chunk
+		var chunkExamsTime;
+		for (exam in chunk.exams) {
+			chunkExamsTime += exam.time;
+		}
+		
+		// Allocate proportional amount of time to each exam
+		for (exam in chunk.exams) {
+			var subjectTime = (exam.time / chunkExamsTime) * slice.length;
+			exam.time -= subjectTime;
+			// Create new revision event and add it to the list of events
+			events.push(new SubjectRevision(exam.title, subjectTime));
+		}
+	}
+}
+		
+	\end{lstlisting}
+	
+	
+		Each Chunk object contains several Slices - an uninterrupted working time, e.g. 31/06/2014 09:00 - 31/06/2014 18:00. A chunk also has an Exams attribute that contains an array of Exam objects with due date after the end of the chunk. Therefore the first chunk contains all slices from the start of the revision until the first exam date. Additionally $ Chunk[0].exams $ contains all exams in the schedule. 
+	
+		Using the logic outlined in the pseudo-code in Listing \ref{algoCode} and by including edge-case handling and means for converting and executing mathematic expressions on JavaScript Date objects, a JavaScript method was developed that can successfully partition the period between a given start date and a number of random exam dates.
+	
+		One notable exception surfaced during the development of the algorithm - if an exam is scheduled at the very beginning of a lengthy exam diet it might be the case that there is not enough time between the revision start and the exam date to spend the total time allocated for that subject. Despite that, such subjects are allocated most of the available time and without adding any specific handling for such cases, the algorithm produces sensible and meaningful revision schedules.
+	
+	\section{Client-side application}
+	
+		The front-end of SmartRevise was built using AngularJS. This is a front-end web application framework built by engineers at Google, aiming for rapid development of lightweight yet powerful browser applications. It follows the $ Model-View-Controller [MVC] $ philosophy and allows the developer to built modular applications by allowing the abstraction of every single interface element or piece of functionality in an Angular structure called Directive. A directive could be anything from a simple UI element with additional features, to complex scheduling algorithms that can be packaged and distributed with ease.
+		
+		There are alternatives to Angular such as EmberJS, Knockout and Backbone. The decision to use Angular was made in an effort to extend the author's knowledge of JavaScript MVC frameworks and due to the abundance of resources about the software on the Internet.
+	
+	\section{Server and REST API}
+	
+		The back-end of the application was built using NodeJS. This is a JavaScript platform built on Google Chrome's JavaScript V8 engine. It is a lightweight event-driven framework that aids the building of scalable and efficient server application. 
+		
+		Routing, request handling and connection to the database is achieved using Express - a JavaScript framework for building web applications based on Node. The purpose of the library is to provide basic functionality such as authentication, user sessions and request serialisation out of the box.
+		
+		The database was built using MongoDB. This is a mature open-source NoSQL database written in C++ that provides excellent interfaces for data exchange with Node application. Mongo features an SQL-like query language based on JavaScript and allows the developer to store entire JavaScript objects without having to convert back and forth to a relational schema. NoSQL solutions are not optimal for performance-centric applications or solutions involving massive amounts of data. In the case of SmartRevise there are several arguments in support of such design decision:
+		
+		\begin{description}
+			\item[Rapid development] \hfill \\
+				Changes in the database schema are largely effortless since there is no need to convert JavaScript objects to tuples in a relational database
+			\item[One lookup and update per user session] \hfill \\
+				Since SmartRevise is a client-side application, all changes to the data are made in the user's browser and stored locally until the end of the interaction. Therefore the number of database lookups is kept minimal
+			\item[Ability to switch database engine at any point] \hfill \\
+				The above items outline MongoDB's advantages during development. Since all data calls are routed via an API, it would be trivial to switch MongoDB with a traditional SQL database and develop adapters that convert SQL relations to the corresponding JavaScript objects. Currently there is no need for higher performance, but should any issues emerge that cannot be solved by the MongoDB community, the architecture allows for quick exchange of components.
+		\end{description}
+		
 	
 	\section{Additional tools}\label{tools}
 	
-	
+		This section will provide a review of the miscellaneous software packages that were used in order to ease development, improve the quality of the software and simulate as closely as possible a real production environment.
+		
+		\begin{description}
+			\item[Grunt] \hfill \\
+			Grunt is a JavaScript Task Runner. It allows the developer to automate repetitive tasks by defining a Gruntfile.js with automation parameters. The biggest advantage of Grunt over similar technologies such as Puppet or Chef is its growing environment focused on JavaScripts.
+			
+			In the setup for SmartRevise, Grunt is used to compile multiple JavaScript libraries to a single script file, compress the code using best practices in order to achieve faster and smoother experience for the user, run the database and server applications as well as monitor the project directory for file writes and automatically recompile the application.
+			
+			Additionally using Grunt one can generate templates for various Angular components such as new routes, templates or directives, as well as export a compiled version of the application that can be published to a SaaS provider such as Heroku in less than a minute.
+			
+			In summary, Grunt is a crucial component in every professional toolkit nowadays and helps deliver ideas very quickly without technology getting in the way.
+			
+			\item[Bower] \hfill \\
+			Bower is the first JavaScript package manager for front-end web projects. It makes downloading and managing a large number of external dependencies effortless compared to manual management of libraries. 
+			
+			Package management is traditionally considered a trivial problem for modern software engineering, but since the majority of JavaScript tools are relatively young and less developed, being able to manage the entire stack of a web application with ease and convenience is a significant step forwards that makes this project better suited for future development.
+			
+		\end{description}
+
+\chapter{Evaluation}
+
+	TODO
 
 \chapter{Conclusion}
 
-
+	TODO
 
 % use the following and \cite{} as above if you use BibTeX
 % otherwise generate bibtem entries
