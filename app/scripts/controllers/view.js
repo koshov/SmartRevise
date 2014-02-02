@@ -4,12 +4,13 @@ angular.module('SmartReviseApp')
   .controller('ViewCtrl', function ($rootScope, $scope, $http) {
     // Populate scope
     $scope.eventColors = [
+        '#ffe11a',
         '#bedb39',
         '#004358',
         '#1f8a70',
-        '#fd7400',
-        '#ffe11a'
-    ]
+        '#fd7400'
+    ];
+
     if ($rootScope.exams === undefined) {
         if (locache.get('exams')) {
             $rootScope.exams = locache.get('exams');
@@ -182,7 +183,7 @@ angular.module('SmartReviseApp')
 
         // Find revision hours per exam
         for (var i = exams.length - 1; i >= 0; i--) {
-            exams[i].time = revisionTime * exams[i].portion;
+            exams[i].time = revisionTime * exams[i].portion / 100;
         };
 
         // Starting from last chunk proportionally (to remaining hours of each subject)
@@ -220,7 +221,8 @@ angular.module('SmartReviseApp')
                                 title: revisionChunks[i].exams[k].title,
                                 start: moment(revisionChunks[i].slices[j].start.format()).add(delta, "minutes").toDate(),
                                 end: moment(revisionChunks[i].slices[j].start.format()).add((delta+subjectTime), "minutes").toDate(),
-                                allDay: false
+                                allDay: false,
+                                color: exams[k].color
                             });
                             delta += subjectTime;
                             console.log(revisionChunks[i].exams[k].title, ":", subjectTime);
@@ -238,13 +240,18 @@ angular.module('SmartReviseApp')
                 console.debug(warning);
             }
         };
+
+        // Currently the last event in revisionStore is the first exam session
+        $scope.firstDay = moment($scope.revisionStore[$scope.revisionStore.length - 1].start);
+        console.log($scope.firstDay);
+
         for (var i = 0; i < exams.length; i++) {
             $scope.revisionStore.push({
                 title: exams[i].title + " exam",
                 start: exams[i].date.toDate(),
                 end: moment(exams[i].date.format()).add(exams[i].duration).toDate(),
                 allDay: false,
-                color: "#bedb39"
+                color: "#C74258"
             });
         };
         $scope.calendarEvents = $scope.revisionStore;

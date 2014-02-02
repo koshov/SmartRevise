@@ -8,7 +8,7 @@ angular.module('SmartReviseApp')
       replace: true,
       scope: {
         srExams: '=',
-        srRepart: '='
+        srDate: '='
       },
       controller: function($scope, $attrs) {
         $scope.$on('SpecialEvent', function() {
@@ -16,26 +16,34 @@ angular.module('SmartReviseApp')
         });
       },
       link: function postLink(scope, element, attrs) {
+        // Don't watch for fist exam dates if calendar initializes properly
+        // scope.$watch('srDate', function() {createCalendar()});
+        // var createCalendar = function() {
           $('#calendar').fullCalendar({
               header: {
                   left: 'prev,next today',
                   center: 'title',
-                  right: 'month,agendaWeek,agendaDay'
+                  right: 'month,agendaWeek'
               },
-              month: moment().month(),
-              firstDay: 1,
-              firstHour: 9
-              // editable: true,
+              defaultView: 'agendaWeek',
+              month: scope.srDate.month(),
+              date: scope.srDate.date(),
+              firstDay: 1,  // Sets Monday to first day of week
+              firstHour: 9,
+              allDaySlot: false,
+              contentHeight: 420
           });
 
+          scope.$watch('srExams', function() {rerenderEvents()});
           var rerenderEvents = function() {
+              $('#calendar').fullCalendar( 'removeEvents' )
               var examsLen = scope.srExams.length;
               for (var i = 0; i < examsLen; i++) {
                   $('#calendar').fullCalendar( 'renderEvent', scope.srExams[i], true);
               };
           };
+        // }
 
-          scope.$watch('srExams', function() {rerenderEvents()});
       }
     };
   });
