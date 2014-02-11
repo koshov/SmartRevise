@@ -2,8 +2,10 @@
 @import "foundation";
 
 @import "vars";
-// @import "calendar";
 @import "glyphicons";
+
+// View-specific imports
+@import "view";
 
 body {
     background: #fafafa;
@@ -24,18 +26,9 @@ button.delete,
     color: white;
 }
 
+
+
 .dates-setup .examTitle {
     padding-top: 10px;
 }
 
-
-// TODO: Put these in an import
-
-.view-exam-group {
-    border-bottom: 1px solid $light1;
-    padding-top: 16px;
-}
-
-input[type="range"] {
-    height: 2.3125rem;
-}
