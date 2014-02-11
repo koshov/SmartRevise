@@ -3,13 +3,13 @@ Reigtration and authentication
 Persistency
 
 What happens if exam is outside revision times, e.g. 6am??
+    - IT GETS FUCKED
 
 Setup - same time exams validation?
 
 View - if exam portion is greater than available time - messy things happen
 
 ===== Medium Priority =====
-View - Dayliy start/end time
 View - Free days/portions of days
 View - blocking events in calendar
 Google Calendar integration
@@ -17,6 +17,12 @@ Google Calendar integration
 ===== Low Priority =====
 View - fullcalendar firstHour get value from settings
 Setup - proper validation with errors
-View - dynamic calendar height based on day length (hours * 42px + 21px)
 
 
+
+Persistence...
+Indicate current time?
+After sub-task events have been created, store their end time and indicate in task list if there are any overdue tasks
+
+    sub-tasks show in all input fields?
+    changing priority and order

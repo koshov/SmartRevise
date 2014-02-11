@@ -1,12 +1,16 @@
 'use strict';
 
-function algo(pExams) {
-    // Dummy exam data
-    var revisionStart = moment(),
-        startHour = 9,
-        startMinute = 0,
-        endHour = 18,
-        endMinute = 0,
+function algo(pExams, pStart, pEnd, pRevisionStart) {
+    if (pRevisionStart === undefined || pRevisionStart === '') {
+        var revisionStart = moment();
+    } else {
+        var revisionStart = moment(pRevisionStart);
+    }
+
+    var startHour = pStart.hours(),
+        startMinute = pStart.minutes(),
+        endHour = pEnd.hours(),
+        endMinute = pEnd.minutes(),
         smallestChunk = 30,
 
         revisionChunks = [],
@@ -185,7 +189,7 @@ function algo(pExams) {
             start: exams[i].date.toDate(),
             end: moment(exams[i].date.format()).add(exams[i].duration).toDate(),
             allDay: false,
-            color: "#C74258"
+            color: "#cc3333"
         });
     };
     return {events: revisionStore, firstDay: firstDay}

@@ -1,4 +1,25 @@
-<fullclndr sr-exams="calendarEvents" sr-date="firstDay"></fullclndr>
+<div class="row collapse">
+    <label class="small-6 large-3 columns">Start Time
+        <select ng-model="times.start" ng-options="time for time in selectTimes"></select>
+    </label>
+    <label class="small-6 large-3 columns">Revision start date
+        <button href="" data-dropdown="startDate" id="startDateButton" class="prefix secondary dropButton">
+            <span ng-show="!revisionStart"><i class="fi-calendar"></i> Revision start date</span>
+            {{revisionStart}}
+        </button>
+        <datetimepicker data-dropdown-content class="f-dropdown" id="startDate" ng-model="revisionStart" data-datetimepicker-config="{dropdownSelector: '.dropButton'}"></datetimepicker>
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
+    </label>
+</div>
+<div class="row collapse">
+    <label class="small-6 large-3 columns">End Time
+        <select ng-model="times.end" ng-options="time for time in selectTimes"></select>
+    </label>
+</div>
+
+<fullclndr sr-exams="calendarEvents" sr-date="firstDay" sr-daylen="dayLen"></fullclndr>
 <div ng-repeat="exam in exams" class="row collapse view-exam">
     <div class="small-12 large-6 columns">
         <div class="row collapse">
@@ -22,9 +43,20 @@
             <ul class="view-exam-taskList">
                 <li ng-repeat="component in exam.components">
                     <input id="{{exam.title}}-{{component.name}}" type="checkbox" ng-model="component.done">
-                    <label for="{{exam.title}}-{{component.name}}">{{component.name}}</label>
+                    <label for="{{exam.title}}-{{component.name}}">
+                        <span ng-class="{strike: component.done}">{{component.name}}</span>
+                        <a href="" ng-click="deleteComponent($parent.$index, $index)"><i class="fi-trash small"></i></a>
+                    </label>
                 </li>
             </ul>
+            <div class="row collapse">
+                <div class="small-10 columns">
+                    <input type="text" placeholder="Add task, e.g. sharpen pencils" ng-model="$parent.newComponent">
+                </div>
+                <div class="small-2 columns">
+                    <a href="" ng-click="addComponent($index)" class="postfix">Add</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
