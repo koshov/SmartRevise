@@ -128,8 +128,13 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
             // TODO: take portion into account
             exams[i].components[j].time = exams[i].time / exams[i].components.length;
             // console.log(exams[i].components[j].name, exams[i].components[j].time);
+
+            // Reset subtask deadlines
+            exams[i].components[j].deadline = undefined;
         };
     };
+
+
 
     // Starting from last chunk proportionally (to remaining hours of each subject)
     //   split time between exams, keeping track of spent hours
@@ -169,7 +174,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                             for (var m = revisionChunks[i].exams[k].components.length - 1; m >= 0 ; m--) {
                                 var subtask = revisionChunks[i].exams[k].components[m];
                                 if (subtask.time > 0) {
-                                    console.log(revisionChunks[i].exams[k].components[m]);
+                                    // console.log(revisionChunks[i].exams[k].components[m]);
                                     return subtask;
                                 }
                             };
@@ -178,6 +183,8 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                         while (subjectTime > 0) {
                             var subtask = getSubtask();
                             if (subtask) {
+                                // If deadline for this subtask is not defined
+                                if (!subtask.deadline) subtask.deadline = moment(revisionChunks[i].slices[j].end.format()).subtract(delta, "minutes");
                                 if (subjectTime <= subtask.time) {
                                     revisionStore.push({
                                         title: (revisionChunks[i].exams[k].title + " - " + subtask.name),
@@ -209,21 +216,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                                 // TODO: make sure this is OK
                                 subjectTime = 0;
                             }
-
                         }
-
-
-
-                        // revisionStore.push({
-                        //     title: revisionChunks[i].exams[k].title,
-                        //     start: moment(revisionChunks[i].slices[j].start.format()).add(delta, "minutes").toDate(),
-                        //     end: moment(revisionChunks[i].slices[j].start.format()).add((delta+subjectTime), "minutes").toDate(),
-                        //     allDay: false,
-                        //     color: exams[k].color
-                        // });
-                        // delta += subjectTime;
-                        // console.log(revisionChunks[i].exams[k].title, ":", subjectTime);
-                        // console.log("Time remaining:", revisionChunks[i].exams[k].time);
                     }
                 }
             };

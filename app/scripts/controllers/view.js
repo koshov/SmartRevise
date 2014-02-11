@@ -63,6 +63,11 @@ angular.module('SmartReviseApp')
     runAlgorithm(exams);
 
     $scope.newComponent = "";
+    $scope.subtaskDeadline = function(exam, component) {
+        var subtaskDeadline = $scope.exams[exam].components[component].deadline;
+        if (moment().diff(subtaskDeadline) > 0) return true;
+        return false
+    }
     $scope.addComponent = function(ind) {
         if ($scope.newComponent !== "") {
             $rootScope.exams[ind].components.push(
@@ -73,14 +78,13 @@ angular.module('SmartReviseApp')
                 }
             );
             $scope.newComponent = "";
+            runAlgorithm($scope.exams, $scope.revisionStart);
         }
     };
     $scope.deleteComponent = function(exam, component) {
         $rootScope.exams[exam].components.splice(component, 1);
+        runAlgorithm($scope.exams, $scope.revisionStart);
     }
-
-
-
 
 
     $scope.repartition = function(ind) {
@@ -108,5 +112,10 @@ angular.module('SmartReviseApp')
         runAlgorithm(exams);
 
     };
+
+
+
+    // ==== Interface ====
+    $scope.settingsToggle = true;
 
   });

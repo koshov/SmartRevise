@@ -1,22 +1,41 @@
-<div class="row collapse">
-    <label class="small-6 large-3 columns">Start Time
-        <select ng-model="times.start" ng-options="time for time in selectTimes"></select>
-    </label>
-    <label class="small-6 large-3 columns">Revision start date
-        <button href="" data-dropdown="startDate" id="startDateButton" class="prefix secondary dropButton">
-            <span ng-show="!revisionStart"><i class="fi-calendar"></i> Revision start date</span>
-            {{revisionStart}}
-        </button>
-        <datetimepicker data-dropdown-content class="f-dropdown" id="startDate" ng-model="revisionStart" data-datetimepicker-config="{dropdownSelector: '.dropButton'}"></datetimepicker>
-        <script type="text/javascript">
-            $(document).foundation();
-        </script>
-    </label>
-</div>
-<div class="row collapse">
-    <label class="small-6 large-3 columns">End Time
-        <select ng-model="times.end" ng-options="time for time in selectTimes"></select>
-    </label>
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">Your SmartRevise plan</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+        <li ng-class="{active: settingsToggle}" >
+            <a href="" ng-click="settingsToggle = !settingsToggle"><i class="fi-widget"></i></a>
+        </li>
+    </ul>
+  </section>
+</nav>
+
+<div class="settings" ng-class="{settingsVisible: settingsToggle}">
+    <div class="row collapse">
+        <label class="small-6 large-3 columns">Start Time
+            <select ng-model="times.start" ng-options="time for time in selectTimes"></select>
+        </label>
+        <label class="small-6 large-3 columns">Revision start date
+            <button href="" data-dropdown="startDate" id="startDateButton" class="prefix secondary dropButton">
+                <span ng-show="!revisionStart"><i class="fi-calendar"></i> Revision start date</span>
+                {{revisionStart}}
+            </button>
+            <datetimepicker data-dropdown-content class="f-dropdown" id="startDate" ng-model="revisionStart" data-datetimepicker-config="{dropdownSelector: '.dropButton'}"></datetimepicker>
+            <script type="text/javascript">
+                $(document).foundation();
+            </script>
+        </label>
+    </div>
+    <div class="row collapse">
+        <label class="small-6 large-3 columns">End Time
+            <select ng-model="times.end" ng-options="time for time in selectTimes"></select>
+        </label>
+    </div>
 </div>
 
 <fullclndr sr-exams="calendarEvents" sr-date="firstDay" sr-daylen="dayLen"></fullclndr>
@@ -44,7 +63,7 @@
                 <li ng-repeat="component in exam.components">
                     <input id="{{exam.title}}-{{component.name}}" type="checkbox" ng-model="component.done">
                     <label for="{{exam.title}}-{{component.name}}">
-                        <span ng-class="{strike: component.done}">{{component.name}}</span>
+                        <span ng-class="{strike: component.done, red: subtaskDeadline($parent.$index, $index)}">{{component.name}}</span>
                         <a href="" ng-click="deleteComponent($parent.$index, $index)"><i class="fi-trash small"></i></a>
                     </label>
                 </li>
