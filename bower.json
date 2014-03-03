@@ -9,19 +9,17 @@
     "angular-cookies": "~1.0.7",
     "angular-sanitize": "~1.0.7",
     "clndr": "~1.1.0",
-    "jquery": "~2.0.3",
+    "jquery": "~2.1.0",
     "moment": "~2.4.0",
     "underscore": "~1.5.2",
     "foundation": "zurb/bower-foundation",
     "fullcalendar": "~1.6.4",
     "angular-bootstrap-datetimepicker": "latest",
-    "locache": "~0.4.1"
+    "locache": "~0.4.1",
+    "jquery-ui": "~1.10.4"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",
     "angular-scenario": "~1.0.7"
-  },
-  "resolutions": {
-    "jquery": "~2.0.3"
   }
 }

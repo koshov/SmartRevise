@@ -1,5 +1,7 @@
 'use strict';
 
+var DEBUG = false;
+
 function algo(pExams, pStart, pEnd, pRevisionStart) {
     if (pRevisionStart === undefined || pRevisionStart === '') {
         var revisionStart = moment();
@@ -17,6 +19,8 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
 
         exams = pExams;
 
+    console.log(exams);
+
     // === Algorithm ===
 
     // Sort exams by date (earlyest first)
@@ -26,7 +30,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
     // Change time of revisionStart in order to count days correctly
     // TODO: check if this is actually true
     var revisionLength = lastExam.date.diff( moment(revisionStart.format()).hours(startHour).minutes(startMinute) , "days") + 1;
-    console.log("Revision lenght -", revisionLength, "days" );
+    if (DEBUG) console.log("Revision lenght -", revisionLength, "days" );
 
     // Divide Revision/Exam period in chunks between exams
     var currentExams = [],
@@ -34,7 +38,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
         examinedDate = moment(lastExam.date.format()),
         revisionTime = 0;
     for (var i = 0; i < revisionLength; i++) {
-        console.log("Checking", examinedDate.format("DD-MM-YY"));
+        if (DEBUG) console.log("Checking", examinedDate.format("DD-MM-YY"));
         // Check if there is an exam on the current day
         if (exams[examIndex].date.format("DDMMYY") == examinedDate.format("DDMMYY")) {
             while (exams[examIndex].date.format("DDMMYY") == examinedDate.format("DDMMYY")) {
@@ -50,7 +54,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                         });
                         var newSlice = currentChunk.slices[currentChunk.slices.length-1]
                         revisionTime += newSlice.end.diff(newSlice.start, "minutes");
-                        console.log(revisionTime);
+                        if (DEBUG) console.log(revisionTime);
                     }
                 }
                 // Check if next exam is on the same day
@@ -61,7 +65,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                     sliceStart = moment(examinedDate.format()).hours(startHour).minutes(startMinute);
                 }
                 // Push new chunk in list
-                console.log("Today:", exams[examIndex].title);
+                if (DEBUG) console.log("Today:", exams[examIndex].title);
                 currentExams.push(exams[examIndex]);
                 revisionChunks.push({
                     exams: currentExams.slice(0),
@@ -74,7 +78,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                 var currentChunk = revisionChunks[revisionChunks.length-1];
                 var newSlice = currentChunk.slices[currentChunk.slices.length - 1]
                 revisionTime += newSlice.end.diff(newSlice.start, "minutes");
-                console.log(revisionTime);
+                if (DEBUG) console.log(revisionTime);
 
                 if (examIndex > 0) {
                     examIndex -= 1;
@@ -93,7 +97,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                 });
                 var newSlice = currentChunk.slices[currentChunk.slices.length - 1]
                 revisionTime += newSlice.end.diff(newSlice.start, "minutes");
-                console.log(revisionTime);
+                if (DEBUG) console.log(revisionTime);
             } else {
                 // First day's revision begins now
                 var todayHour = moment().hours(),
@@ -107,7 +111,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                     });
                     var newSlice = currentChunk.slices[currentChunk.slices.length - 1]
                     revisionTime += newSlice.end.diff(newSlice.start, "minutes");
-                    console.log(revisionTime);
+                    if (DEBUG) console.log(revisionTime);
                 }
             }
         };
@@ -118,16 +122,16 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
     // End final revision chunk
     var currentChunk = revisionChunks[revisionChunks.length-1];
     currentChunk.start = moment(revisionStart.format());
-    console.log(revisionChunks);
+    if (DEBUG) console.log(revisionChunks);
 
     // Find revision hours per exam
     for (var i = exams.length - 1; i >= 0; i--) {
-        exams[i].time = revisionTime * exams[i].portion / 100;
-        // console.log(exams[i].time);
+        if (!exams[i].blocking) exams[i].time = revisionTime * exams[i].portion / 100;
+        // if (DEBUG) console.log(exams[i].time);
         for (var j = 0; j < exams[i].components.length; j++) {
             // TODO: take portion into account
             exams[i].components[j].time = exams[i].time / exams[i].components.length;
-            // console.log(exams[i].components[j].name, exams[i].components[j].time);
+            // if (DEBUG) console.log(exams[i].components[j].name, exams[i].components[j].time);
 
             // Reset subtask deadlines
             exams[i].components[j].deadline = undefined;
@@ -141,7 +145,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
     var revisionStore = []
     for (var i = 0; i < revisionChunks.length; i++) {
         for (var j = 0; j < revisionChunks[i].slices.length; j++) {
-            console.log("---");
+            if (DEBUG) console.log("---");
             // Calculate total revision time for the exams in this chunk
             // NOTE: has to be calculated for every slice since times change on each iteration
             var examsTotalTime = 0;
@@ -152,8 +156,14 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
             var delta = 0;
             for (var k = 0; k < revisionChunks[i].exams.length; k++) {
                 if (revisionChunks[i].exams[k].time > 0 && sliceLen >= smallestChunk) {
-                    var subjectTime;
-                    if (k < revisionChunks[i].exams.length - 1){
+                    var subjectTime,
+                        othersTime = 0;
+                    // Check if remaining exams in array have remaining revision time
+                    for (var m = k+1; m < revisionChunks[i].exams.length; m++) {
+                        othersTime += revisionChunks[i].exams[m].time;
+                        console.log(othersTime, m);
+                    };
+                    if (othersTime > smallestChunk){
                         subjectTime = (revisionChunks[i].exams[k].time / examsTotalTime) * sliceLen;
                     } else {
                         // Last chunk gets the remaining time
@@ -167,14 +177,14 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                     }
                     if (subjectTime > 0) {
                         revisionChunks[i].exams[k].time -= subjectTime;
-                        console.log(revisionChunks[i].exams[k].title, ":", subjectTime);
-                        console.log(revisionChunks[i].exams[k].title, "remaining:", revisionChunks[i].exams[k].time);
+                        if (DEBUG) console.log(revisionChunks[i].exams[k].title, ":", subjectTime);
+                        if (DEBUG) console.log(revisionChunks[i].exams[k].title, "remaining:", revisionChunks[i].exams[k].time);
 
                         var getSubtask = function() {
                             for (var m = revisionChunks[i].exams[k].components.length - 1; m >= 0 ; m--) {
                                 var subtask = revisionChunks[i].exams[k].components[m];
                                 if (subtask.time > 0) {
-                                    // console.log(revisionChunks[i].exams[k].components[m]);
+                                    // if (DEBUG) console.log(revisionChunks[i].exams[k].components[m]);
                                     return subtask;
                                 }
                             };
@@ -191,7 +201,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                                         start: moment(revisionChunks[i].slices[j].end.format()).subtract(delta+subjectTime, "minutes").toDate(),
                                         end: moment(revisionChunks[i].slices[j].end.format()).subtract(delta, "minutes").toDate(),
                                         allDay: false,
-                                        color: exams[k].color
+                                        color: revisionChunks[i].exams[k].color
                                     });
                                     delta += subjectTime;
 
@@ -204,13 +214,13 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                                         start: moment(revisionChunks[i].slices[j].end.format()).subtract(delta+subtask.time, "minutes").toDate(),
                                         end: moment(revisionChunks[i].slices[j].end.format()).subtract(delta, "minutes").toDate(),
                                         allDay: false,
-                                        color: exams[k].color
+                                        color: revisionChunks[i].exams[k].color
                                     });
                                     delta += subtask.time;
 
                                     subjectTime -= subtask.time;
                                     subtask.time = 0;
-                                    console.log("Subject time", subjectTime);
+                                    if (DEBUG) console.log("Subject time", subjectTime);
                                 }
                             } else {
                                 // TODO: make sure this is OK
@@ -235,13 +245,23 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
     var firstDay = moment(revisionStore[revisionStore.length - 1].start);
 
     for (var i = 0; i < exams.length; i++) {
-        revisionStore.push({
-            title: exams[i].title + " exam",
-            start: exams[i].date.toDate(),
-            end: moment(exams[i].date.format()).add(exams[i].duration).toDate(),
-            allDay: false,
-            color: "#cc3333"
-        });
+        if (exams[i].blocking) {
+            revisionStore.push({
+                title: exams[i].title,
+                start: exams[i].date.toDate(),
+                end: moment(exams[i].date.format()).add(exams[i].duration).toDate(),
+                allDay: false,
+                color: "#dddddd"
+            });
+        } else {
+            revisionStore.push({
+                title: exams[i].title + " exam",
+                start: exams[i].date.toDate(),
+                end: moment(exams[i].date.format()).add(exams[i].duration).toDate(),
+                allDay: false,
+                color: "#cc3333"
+            });
+        }
     };
     return {events: revisionStore, firstDay: firstDay}
 }

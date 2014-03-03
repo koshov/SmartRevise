@@ -4,12 +4,21 @@ angular.module('SmartReviseApp')
   .controller('ViewCtrl', function ($rootScope, $scope, $http) {
     function runAlgorithm(exams, revisionStart) {
         var algoResult = algo(exams,
-                              moment("01/01/12 " + $scope.times.start),
-                              moment("01/01/12 " + $scope.times.end),
+                              // Random dates since we only use the times
+                              moment("01/01/01 " + $scope.times.start),
+                              moment("01/01/01 " + $scope.times.end),
                               revisionStart);
         $scope.calendarEvents = algoResult.events;
         $scope.firstDay = algoResult.firstDay;
     };
+
+    $scope.blocking = undefined;
+    $scope.$watch('blocking', function(){
+        if ($scope.blocking) {
+            $scope.exams.push($scope.blocking);
+            runAlgorithm($scope.exams);
+        }
+    }, false);
 
     // Populate scope
     $scope.eventColors = [

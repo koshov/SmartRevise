@@ -8,6 +8,7 @@ angular.module('SmartReviseApp')
       replace: true,
       scope: {
         srExams: '=',
+        srBlocking: '=',
         srDate: '=',
         srDaylen: '='
       },
@@ -52,7 +53,6 @@ angular.module('SmartReviseApp')
                       width: width + "px"
                   });
               }
-
           }
 
           $('#calendar').fullCalendar({
@@ -69,6 +69,38 @@ angular.module('SmartReviseApp')
               defaultView: 'agendaWeek',
               month: scope.srDate.month(),
               date: scope.srDate.date(),
+              selectable: true,
+              selectHelper: true,
+              select: function(newStart, newEnd, allDay) {
+                var title = prompt('Event Title:');
+                if (title) {
+                  // $('#calendar').fullCalendar('renderEvent',
+                  //   {
+                  //     title: title,
+                  //     start: newStart,
+                  //     end: newEnd,
+                  //     allDay: allDay
+                  //   },
+                  //   true // make the event "stick"
+                  // );
+                  scope.srBlocking = {
+                    title: title,
+                    blocking: true,
+                    portion: 0,
+                    time: 0,
+                    components: [],
+                    date: moment(newStart),
+                    duration: moment.duration(moment(newEnd).diff(moment(newStart), "minutes"), "minutes"),
+                    start: moment(newStart).toDate(),
+                    end: moment(newEnd).toDate(),
+                    allDay: false,
+                    color: "#dddddd"
+                  };
+                  scope.$apply();
+                }
+                $('#calendar').fullCalendar('unselect');
+              },
+              editable: true,
               firstDay: 1,  // Sets Monday to first day of week
               firstHour: 8,
               allDaySlot: false
