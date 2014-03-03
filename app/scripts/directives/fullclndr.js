@@ -74,15 +74,6 @@ angular.module('SmartReviseApp')
               select: function(newStart, newEnd, allDay) {
                 var title = prompt('Event Title:');
                 if (title) {
-                  // $('#calendar').fullCalendar('renderEvent',
-                  //   {
-                  //     title: title,
-                  //     start: newStart,
-                  //     end: newEnd,
-                  //     allDay: allDay
-                  //   },
-                  //   true // make the event "stick"
-                  // );
                   scope.srBlocking = {
                     title: title,
                     blocking: true,
@@ -94,7 +85,7 @@ angular.module('SmartReviseApp')
                     start: moment(newStart).toDate(),
                     end: moment(newEnd).toDate(),
                     allDay: false,
-                    color: "#dddddd"
+                    color: "#aaa"
                   };
                   scope.$apply();
                 }

@@ -68,13 +68,16 @@ angular.module('SmartReviseApp')
         exams[i].duration = moment.duration(2, "hours");
         exams[i].color = $scope.eventColors[i % $scope.eventColors.length];
         exams[i].allDay = false;
+        exams[i].blocking = false;
     };
     runAlgorithm(exams);
 
     $scope.newComponent = "";
     $scope.subtaskDeadline = function(exam, component) {
-        var subtaskDeadline = $scope.exams[exam].components[component].deadline;
-        if (moment().diff(subtaskDeadline) > 0) return true;
+        if (!$scope.exams[exam].blocking) {
+            var subtaskDeadline = $scope.exams[exam].components[component].deadline;
+            if (moment().diff(subtaskDeadline) > 0) return true;
+        }
         return false
     }
     $scope.addComponent = function(ind) {

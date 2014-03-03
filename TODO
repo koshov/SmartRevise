@@ -5,6 +5,8 @@ Persistency
 What happens if exam is outside revision times, e.g. 6am??
     - IT GETS FUCKED
 
+Check working times when generating slices
+
 Revision start data in future does not end allocation until current date
 
 Setup - same time exams validation?
@@ -27,3 +29,11 @@ After sub-task events have been created, store their end time and indicate in ta
 
     sub-tasks show in all input fields?
     changing priority and order
+
+
+
+
+===== Writing topics =====
+Mocha tests for sample algo output
+RWD tests :?
+User evaluation....

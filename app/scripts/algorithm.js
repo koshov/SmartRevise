@@ -48,9 +48,18 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                     currentChunk.start = moment(exams[examIndex].date.format()).add(exams[examIndex].duration);
                     // Add first slice unless it was added in previous step
                     if (examIndex < exams.length-1 && exams[examIndex].date.format("DDMMYY") != exams[examIndex+1].date.format("DDMMYY")) {
+                        // Determine if exam time is beyond revision times
+                        var sliceStart,
+                            examTime = moment(exams[examIndex].date.format()).add(exams[examIndex].duration),
+                            dayStart = moment(examinedDate.format()).hours(startHour).minutes(startMinute);
+                        if (examTime.diff(dayStart) > 0) {
+                            sliceStart = examTime;
+                        } else {
+                            sliceStart = dayStart;
+                        }
                         currentChunk.slices.push({
                             end: moment(examinedDate.format()).hours(endHour).minutes(endMinute),
-                            start: moment(exams[examIndex].date.format()).add(exams[examIndex].duration)
+                            start: sliceStart
                         });
                         var newSlice = currentChunk.slices[currentChunk.slices.length-1]
                         revisionTime += newSlice.end.diff(newSlice.start, "minutes");
@@ -58,11 +67,18 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                     }
                 }
                 // Check if next exam is on the same day
-                var sliceStart;
+                var sliceStart,
+                    dayStart = moment(examinedDate.format()).hours(startHour).minutes(startMinute);
+
                 if (examIndex > 0 && exams[examIndex-1].date.format("DDMMYY") == exams[examIndex].date.format("DDMMYY")) {
-                    sliceStart = moment(exams[examIndex-1].date.format()).add(exams[examIndex-1].duration);
+                    var examTime = moment(exams[examIndex-1].date.format()).add(exams[examIndex-1].duration);
+                    if (examTime.diff(dayStart) > 0) {
+                        sliceStart = examTime;
+                    } else {
+                        sliceStart = dayStart;
+                    }
                 } else {
-                    sliceStart = moment(examinedDate.format()).hours(startHour).minutes(startMinute);
+                    sliceStart = dayStart;
                 }
                 // Push new chunk in list
                 if (DEBUG) console.log("Today:", exams[examIndex].title);
@@ -161,7 +177,6 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                     // Check if remaining exams in array have remaining revision time
                     for (var m = k+1; m < revisionChunks[i].exams.length; m++) {
                         othersTime += revisionChunks[i].exams[m].time;
-                        console.log(othersTime, m);
                     };
                     if (othersTime > smallestChunk){
                         subjectTime = (revisionChunks[i].exams[k].time / examsTotalTime) * sliceLen;
