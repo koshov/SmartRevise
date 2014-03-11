@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNRSplitRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PNRSplitRQ.xsd">
+  <RecordLocator>RecordLocator</RecordLocator>
+  <ReceivedFrom>ReceivedFrom</ReceivedFrom>
+  <TravelerGroup>
+    <Traveler>
+      <ElementNumber>0.0</ElementNumber>
+    </Traveler>
+  </TravelerGroup>
+</PNRSplitRQ>

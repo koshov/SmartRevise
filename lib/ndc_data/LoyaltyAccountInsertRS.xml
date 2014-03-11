@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LoyaltyAccountInsertRS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/LoyaltyAccountInsertRS.xsd">
+  <InfoGroup>
+    <ForInfo>
+      <Text xsi:type="anyType"/>
+    </ForInfo>
+    <Error>
+      <Code xsi:type="anyType"/>
+      <Text xsi:type="anyType"/>
+    </Error>
+  </InfoGroup>
+  <Status xsi:type="anyType"/>
+  <LoyaltyMemberID xsi:type="anyType"/>
+</LoyaltyAccountInsertRS>

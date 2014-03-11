@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FareRulesRS version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FareRulesRS.xsd">
+  <InfoGroup>
+    <ForInfo>
+      <Text>Text</Text>
+    </ForInfo>
+    <Error ErrorType="">
+      <Code>Code</Code>
+      <Text>Text</Text>
+    </Error>
+  </InfoGroup>
+  <DepartureCity>DepartureCity</DepartureCity>
+  <ArrivalCity>ArrivalCity</ArrivalCity>
+  <DepartureDate>2001-01-01</DepartureDate>
+  <AirlineCode>AirlineCode</AirlineCode>
+  <FareBasisCode>FareBasisCode</FareBasisCode>
+  <FareType>FareType</FareType>
+  <Rule Category="ACC">
+    <Text>Text</Text>
+  </Rule>
+</FareRulesRS>

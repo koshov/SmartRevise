@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetLoyaltyOffersRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/GetLoyaltyOffersRQ.xsd">
+  <EventType>ENR</EventType>
+  <LoyaltyMemberID xsi:type="anyType"/>
+  <ProgramName xsi:type="anyType"/>
+  <GroupID xsi:type="anyType"/>
+  <RevenueDataGroup>
+    <CurrentYearBalance Amount=""/>
+    <LifetimeBalance Amount=""/>
+  </RevenueDataGroup>
+</GetLoyaltyOffersRQ>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FareSearchRQ BrandedFareSupport="" DetailedFareType="N" NumberOfAlternates="1" QueryID="" version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FareSearchRQ.xsd">
+  <SaleInfo>
+    <CityCode>CityCode</CityCode>
+    <CountryCode>CountryCode</CountryCode>
+    <CurrencyCode Rate="" Table="">CurrencyCode</CurrencyCode>
+  </SaleInfo>
+  <NbrOfAlternates Source="">NbrOfAlternates</NbrOfAlternates>
+  <TicketingInfo>
+    <CityCode>CityCode</CityCode>
+    <CountryCode>CountryCode</CountryCode>
+    <Date Qualifier="DEPARTURE">2001-01-01</Date>
+  </TicketingInfo>
+  <TravelerInfo Type="">1</TravelerInfo>
+  <TravelerIDs AssociationID="" PaxType="">
+    <FQTVInfo>
+      <FFNumber>FFNumber</FFNumber>
+      <FFCompanyCode>FFCompanyCode</FFCompanyCode>
+    </FQTVInfo>
+    <LoyaltyProgramRef ProgramGroup="">
+      <LoyaltyMemberID xsi:type="anyType"/>
+      <Name xsi:type="anyType"/>
+      <AirlineCode>AirlineCode</AirlineCode>
+      <ProgramStatus xsi:type="anyType"/>
+    </LoyaltyProgramRef>
+    <FreqGuestNumber Type="">
+      <CompanyCode>CompanyCode</CompanyCode>
+      <IDNumber>IDNumber</IDNumber>
+      <ProgramName>ProgramName</ProgramName>
+      <Association>
+        <AirlineCode>AirlineCode</AirlineCode>
+        <IDNumber>IDNumber</IDNumber>
+      </Association>
+    </FreqGuestNumber>
+    <OtherMemberships>
+      <AssociationCode>AssociationCode</AssociationCode>
+      <IDNumber>IDNumber</IDNumber>
+      <ProgramName>ProgramName</ProgramName>
+    </OtherMemberships>
+    <ProfileIndex CorporateIndex="" CorporateName="" Source="">ProfileIndex</ProfileIndex>
+    <CreditCard>
+      <CCCode>CCCode</CCCode>
+      <CCNumber>CCNumber</CCNumber>
+      <CCExpiration>
+        <Month>Month</Month>
+        <Year>Year</Year>
+      </CCExpiration>
+      <CardholderFirstName>CardholderFirstName</CardholderFirstName>
+      <CardholderLastName>CardholderLastName</CardholderLastName>
+      <CCAddressGroup>
+        <Address>Address</Address>
+        <City>City</City>
+        <PostalCode>PostalCode</PostalCode>
+        <StateCode>StateCode</StateCode>
+        <CountryCode>CountryCode</CountryCode>
+      </CCAddressGroup>
+    </CreditCard>
+  </TravelerIDs>
+  <OriginDestination>
+    <Departure Area="0" DistanceUnit="M">
+      <CityCode>CityCode</CityCode>
+    </Departure>
+    <Arrival Area="0" DistanceUnit="M">
+      <CityCode>CityCode</CityCode>
+    </Arrival>
+    <Date Qualifier="DEPARTURE">2001-01-01</Date>
+    <Preferences MultiAirport="Y" Sort="NEUTRAL">
+      <ClassOfService Inherited="">ClassOfService</ClassOfService>
+      <Time>Time</Time>
+      <TimeWindow>
+        <HoursBefore>0</HoursBefore>
+        <HoursAfter>0</HoursAfter>
+        <HoursTotal>0</HoursTotal>
+      </TimeWindow>
+      <DayWindow>
+        <DaysBefore>0</DaysBefore>
+        <DaysAfter>0</DaysAfter>
+      </DayWindow>
+      <Airline Specific="Y">
+        <Include>Include</Include>
+      </Airline>
+      <Connection>
+        <Include>Include</Include>
+      </Connection>
+      <AllianceCode>AllianceCode</AllianceCode>
+      <FlightType NoStopDirect="M" OneConnectMultipleAirline="M" OneConnectSingleAirline="M" StopDirect="M" ThreeConnectMultipleAirline="M" ThreeConnectSingleAirline="M" TwoConnectMultipleAirline="M" TwoConnectSingleAirline="M"/>
+    </Preferences>
+  </OriginDestination>
+  <JourneyControlData>
+    <JCDFlight CnxxIndicator="Y" MarriedSegment="B" Source="" Type="P">
+      <JCDDeparture>
+        <CityCode>CityCode</CityCode>
+      </JCDDeparture>
+      <JCDArrival>
+        <CityCode>CityCode</CityCode>
+      </JCDArrival>
+      <JCDDate Qualifier="DEPARTURE">2001-01-01</JCDDate>
+      <Carrier>
+        <AirlineCode>AirlineCode</AirlineCode>
+        <FlightNumber Suffix="A">0</FlightNumber>
+      </Carrier>
+      <ClassOfService>ClassOfService</ClassOfService>
+      <ActionCode>ActionCode</ActionCode>
+      <NumberOfStops>0</NumberOfStops>
+      <ReservationsDateTime>
+        <Date>2001-01-01</Date>
+        <Time>Time</Time>
+      </ReservationsDateTime>
+    </JCDFlight>
+  </JourneyControlData>
+  <PricingInfo AutoExchange="" FareType="PUBL" NoBreak="Y" Priority="">
+    <Restrictions Advance="Y" MaximumStay="Y" MinimumStay="Y" Penalty="Y"/>
+    <PricingCurrency xsi:type="anyType"/>
+    <PrivateFares>
+      <Office Provider="1A" Type="PCC">Office</Office>
+      <Corporate>
+        <AirlineCode>AirlineCode</AirlineCode>
+        <Account>Account</Account>
+        <Contract>Contract</Contract>
+      </Corporate>
+      <PromoCodes>
+        <AirlineCode>AirlineCode</AirlineCode>
+        <PromoCode xsi:type="anyType"/>
+      </PromoCodes>
+      <LoyaltyPrograms>
+        <LoyaltyMemberID xsi:type="anyType"/>
+        <Name xsi:type="anyType"/>
+        <AirlineCode>AirlineCode</AirlineCode>
+      </LoyaltyPrograms>
+    </PrivateFares>
+    <FareSelection>
+      <TicketDesignator xsi:type="anyType"/>
+    </FareSelection>
+    <ServicesFilter>
+      <Attributes>
+        <Group>
+          <Code xsi:type="anyType"/>
+        </Group>
+        <SubGroup>
+          <Code xsi:type="anyType"/>
+        </SubGroup>
+      </Attributes>
+    </ServicesFilter>
+    <TaxExemption ExemptALL="">
+      <SegmentIDRef OFFPoint="" ONPoint="">SegmentIDRef</SegmentIDRef>
+      <TaxCode>
+        <Designator CollectionPoint="">Designator</Designator>
+        <TaxType xsi:type="anyType"/>
+      </TaxCode>
+      <CountryCode>CountryCode</CountryCode>
+      <ProvinceCode xsi:type="anyType"/>
+      <GovernmentBody xsi:type="anyType"/>
+    </TaxExemption>
+  </PricingInfo>
+  <InExchangeForTicket>
+    <TicketNumber PaxType="" Source="" TravelerID="">0</TicketNumber>
+  </InExchangeForTicket>
+</FareSearchRQ>

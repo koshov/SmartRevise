@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TicketRevalidationRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/TicketRevalidationRQ.xsd">
+  <TicketNumber ValidatingCarrier="">0</TicketNumber>
+  <RecordLocator Source="" SourceRef="">RecordLocator</RecordLocator>
+  <ValidationRequest>
+    <TicketData TicketSetNumber="0">
+      <CouponNumber CouponStatus="A" NotValidAfter="2001-01-01" NotValidBefore="2001-01-01">0</CouponNumber>
+    </TicketData>
+    <PNRData>
+      <SegmentNumber>0</SegmentNumber>
+    </PNRData>
+  </ValidationRequest>
+  <ChangeFee>
+    <MCONumber>0</MCONumber>
+    <CurrencyCode NumberOfDecimals="0" Rate="" Table="">CurrencyCode</CurrencyCode>
+    <Amount>0</Amount>
+  </ChangeFee>
+  <ReasonText>ReasonText</ReasonText>
+</TicketRevalidationRQ>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SeatAvailabilityRS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="SeatAvailabilityRS.xsd">
+  <FlightPassGroup Source="">
+    <FlightPass>
+      <SessionID xsi:type="anyType"/>
+      <FlightPassID Owner=""/>
+      <AirlineCode>AirlineCode</AirlineCode>
+    </FlightPass>
+  </FlightPassGroup>
+  <InfoGroup>
+    <ForInfo Source="" SourceRef="">
+      <Text>Text</Text>
+    </ForInfo>
+    <Error ErrorType="" Source="" SourceRef="">
+      <Code>Code</Code>
+      <Text>Text</Text>
+      <CustomRequest>
+        <DialogTitle xsi:type="anyType"/>
+        <Instructions>
+          <Text xsi:type="anyType"/>
+        </Instructions>
+        <Control GUILabel="" Mandatory="" MaxChar="" MinChar="" MouseOverText="" PNRLabel="" Pattern="" SameLine="" Type="" Width="">
+          <Value xsi:type="anyType"/>
+        </Control>
+        <Button ButtonLabel="" MouseOverText="" Validate="" Width=""/>
+        <OrigMsg/>
+        <Reference/>
+      </CustomRequest>
+    </Error>
+  </InfoGroup>
+  <Screen>Screen</Screen>
+  <FlightGroup SegmentIDRef="0" Source="">
+    <Carrier>
+      <AirlineCode>AirlineCode</AirlineCode>
+      <AirlineName>AirlineName</AirlineName>
+      <FlightNumber Suffix="A">0</FlightNumber>
+      <ClassOfService>ClassOfService</ClassOfService>
+    </Carrier>
+    <Departure>
+      <CityCode>CityCode</CityCode>
+      <CityName>CityName</CityName>
+      <Date>2001-01-01</Date>
+      <Time>Time</Time>
+    </Departure>
+    <Arrival>
+      <CityCode>CityCode</CityCode>
+      <CityName>CityName</CityName>
+    </Arrival>
+    <Equipment>
+      <Code>Code</Code>
+      <Name>Name</Name>
+    </Equipment>
+    <Text>Text</Text>
+  </FlightGroup>
+  <SeatDetails SegmentIDRef="0" Source="">
+    <Column>Column</Column>
+    <Row Status="A">
+      <Number>Number</Number>
+      <Characteristic>Characteristic</Characteristic>
+    </Row>
+  </SeatDetails>
+  <SeatDisplay CabinClass="" SegmentIDRef="0" Source="">
+    <Columns Position="W">Columns</Columns>
+    <Rows>
+      <First>0</First>
+      <Last>0</Last>
+    </Rows>
+  </SeatDisplay>
+  <OptionalServices SegmentIDRef="" Source="">
+    <CurrencyCode NumberOfDecimals="0" Rate="" Table="">CurrencyCode</CurrencyCode>
+    <Service DealID="" FQTVNumber="" FQTVStatus="" FareBrand="" Method="F" NotValidAfter="2001-01-01" NotValidBefore="2001-01-01" ProviderIDRef="" ReasonCode="" ServiceCode="" ServiceType="" Status="NN" SubCode="" Type="Discount">
+      <SegmentIDRef>SegmentIDRef</SegmentIDRef>
+      <TravelerIDRef>TravelerIDRef</TravelerIDRef>
+      <Amount xsi:type="anyType"/>
+      <ServicePrice Reprice="" Total="0">
+        <BasePrice Amount=""/>
+        <Taxes Amount="">
+          <Tax Amount="">
+            <Designator xsi:type="anyType"/>
+            <Description xsi:type="anyType"/>
+          </Tax>
+        </Taxes>
+      </ServicePrice>
+      <Description xsi:type="anyType"/>
+      <DescriptionDetails>
+        <Text xsi:type="anyType"/>
+      </DescriptionDetails>
+      <WebLinks>
+        <WebLink xsi:type="anyType"/>
+      </WebLinks>
+      <TicketByDate Time="">2001-01-01</TicketByDate>
+      <InstantPurchase>TT</InstantPurchase>
+      <Penalties Refundable="Y">
+        <Change>
+          <Amount Unit="M">0</Amount>
+          <Text>Text</Text>
+        </Change>
+        <Cancel>
+          <Amount Unit="M">0</Amount>
+          <Text>Text</Text>
+        </Cancel>
+      </Penalties>
+      <Commission Type="P">0.0</Commission>
+      <Endorsement>
+        <Text>Text</Text>
+      </Endorsement>
+      <ValidatingCarrier xsi:type="anyType"/>
+      <ReferenceKey>ReferenceKey</ReferenceKey>
+      <Attributes>
+        <Group>
+          <Code xsi:type="anyType"/>
+          <Text xsi:type="anyType"/>
+        </Group>
+        <SubGroup>
+          <Code xsi:type="anyType"/>
+          <Text xsi:type="anyType"/>
+        </SubGroup>
+        <Desc1>
+          <Code xsi:type="anyType"/>
+          <Text xsi:type="anyType"/>
+        </Desc1>
+        <Desc2>
+          <Code xsi:type="anyType"/>
+          <Text xsi:type="anyType"/>
+        </Desc2>
+      </Attributes>
+      <BookingInstructions>
+        <SSRCode>SSRCode</SSRCode>
+        <OSIText xsi:type="anyType"/>
+        <Method xsi:type="anyType"/>
+        <UpgradeMethod NewClass="">UpgradeMethod</UpgradeMethod>
+        <Text>Text</Text>
+      </BookingInstructions>
+      <SeatChange Allowed="">
+        <PremiumDifference Amount=""/>
+      </SeatChange>
+      <Seats>
+        <Seat Column="" Row=""/>
+        <Row xsi:type="anyType"/>
+      </Seats>
+      <Diagnostics ID=""/>
+    </Service>
+  </OptionalServices>
+  <Images>
+    <Image Caption="" ServiceCode="" ServiceType="" SubCode="">Image</Image>
+    <Video Caption="" ServiceCode="" ServiceType="" SubCode="">Video</Video>
+  </Images>
+</SeatAvailabilityRS>

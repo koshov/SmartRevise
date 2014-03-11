@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNRRetrieveRQ AirSegments="N" CarSegments="N" FormOfPayment="N" GeneralInformation="N" GeneralRemarks="N" HotelSegments="N" Itinerary="N" Names="N" PNR="Y" Ticket="N" VendorRecordLocators="N" version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PNRRetrieveRQ.xsd">
+  <PseudoCityCode Provider="1A">PseudoCityCode</PseudoCityCode>
+  <Display>
+    <History Category="ADR">N</History>
+    <HistoricalFares>N</HistoricalFares>
+  </Display>
+</PNRRetrieveRQ>

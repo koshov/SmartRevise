@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNRUpdateRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PNRUpdateRQ.xsd">
+  <RecordLocator>RecordLocator</RecordLocator>
+  <CustomData ActionType="Add" Source=""/>
+  <EndTransaction TransactionType="ER">
+    <PseudoCityCode>PseudoCityCode</PseudoCityCode>
+    <Queue Source=""/>
+  </EndTransaction>
+  <ReceivedFrom>ReceivedFrom</ReceivedFrom>
+</PNRUpdateRQ>

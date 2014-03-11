@@ -19,6 +19,10 @@ h1 {
     font-size: 1.8em;
 }
 
+.container {
+    padding-top: 56px;
+}
+
 button.delete,
 .button.delete {
     background-color: $darkColor;
@@ -26,6 +30,45 @@ button.delete,
     color: white;
 }
 
+
+// Navbar styles
+.settingsToggle {
+    position: absolute;
+    right: 40px;
+    top: 0;
+    &.active > a {
+        background: #008cba;
+        color: white;
+    }
+    a {
+        color: white;
+        text-transform: uppercase;
+        font-size: 1.2rem !important;
+        font-weight: bold;
+        position: relative;
+        display: block;
+        padding: 0 15px;
+        height: 45px;
+        line-height: 45px;
+    }
+}
+.toggle-topbar a{
+    font-size: 1.2rem !important;
+}
+.settingsToggle-right {
+    display: none;
+    a {
+        font-size: 1.2rem !important;
+    }
+}
+@media screen and (min-width: 641px) {
+    .settingsToggle {
+        display: none;
+    }
+    .settingsToggle-right {
+        display: list-item;
+    }
+}
 
 
 .dates-setup .examTitle {

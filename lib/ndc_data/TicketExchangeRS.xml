@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TicketExchangeRS TypeOfExchange="" Version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/TicketExchangeRS.xsd">
+  <InfoGroup>
+    <ForInfo Source="" SourceRef="">
+      <Text>Text</Text>
+    </ForInfo>
+    <Error ErrorType="" Source="" SourceRef="">
+      <Text>Text</Text>
+    </Error>
+  </InfoGroup>
+  <RecordLocator>RecordLocator</RecordLocator>
+  <Traveler>
+    <TravelerElementNumber>TravelerElementNumber</TravelerElementNumber>
+    <TravelerName>
+      <Surname>Surname</Surname>
+      <GivenName>GivenName</GivenName>
+    </TravelerName>
+  </Traveler>
+  <ExchangeRequestNumber Source="">ExchangeRequestNumber</ExchangeRequestNumber>
+  <Refund Amount="0" NumberOfDecimals="0">
+    <BaseFare>0</BaseFare>
+    <Taxes>0</Taxes>
+  </Refund>
+  <AdditionalCollection Amount="0" NumberOfDecimals="0">
+    <BaseFare>0</BaseFare>
+    <Taxes>0</Taxes>
+  </AdditionalCollection>
+</TicketExchangeRS>

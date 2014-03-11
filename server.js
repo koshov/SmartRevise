@@ -1,14 +1,22 @@
 'use strict';
 
-// Module dependencies.
 var express = require('express'),
     path = require('path'),
-    fs = require('fs');
+    fs = require('fs'),
+    mongoose = require('mongoose');
 
-var app = express();
+/**
+ * Main application file
+ */
+
+// Default node environment to development
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+// Application Config
+var config = require('./lib/config/config');
 
 // Connect to database
-var db = require('./lib/db/mongo');
+var db = mongoose.connect(config.mongo.uri, config.mongo.options);
 
 // Bootstrap models
 var modelsPath = path.join(__dirname, 'lib/models');
@@ -16,51 +24,24 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath + '/' + file);
 });
 
-// Populate empty DB with dummy data
-require('./lib/db/dummydata');
+// Populate empty DB with sample data
+require('./lib/config/dummydata');
 
-// Controllers
-var api = require('./lib/controllers/api');
+// Passport Configuration
+require('./lib/config/passport')();
 
-// Express Configuration
-app.configure(function(){
-	app.use(express.logger('dev'));
-	app.use(express.bodyParser());
-	app.use(express.methodOverride());
-	app.use(app.router);
-});
+var app = express();
 
-app.configure('development', function(){
-  app.use(express.static(path.join(__dirname, '.tmp')));
-  app.use(express.static(path.join(__dirname, 'app')));
-  app.use('/app', express.static(path.join(__dirname, 'app')));
+// Express settings
+require('./lib/config/express')(app);
 
-  app.use(express.errorHandler());
-});
-
-app.configure('production', function(){
-  app.use(express.favicon(path.join(__dirname, 'public/favicon.ico')));
-  app.use(express.static(path.join(__dirname, 'public')));
-});
-
-// Routes
-app.get('/api/exams', api.getExams);
-app.post('/api/exams/add', api.addExam);
-app.post('/api/exams/update', api.updateExam);
-app.get('/api/exams/del/:title', api.delExam);
-
-// // Rewrite all non-API requests to Angular
-// app.get('*', function(req, res, next) {
-//   res.sendfile(__dirname + '/app/index.html');
-// });
-
-// 404
-app.use(function(req, res, next){
-  res.send(404, 'Sorry cant find that!');
-});
+// Routing
+require('./lib/routes')(app);
 
 // Start server
-var port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log('Express server listening on port %d in %s mode', port, app.get('env'));
+app.listen(config.port, function () {
+  console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
 });
+
+// Expose app
+exports = module.exports = app;

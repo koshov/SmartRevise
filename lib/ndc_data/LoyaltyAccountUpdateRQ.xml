@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LoyaltyAccountUpdateRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/LoyaltyAccountUpdateRQ.xsd">
+  <Updates>
+    <LoyaltyMemberID xsi:type="anyType"/>
+    <ProgramName xsi:type="anyType"/>
+    <GroupID xsi:type="anyType"/>
+    <CreationAgent>CreationAgent</CreationAgent>
+    <RevenueData>
+      <CreditUnits Action="" Type=""/>
+    </RevenueData>
+    <OfferDataGroup>
+      <Offer Type="">
+        <EventType>ENR</EventType>
+        <OfferCodeID xsi:type="anyType"/>
+        <Units DateControlled="" OfferSubCode="">Units</Units>
+      </Offer>
+    </OfferDataGroup>
+    <BookingReference>
+      <BookingOfficeID>BookingOfficeID</BookingOfficeID>
+      <RecordLocator>RecordLocator</RecordLocator>
+      <VendorLocator>VendorLocator</VendorLocator>
+      <TravelerName>
+        <Surname>Surname</Surname>
+        <GivenName>GivenName</GivenName>
+      </TravelerName>
+      <FlightReferences BookingDate="" BookingTime="">
+        <AirlineCode>AirlineCode</AirlineCode>
+        <FlightNumber>FlightNumber</FlightNumber>
+        <ClassOfService>ClassOfService</ClassOfService>
+        <Date>2001-01-01</Date>
+        <Time>Time</Time>
+        <DepartureCode>DepartureCode</DepartureCode>
+        <ArrivalCode>ArrivalCode</ArrivalCode>
+      </FlightReferences>
+    </BookingReference>
+  </Updates>
+</LoyaltyAccountUpdateRQ>

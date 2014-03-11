@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlightPriceRQ DetailedFareType="N" QueryID="" version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FlightPriceRQ.xsd">
+  <FlightPassGroup>
+    <FlightPass>
+      <FlightPassID Owner=""/>
+      <AirlineCode>AirlineCode</AirlineCode>
+    </FlightPass>
+  </FlightPassGroup>
+  <SaleInfo>
+    <CityCode>CityCode</CityCode>
+    <CountryCode>CountryCode</CountryCode>
+    <CurrencyCode Rate="" Table="">CurrencyCode</CurrencyCode>
+    <Identification>
+      <RequestorInfo RequestorIATA="" RequestorID=""/>
+    </Identification>
+  </SaleInfo>
+  <TicketingInfo>
+    <CityCode>CityCode</CityCode>
+    <CountryCode>CountryCode</CountryCode>
+  </TicketingInfo>
+  <RecordLocator>RecordLocator</RecordLocator>
+  <TravelerInfo Type="">0</TravelerInfo>
+  <TravelerIDs AssociationID="" PaxType="">
+    <TravelerIDRef>TravelerIDRef</TravelerIDRef>
+    <FQTVInfo>
+      <FFNumber>FFNumber</FFNumber>
+      <FFCompanyCode>FFCompanyCode</FFCompanyCode>
+    </FQTVInfo>
+    <LoyaltyProgramRef ProgramGroup="">
+      <LoyaltyMemberID xsi:type="anyType"/>
+      <Name xsi:type="anyType"/>
+      <AirlineCode>AirlineCode</AirlineCode>
+    </LoyaltyProgramRef>
+    <FreqGuestNumber Type="">
+      <CompanyCode>CompanyCode</CompanyCode>
+      <IDNumber>IDNumber</IDNumber>
+    </FreqGuestNumber>
+    <OtherMemberships>
+      <IDNumber>IDNumber</IDNumber>
+    </OtherMemberships>
+    <ProfileIndex CorporateIndex="" CorporateName="" Source="">ProfileIndex</ProfileIndex>
+    <CreditCard>
+      <CCCode>CCCode</CCCode>
+      <CCNumber>CCNumber</CCNumber>
+      <CCExpiration>
+        <Month>Month</Month>
+        <Year>Year</Year>
+      </CCExpiration>
+    </CreditCard>
+  </TravelerIDs>
+  <OriginDestination>
+    <Flight AssociationID="idvalue0" FlightRefKey="" MarriedSegment="B" Source="" Type="P">
+      <AirlineCode>AirlineCode</AirlineCode>
+      <FlightNumber Suffix="A">0</FlightNumber>
+      <ClassOfService>ClassOfService</ClassOfService>
+      <Equipment>
+        <Code>Code</Code>
+        <Name>Name</Name>
+      </Equipment>
+      <Departure>
+        <AirportCode>AirportCode</AirportCode>
+        <Date>2001-01-01</Date>
+        <Time>Time</Time>
+      </Departure>
+      <Arrival>
+        <AirportCode>AirportCode</AirportCode>
+        <Date>2001-01-01</Date>
+        <Time>Time</Time>
+      </Arrival>
+    </Flight>
+  </OriginDestination>
+  <OptionalServices>
+    <Service AssociationID="idvalue1" FareBrand="" ProviderIDRef="" Quantity="" ReasonCode="" SaleStatus="" ServiceCode="" ServiceType="" SubCode="">
+      <BookingInstructions/>
+    </Service>
+  </OptionalServices>
+  <ExcludedServices>
+    <Service FareBrand="" ReasonCode="" ServiceCode="" SubCode=""/>
+  </ExcludedServices>
+  <PricingInfo AutoExchange="" BestPricing="N" Cabin="C" ConnectionSelection="N" FareType="NEGO" ImageSupport="" RequestOptions="N">
+    <SegmentIDRef OFFPoint="" ONPoint="">SegmentIDRef</SegmentIDRef>
+    <ServiceIDRef>ServiceIDRef</ServiceIDRef>
+    <ServicesFilter/>
+    <Restrictions Advance="Y" MaximumStay="Y" MinimumStay="Y" Penalty="Y"/>
+    <PricingCurrency xsi:type="anyType"/>
+    <PrivateFares>
+      <Office Provider="1A" Type="PCC">Office</Office>
+    </PrivateFares>
+    <FareSelection/>
+    <ValidatingCarrier>ValidatingCarrier</ValidatingCarrier>
+    <AgencyType QFees="Y">AgencyType</AgencyType>
+    <ReservationsDateTime>
+      <Date>2001-01-01</Date>
+    </ReservationsDateTime>
+    <HistoricPricingDate>
+      <Date>2001-01-01</Date>
+    </HistoricPricingDate>
+    <AltTicketingDate>
+      <Date>2001-01-01</Date>
+    </AltTicketingDate>
+    <TaxExemption ExemptALL=""/>
+  </PricingInfo>
+  <InExchangeForTicket>
+    <TicketNumber PaxType="" Source="" TravelerID="">0</TicketNumber>
+  </InExchangeForTicket>
+</FlightPriceRQ>

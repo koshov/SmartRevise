@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LoyaltyAccountRetrieveRQ History="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/LoyaltyAccountRetrieveRQ.xsd">
+  <LoyaltyMemberID>LoyaltyMemberID</LoyaltyMemberID>
+  <ProgramName xsi:type="anyType"/>
+  <TransactionFilter>
+    <RecordLocator xsi:type="anyType"/>
+    <EventType xsi:type="anyType"/>
+    <TicketNumber ConjTicketNumber="" Status="TICKETED">TicketNumber</TicketNumber>
+  </TransactionFilter>
+</LoyaltyAccountRetrieveRQ>

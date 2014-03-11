@@ -129,5 +129,8 @@ angular.module('SmartReviseApp')
 
     // ==== Interface ====
     $scope.settingsToggle = true;
+    $rootScope.$on("settingsToggled", function(event, args) {
+        $scope.settingsToggle = !args.settings;
+    });
 
   });

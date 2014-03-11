@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetLoyaltyOffersRS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/GetLoyaltyOffersRS.xsd">
+  <InfoGroup>
+    <ForInfo Source="">
+      <Text>Text</Text>
+    </ForInfo>
+    <Error Source="">
+      <Code>Code</Code>
+      <Text>Text</Text>
+    </Error>
+  </InfoGroup>
+  <LoyaltyMemberID xsi:type="anyType"/>
+  <ProgramName xsi:type="anyType"/>
+  <GroupID xsi:type="anyType"/>
+  <OfferDataGroup>
+    <Offer>
+      <EventType xsi:type="anyType"/>
+      <OfferCodeID xsi:type="anyType"/>
+      <Units DateControlled="">Units</Units>
+    </Offer>
+  </OfferDataGroup>
+</GetLoyaltyOffersRS>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SeatAvailabilityRQ version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="SeatAvailabilityRQ.xsd">
+  <SaleInfo/>
+  <RecordLocator xsi:type="anyType"/>
+  <TravelerName Type=""/>
+  <TravelerIDs AssociationID="" PaxType=""/>
+  <Qualifiers AssociationID="" Type="CorporateCode">
+    <Value>Value</Value>
+  </Qualifiers>
+  <JourneyControlData>
+    <JCDFlight CnxxIndicator="Y" MarriedSegment="B" Source="" Type="P">
+      <JCDDeparture>
+        <CityCode>CityCode</CityCode>
+      </JCDDeparture>
+      <JCDArrival>
+        <CityCode>CityCode</CityCode>
+      </JCDArrival>
+      <JCDDate Qualifier="DEPARTURE">2001-01-01</JCDDate>
+      <Carrier>
+        <AirlineCode Source="">AirlineCode</AirlineCode>
+        <FlightNumber Suffix="A">0</FlightNumber>
+      </Carrier>
+      <ClassOfService>ClassOfService</ClassOfService>
+    </JCDFlight>
+  </JourneyControlData>
+  <PricingInfo ImageSupport=""/>
+</SeatAvailabilityRQ>

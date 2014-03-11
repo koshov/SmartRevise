@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TicketExchangeRQ Source="" Type="FULL" TypeOfExchange="E" Version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/TicketExchangeRQ.xsd">
+  <RecordLocator>RecordLocator</RecordLocator>
+  <Traveler>
+    <TravelerElementNumber>TravelerElementNumber</TravelerElementNumber>
+    <TravelerName>
+      <Surname>Surname</Surname>
+      <GivenName>GivenName</GivenName>
+    </TravelerName>
+  </Traveler>
+  <OriginalTicket>
+    <Ticket Number="">
+      <CouponNumber>0</CouponNumber>
+    </Ticket>
+    <FormOfPayment/>
+    <FareData>
+      <CurrencyCode NumberOfDecimals="0" Rate="" Table="">CurrencyCode</CurrencyCode>
+      <AmountPaid Total="">
+        <BaseFare Amount="0"/>
+        <Taxes Amount="0"/>
+      </AmountPaid>
+    </FareData>
+    <TktIssueDate>2001-01-01</TktIssueDate>
+    <IATA>IATA</IATA>
+    <OriginalIssuePlace>OriginalIssuePlace</OriginalIssuePlace>
+    <SubSequentExchange OriginalTicketNumber=""/>
+    <Commission NumberOfDecimals="0" Type="">Commission</Commission>
+  </OriginalTicket>
+  <StoredFareReq>
+    <TktStoredFare FareNumber=""/>
+  </StoredFareReq>
+  <ChangeFee>
+    <Amount/>
+    <Commission Type="">Commission</Commission>
+  </ChangeFee>
+  <Commission Type="">Commission</Commission>
+  <FormOfPayment>
+    <CreditCard ActualAmount="1" Type="">
+      <CCCode>CCCode</CCCode>
+      <CCNumber>CCNumber</CCNumber>
+      <CCExpiration>
+        <Month>Month</Month>
+        <Year>Year</Year>
+      </CCExpiration>
+    </CreditCard>
+  </FormOfPayment>
+  <ResidualValues>
+    <CurrencyCode NumberOfDecimals="0" Rate="" Table="">CurrencyCode</CurrencyCode>
+    <UnusedBaseFareAmount>0</UnusedBaseFareAmount>
+    <UnusedTaxes Amount="0">
+      <Tax Amount="0"/>
+    </UnusedTaxes>
+  </ResidualValues>
+  <AdditionalCollection Total="">
+    <CurrencyCode NumberOfDecimals="0" Rate="" Table="">CurrencyCode</CurrencyCode>
+    <BaseFareDifference>0</BaseFareDifference>
+    <Taxes Amount="0"/>
+  </AdditionalCollection>
+  <ValidatingCarrier>ValidatingCarrier</ValidatingCarrier>
+  <PrinterGroup>
+    <PrinterDestination CountryCode="" Type="">PrinterDestination</PrinterDestination>
+  </PrinterGroup>
+</TicketExchangeRQ>

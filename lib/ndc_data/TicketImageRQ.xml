@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TicketImageRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/TicketImageRQ.xsd">
+  <Agency>Agency</Agency>
+  <CurrentPseudoCityCode>CurrentPseudoCityCode</CurrentPseudoCityCode>
+  <TicketNumber History="">TicketNumber</TicketNumber>
+</TicketImageRQ>

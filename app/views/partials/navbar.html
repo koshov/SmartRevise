@@ -1,0 +1,26 @@
+<div class="fixed navigation">
+  <nav class="top-bar" data-topbar data-options="is_hover: false" ng-controller="NavbarCtrl">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">SmartRevise</a></h1>
+      </li>
+      <li class="toggle-topbar"><a href="" ng-click="expandTopbar()"><i class="fi-list large"></i></a></li>
+      <li class="settingsToggle" ng-class="{active: settingsToggled}" >
+          <a href="" ng-click="settingsToggle()"><i class="fi-widget large"></i></a>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="settingsToggle-right" ng-class="{active: settingsToggled}" >
+            <a href="" ng-click="settingsToggle()"><i class="fi-widget large"></i></a>
+        </li>
+        <li ng-show="currentUser" ng-class="{active: isActive('/settings')}"><a href="/settings">Settings</a></li>
+        <li ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+        <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
+        <li ng-show="currentUser" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
+      </ul>
+    </section>
+  </nav>
+</div>

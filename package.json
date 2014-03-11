@@ -3,10 +3,14 @@
   "version": "0.0.0",
   "dependencies": {
     "express": "~3.4.3",
+    "lodash": "~2.4.1",
     "mongoose": "~3.5.5",
+    "mongoose-unique-validator": "~0.3.0",
+    "connect-mongo": "~0.4.0",
     "async": "~0.2.9",
     "passport": "~0.1.18",
-    "passport-local": "~0.1.6"
+    "passport-local": "~0.1.6",
+    "ejs": "~0.8.4"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -31,6 +35,7 @@
     "load-grunt-tasks": "~0.1.0",
     "grunt-google-cdn": "~0.2.0",
     "grunt-ngmin": "~0.0.2",
+    "connect-livereload": "~0.3.0",
     "time-grunt": "~0.1.0",
     "jshint-stylish": "~0.1.3",
     "karma-ng-scenario": "~0.1.0",
@@ -49,7 +54,7 @@
     "grunt-shell-spawn": "~0.3.0"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test"

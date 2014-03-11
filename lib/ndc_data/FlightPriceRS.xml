@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlightPriceRS QueryID="" version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FlightPriceRS.xsd">
+  <InfoGroup>
+    <ForInfo Source="" SourceRef="">
+      <Text>Text</Text>
+    </ForInfo>
+    <Error ErrorType="" Source="" SourceRef="">
+      <Text>Text</Text>
+    </Error>
+  </InfoGroup>
+  <FareGroup AutoExchange="" FareFormat="LCCB" FareNumber="" FareType="PUBL" HistoricPricingDate="2001-01-01" NetFare="" ReissueOnly="Y" SolutionType="" Source="" TotalPrice="0" TravelerCount="0">
+    <CurrencyCode NumberOfDecimals="0" Rate="" Table="">CurrencyCode</CurrencyCode>
+    <TravelerGroup FCICode="0" TypeCount="0" TypePriced="" TypeRequested="" TypeTotalPrice="0">
+      <Price Total="0">
+        <BaseFare Amount="0"/>
+        <Taxes Amount="0"/>
+      </Price>
+      <FareRules>
+        <FareInfo>
+          <DepartureDate>2001-01-01</DepartureDate>
+          <DepartureCode>DepartureCode</DepartureCode>
+          <ArrivalCode>ArrivalCode</ArrivalCode>
+          <RelatedSegment MarriedSegment="B">
+            <SegmentIDRef FlightRefKey="">SegmentIDRef</SegmentIDRef>
+          </RelatedSegment>
+          <FareBasisCode PriceClass="">FareBasisCode</FareBasisCode>
+          <AirlineCode>AirlineCode</AirlineCode>
+        </FareInfo>
+      </FareRules>
+    </TravelerGroup>
+    <OptionalServices/>
+    <IncludedServices/>
+    <BaggageData>
+      <TravelerIDRef>TravelerIDRef</TravelerIDRef>
+      <SegmentIDRef OFFPoint="" ONPoint="">SegmentIDRef</SegmentIDRef>
+      <Allowance/>
+      <CarryOnAllowance/>
+    </BaggageData>
+    <ValidatingCarrier xsi:type="anyType"/>
+    <FareCacheKey xsi:type="anyType"/>
+  </FareGroup>
+  <Images>
+    <Image Caption="" ServiceCode="" ServiceType="" SubCode="">Image</Image>
+    <Video Caption="" ServiceCode="" ServiceType="" SubCode="">Video</Video>
+  </Images>
+</FlightPriceRS>

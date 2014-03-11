@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceListRS version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ServiceListRS.xsd">
+  <InfoGroup>
+    <ForInfo Source="" SourceRef="">
+      <Text>Text</Text>
+    </ForInfo>
+    <Error ErrorType="" Source="" SourceRef="">
+      <Code>Code</Code>
+      <Text>Text</Text>
+      <CustomRequest>
+        <DialogTitle xsi:type="anyType"/>
+        <Control GUILabel="" Mandatory="" MaxChar="" MinChar="" MouseOverText="" PNRLabel="" Pattern="" SameLine="" Type="" Width=""/>
+        <Button ButtonLabel="" MouseOverText="" Validate="" Width=""/>
+        <OrigMsg/>
+      </CustomRequest>
+    </Error>
+  </InfoGroup>
+  <OptionalServices>
+    <CurrencyCode NumberOfDecimals="0" Rate="" Table="">CurrencyCode</CurrencyCode>
+    <Service ApplyToAll="" CanUnbundle="" DealID="" DisplayPriority="" FQTVNumber="" FQTVStatus="" FareBrand="" Icon="" MaxQuantity="" Method="F" NotValidAfter="2001-01-01" NotValidBefore="2001-01-01" ProviderIDRef="" ReasonCode="" ServiceCode="" ServiceType="" Slice="" Source="" Status="NN" SubCode="" Type="Discount" TypeValue="">
+      <SegmentIDRef>SegmentIDRef</SegmentIDRef>
+      <TravelerIDRef>TravelerIDRef</TravelerIDRef>
+      <ServiceLocation xsi:type="anyType"/>
+      <ServiceDate>2001-01-01</ServiceDate>
+      <Description xsi:type="anyType"/>
+      <DescriptionDetails>
+        <Text xsi:type="anyType"/>
+      </DescriptionDetails>
+      <Amount xsi:type="anyType"/>
+      <ServicePrice Total="0">
+        <BasePrice Amount=""/>
+      </ServicePrice>
+      <ServicePriceCalculation/>
+      <TicketByDate Time="">2001-01-01</TicketByDate>
+      <Penalties Refundable="Y" Reusable="Y"/>
+      <Commission Type="P">0.0</Commission>
+      <Endorsement>
+        <Text>Text</Text>
+      </Endorsement>
+      <ValidatingCarrier xsi:type="anyType"/>
+      <ReferenceKey>ReferenceKey</ReferenceKey>
+      <Attributes>
+        <Group>
+          <Code xsi:type="anyType"/>
+        </Group>
+      </Attributes>
+      <BookingInstructions/>
+      <Combinability>
+        <ServiceItem ServiceCode="" SubCode=""/>
+      </Combinability>
+      <Diagnostics ID=""/>
+    </Service>
+  </OptionalServices>
+  <Images>
+    <Image Caption="" ServiceCode="" ServiceType="" SubCode="">Image</Image>
+    <Video Caption="" ServiceCode="" ServiceType="" SubCode="">Video</Video>
+  </Images>
+</ServiceListRS>

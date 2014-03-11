@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PNRExternalUpdateRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PNRExternalUpdateRQ.xsd">
+  <GUID xsi:type="anyType"/>
+  <ReferenceSegment BookingType="" Source="" SourceRef="">
+    <ElementNumber>ElementNumber</ElementNumber>
+    <TravelerName>
+      <Surname>Surname</Surname>
+      <GivenName>GivenName</GivenName>
+    </TravelerName>
+    <SegmentElementNumber xsi:type="anyType"/>
+    <ServiceType>ADM</ServiceType>
+    <ConfirmationNumber>ConfirmationNumber</ConfirmationNumber>
+    <NumberOfServices xsi:type="anyType"/>
+    <NumberInParty>0</NumberInParty>
+    <ProviderInformation/>
+    <VendorCode>VendorCode</VendorCode>
+    <VendorName>VendorName</VendorName>
+    <ServiceDates>
+      <StartDate>2001-01-01</StartDate>
+    </ServiceDates>
+    <ServiceLocations/>
+    <Description ProductCode="">Description</Description>
+    <DescriptionDetails>
+      <Text xsi:type="anyType"/>
+    </DescriptionDetails>
+    <CurrencyCode NumberOfDecimals="0">CurrencyCode</CurrencyCode>
+    <ServicePrice Total="0">
+      <BasePrice Amount=""/>
+    </ServicePrice>
+    <Status xsi:type="anyType"/>
+    <ActionNotes>
+      <Text xsi:type="anyType"/>
+    </ActionNotes>
+    <ActionCode>ActionCode</ActionCode>
+    <RoomCode>RoomCode</RoomCode>
+    <RoomDescription>RoomDescription</RoomDescription>
+    <TourCode>TourCode</TourCode>
+    <CarType>CarType</CarType>
+    <CarTypeDescription>CarTypeDescription</CarTypeDescription>
+  </ReferenceSegment>
+</PNRExternalUpdateRQ>
