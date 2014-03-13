@@ -82,6 +82,7 @@ angular.module('SmartReviseApp')
                     components: [],
                     date: moment(newStart),
                     duration: moment.duration(moment(newEnd).diff(moment(newStart), "minutes"), "minutes"),
+                    duration_int: moment(newEnd).diff(moment(newStart), "minutes"),
                     start: moment(newStart).toDate(),
                     end: moment(newEnd).toDate(),
                     allDay: false,

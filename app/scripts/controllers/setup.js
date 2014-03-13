@@ -3,11 +3,11 @@
 angular.module('SmartReviseApp')
   .controller('SetupCtrl', function ($scope, $rootScope, $http, $location) {
 
-    $rootScope.exams = locache.get('exams') || [];
+    $scope.exams = locache.get('exams') || [];
 
     $scope.addExam = function() {
         // TODO: validate name first!
-        $rootScope.exams.push({
+        $scope.exams.push({
             title: $scope.examName,
             date: ''
         });
@@ -15,18 +15,18 @@ angular.module('SmartReviseApp')
     };
 
     $scope.removeExam = function(index) {
-        $rootScope.exams.splice(index,1);
+        $scope.exams.splice(index,1);
     };
 
     $scope.hasDate = function(index) {
-        if ($rootScope.exams[index].date == '') return true;
+        if ($scope.exams[index].date == '') return true;
         return false;
     };
 
     $scope.examInvalid = function() {
         function validName() {
-            for (var i = 0; i < $rootScope.exams.length; i++) {
-                if ($rootScope.exams[i].title === $scope.examName) return false;
+            for (var i = 0; i < $scope.exams.length; i++) {
+                if ($scope.exams[i].title === $scope.examName) return false;
             };
             return true;
         }
@@ -37,18 +37,39 @@ angular.module('SmartReviseApp')
 
     $scope.setupInvalid = function() {
         function validDates() {
-            for (var i = 0; i < $rootScope.exams.length; i++) {
-                if ($rootScope.exams[i].date === '') return false;
+            for (var i = 0; i < $scope.exams.length; i++) {
+                if ($scope.exams[i].date === '') return false;
             };
             return true;
         }
 
-        if ($rootScope.exams.length && validDates()) return false;
+        if ($scope.exams.length && validDates()) return false;
         return true;
     }
 
     $scope.nextStep = function() {
-        locache.set('exams', $rootScope.exams);
+        var exams = $scope.exams;
+        var eventColors = [
+            '#ffe11a',
+            '#bedb39',
+            '#004358',
+            '#1f8a70',
+            '#fd7400'
+        ];
+        for (var i = exams.length - 1; i >= 0; i--) {
+            exams[i].portion = 100/exams.length;
+            exams[i].components = [
+                {name: 'Read Textbook', portion: 0.25, done: false},
+                {name: 'Solve Tutorials', portion: 0.25, done: false},
+                {name: 'Revise Lecture Notes', portion: 0.25, done: false},
+                {name: 'Attempt Past Papers', portion: 0.25, done: false}
+            ];
+            exams[i].color = eventColors[i % eventColors.length];
+            exams[i].allDay = false;
+            exams[i].blocking = false;
+            exams[i].duration_int = 120;
+        };
+        locache.set('exams', exams);
         $location.path( 'view' );
     };
   });

@@ -33,10 +33,10 @@
         </div>
         <div class="row collapse">
             <div class="small-9 columns">
-                <input class="view-exam-slider small-10 small-offset-1 columns" type="range" name="portion" min="0" max="100" ng-model="exam.portion" ng-change="$parent.repartition($index)">
+                <input class="view-exam-slider small-10 small-offset-1 columns" type="range" name="portion" min="0" max="100" ng-model="exam.portion" ng-change="$parent.repartition(exam.title)">
             </div>
             <div class="small-2 columns">
-                <input type="text" placeholder="percent" ng-model="exam.portion" ng-change="$parent.repartition($index)">
+                <input type="text" placeholder="percent" ng-model="exam.portion" ng-change="$parent.repartition(exam.title)">
             </div>
             <div class="small-1 columns">
                 <span class="postfix">%</span>

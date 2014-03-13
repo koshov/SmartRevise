@@ -19,8 +19,6 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
 
         exams = pExams;
 
-    console.log(exams);
-
     // === Algorithm ===
 
     // Sort exams by date (earlyest first)
