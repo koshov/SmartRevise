@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SmartReviseApp')
-  .controller('ViewCtrl', function ($rootScope, $scope, $http, $location) {
+  .controller('ViewCtrl', function ($rootScope, $scope, $resource, $location, Auth) {
     function runAlgorithm(exams, revisionStart) {
         var algoResult = algo(exams,
                               // Random dates since we only use the times
@@ -17,6 +17,36 @@ angular.module('SmartReviseApp')
         if ($scope.blocking) {
             $scope.exams.push($scope.blocking);
             locache.set('exams', $scope.exams);
+
+            if ($rootScope.currentUser) {
+
+                var user = $resource('/api/users/data/:id', {
+                                      id: '@id'
+                                    }, { //parameters default
+                                      update: {
+                                        method: 'POST',
+                                        params: {}
+                                      }
+                                    });
+
+                var pr = function(callback) {
+                            var cb = callback || angular.noop;
+
+                            return user.update({
+                              data: $scope.exams
+                            }, function(user) {
+                              return cb(user);
+                            }, function(err) {
+                              return cb(err);
+                            }).$promise;
+                        };
+
+                pr().then(function() {
+                    console.log("Fuck");
+                });
+
+            };
+
             runAlgorithm($scope.exams);
         }
     }, false);

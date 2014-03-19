@@ -1,19 +1,15 @@
 ===== High Priority =====
+locache.set more :D
+deleting of blocking events?
 percent to time
 Persistency
 Revision start date in future does not end allocation until current date
 Setup - same time exams validation?
 View - if exam portion is greater than available time - messy things happen
 
-===== Medium Priority =====
-View - Free days/portions of days
 
-===== Low Priority =====
-Setup - proper validation with errors
 
-Persistence...
 After sub-task events have been created, store their end time and indicate in task list if there are any overdue tasks
-
     sub-tasks show in all input fields?
     changing priority and order
 
@@ -21,6 +17,7 @@ After sub-task events have been created, store their end time and indicate in ta
 
 
 ===== Writing topics =====
+api/user/data is totally unsecure
 Mocha tests for sample algo output
 RWD tests :?
 User evaluation....
@@ -31,6 +28,7 @@ User evaluation....
 
 DONE DONE DONE
 ==============
+View - Free days/portions of days
 Reigtration and authentication
 What happens if exam is outside revision times, e.g. 6am??
 Check working times when generating slices

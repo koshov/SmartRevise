@@ -6,13 +6,16 @@
         <div class="large-8 small-12 columns">
             <h1>Welcome to SmartRevise!</h1>
             <h4>This is an application that creates revision plans tailored for your exam schedule.</h4>
-            <p>Simply click the "Start Here" button bellow, enter the subjects and dates of your next exam diet and get your dynamic SmartRevise plan!</p>
+            <p>Simply click the "Create New Plan" button bellow, enter the subjects and dates of your next exam diet and get your dynamic SmartRevise plan!</p>
         </div>
     </div>
 
     <div class="row collapse">
-        <a href="/setup" class="button success small-12 large-5 columns">Start here</a>
-        <a href="/login" class="button large-offset-2 large-5 small-12 columns">Log In</a>
+        <a href="/setup" class="button success small-12 large-5 columns">Create New Plan</a>
+
+        <a ng-hide="currentUser" href="/login" class="button large-offset-2 large-5 small-12 columns">Log In</a>
+        <a ng-show="currentUser" href="/view" class="button large-offset-2 large-5 small-12 columns">My SmartRevise plan</a>
+
     </div>
 
     <hr>
