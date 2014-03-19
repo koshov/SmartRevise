@@ -1,6 +1,5 @@
 ===== High Priority =====
 percent to time
-Reigtration and authentication
 Persistency
 Revision start date in future does not end allocation until current date
 Setup - same time exams validation?
@@ -32,6 +31,7 @@ User evaluation....
 
 DONE DONE DONE
 ==============
+Reigtration and authentication
 What happens if exam is outside revision times, e.g. 6am??
 Check working times when generating slices
 View - blocking events in calewndar

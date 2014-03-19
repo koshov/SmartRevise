@@ -4,6 +4,7 @@ angular.module('SmartReviseApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngRoute',
   'ui.bootstrap.datetimepicker'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {

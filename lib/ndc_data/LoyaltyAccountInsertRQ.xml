@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<LoyaltyAccountInsertRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/LoyaltyAccountInsertRQ.xsd">
-  <ProgramSponsor xsi:type="anyType"/>
-  <ProgramName xsi:type="anyType"/>
-  <CreationAgent>CreationAgent</CreationAgent>
-  <ProfileIndex Type="">ProfileIndex</ProfileIndex>
-  <GroupID xsi:type="anyType"/>
-</LoyaltyAccountInsertRQ>

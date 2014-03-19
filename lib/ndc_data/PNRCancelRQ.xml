@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<PNRCancelRQ DoEndTransact="true" version="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PNRCancelRQ.xsd">
-  <RecordLocator>RecordLocator</RecordLocator>
-  <ReceivedFrom>ReceivedFrom</ReceivedFrom>
-</PNRCancelRQ>

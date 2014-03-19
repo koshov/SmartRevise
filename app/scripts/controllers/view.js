@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SmartReviseApp')
-  .controller('ViewCtrl', function ($rootScope, $scope, $http) {
+  .controller('ViewCtrl', function ($rootScope, $scope, $http, $location) {
     function runAlgorithm(exams, revisionStart) {
         var algoResult = algo(exams,
                               // Random dates since we only use the times

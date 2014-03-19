@@ -3,7 +3,8 @@
 angular.module('SmartReviseApp')
   .controller('SetupCtrl', function ($scope, $rootScope, $http, $location) {
 
-    $scope.exams = locache.get('exams') || [];
+    // $scope.exams = locache.get('exams') || [];
+    $scope.exams = [];
 
     $scope.addExam = function() {
         // TODO: validate name first!

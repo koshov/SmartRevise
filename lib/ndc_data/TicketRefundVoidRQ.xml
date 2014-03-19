@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TicketRefundVoidRQ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../_schema/TicketRefundVoidRQ.xsd">
-  <IATA>IATA</IATA>
-  <PseudoCityCode>PseudoCityCode</PseudoCityCode>
-  <TicketNumber>TicketNumber</TicketNumber>
-  <RecordLocator>RecordLocator</RecordLocator>
-</TicketRefundVoidRQ>
