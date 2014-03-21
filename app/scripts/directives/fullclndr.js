@@ -7,15 +7,10 @@ angular.module('SmartReviseApp')
       restrict: 'E',
       replace: true,
       scope: {
-        srExams: '=',
+        srEvents: '=',
         srBlocking: '=',
         srDate: '=',
         srDaylen: '='
-      },
-      controller: function($scope, $attrs) {
-        $scope.$on('SpecialEvent', function() {
-            $('#calendar').fullCalendar( 'renderEvent', $scope.srExams[i]);
-        });
       },
       link: function postLink(scope, element, attrs) {
           // Show current time in timeline
@@ -74,23 +69,39 @@ angular.module('SmartReviseApp')
               select: function(newStart, newEnd, allDay) {
                 var title = prompt('Event Title:');
                 if (title) {
-                  scope.srBlocking = {
-                    title: title,
-                    blocking: true,
-                    portion: 0,
-                    time: 0,
-                    components: [],
-                    date: moment(newStart),
-                    duration: moment.duration(moment(newEnd).diff(moment(newStart), "minutes"), "minutes"),
-                    duration_int: moment(newEnd).diff(moment(newStart), "minutes"),
-                    start: moment(newStart).toDate(),
-                    end: moment(newEnd).toDate(),
-                    allDay: false,
-                    color: "#aaa"
-                  };
-                  scope.$apply();
+                  scope.$apply(function() {
+                    scope.srBlocking = {
+                      type: "add",
+                      blocking_event: {
+                        title: title,
+                        blocking: true,
+                        portion: 0,
+                        time: 0,
+                        components: [],
+                        date: moment(newStart),
+                        duration: moment.duration(moment(newEnd).diff(moment(newStart), "minutes"), "minutes"),
+                        duration_int: moment(newEnd).diff(moment(newStart), "minutes"),
+                        start: moment(newStart).toDate(),
+                        end: moment(newEnd).toDate()
+                      }
+                    }
+                  });
                 }
                 $('#calendar').fullCalendar('unselect');
+              },
+              eventClick: function(calEvent, jsEvent, view) {
+                if (calEvent.blocking) {
+                  var dialog = confirm("Remove blocking event \"" + calEvent.title + "\"?");
+                  if (dialog) {
+                    $('#calendar').fullCalendar('removeEvents', [calEvent._id]);
+                    scope.$apply(function() {
+                      scope.srBlocking = {
+                        type: "remove",
+                        blocking_event: calEvent
+                      }
+                    });
+                  }
+                }
               },
               editable: true,
               firstDay: 1,  // Sets Monday to first day of week
@@ -98,13 +109,13 @@ angular.module('SmartReviseApp')
               allDaySlot: false
           });
 
-          scope.$watch('srExams', function() {rerenderEvents()});
+          scope.$watch('srEvents', function() {rerenderEvents()});
           var rerenderEvents = function() {
-              $('#calendar').fullCalendar( 'removeEvents' );
+              $('#calendar').fullCalendar('removeEvents');
               $('#calendar').fullCalendar('option', 'contentHeight', scope.srDaylen * 42 + 21);
-              var examsLen = scope.srExams.length;
-              for (var i = 0; i < examsLen; i++) {
-                  $('#calendar').fullCalendar( 'renderEvent', scope.srExams[i], true);
+              var eventsLen = scope.srEvents.length;
+              for (var i = 0; i < eventsLen; i++) {
+                  $('#calendar').fullCalendar('renderEvent', scope.srEvents[i], true);
               };
           };
 

@@ -264,7 +264,8 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                 start: exams[i].date.toDate(),
                 end: moment(exams[i].date.format()).add(exams[i].duration).toDate(),
                 allDay: false,
-                color: "#dddddd"
+                color: "#dddddd",
+                blocking: true
             });
         } else {
             revisionStore.push({

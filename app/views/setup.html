@@ -14,14 +14,14 @@
                     <span ng-show="$parent.hasDate($index)"><i class="fi-calendar"></i> Exam Date</span>
                     {{exam.date}}
                 </button>
-                <datetimepicker data-dropdown-content class="f-dropdown" id="{{'drop'+$parent.$index}}" ng-model="exam.date" data-datetimepicker-config="{ dropdownSelector: '.dropButton' }"></datetimepicker>
+                <datetimepicker data-dropdown-content class="f-dropdown" id="{{'drop'+$index}}" ng-model="exam.date" data-datetimepicker-config="{ dropdownSelector: '.dropButton' }"></datetimepicker>
+                <script type="text/javascript">
+                    $(document).foundation();
+                </script>
             </div>
             <div class="small-3 columns">
                 <button class="prefix alert" ng-click="$parent.removeExam($index)"><i class="fi-x"></i> Delete</button>
             </div>
-            <script type="text/javascript">
-                $(document).foundation();
-            </script>
 
         </div>
 

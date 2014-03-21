@@ -24,7 +24,8 @@
     </div>
 </div>
 
-<fullclndr sr-exams="calendarEvents" sr-date="firstDay" sr-daylen="dayLen" sr-blocking="blocking"></fullclndr>
+<fullclndr sr-events="calendarEvents" sr-date="firstDay" sr-daylen="dayLen" sr-blocking="blocking"></fullclndr>
+
 <div ng-repeat="exam in exams | filter:{blocking:false}" class="row collapse view-exam">
     <div class="small-12 large-6 columns">
         <div class="row collapse">

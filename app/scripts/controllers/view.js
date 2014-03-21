@@ -15,7 +15,19 @@ angular.module('SmartReviseApp')
     $scope.blocking = undefined;
     $scope.$watch('blocking', function(){
         if ($scope.blocking) {
-            $scope.exams.push($scope.blocking);
+            if ($scope.blocking.type == "add") {
+                $scope.exams.push($scope.blocking.blocking_event);
+            } else {
+                for (var i = 0; i < $scope.exams.length; i++) {
+                    if ($scope.exams[i].date.format() == moment($scope.blocking.blocking_event.start).format()
+                        && $scope.exams[i].title == $scope.blocking.blocking_event.title) {
+                        $scope.exams.splice(i,1);
+                        console.log($scope.exams[i]);
+                        break;
+                    }
+                };
+            }
+
             locache.set('exams', $scope.exams);
 
             if ($rootScope.currentUser) {
@@ -42,7 +54,7 @@ angular.module('SmartReviseApp')
                         };
 
                 pr().then(function() {
-                    console.log("Fuck");
+                    console.log("Yes");
                 });
 
             };

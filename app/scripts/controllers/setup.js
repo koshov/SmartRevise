@@ -69,6 +69,7 @@ angular.module('SmartReviseApp')
             exams[i].allDay = false;
             exams[i].blocking = false;
             exams[i].duration_int = 120;
+            exams[i].editable = false;
         };
         locache.set('exams', exams);
         $location.path( 'view' );
