@@ -273,6 +273,12 @@ module.exports = function (grunt) {
           ]
         }, {
           expand: true,
+          dot: true,
+          cwd: '<%= yeoman.app %>/styles/foundation-icon-fonts',
+          dest: '<%= yeoman.dist %>/public/styles',
+          src: 'foundation-icons.{eot,svg,ttf,woff}'
+        }, {
+          expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: [

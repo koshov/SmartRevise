@@ -24,7 +24,6 @@ angular.module('SmartReviseApp')
           password: user.password
         }, function(user) {
           $rootScope.currentUser = user;
-          console.log(user);
           return cb();
         }, function(err) {
           return cb(err);

@@ -214,6 +214,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                                         start: moment(revisionChunks[i].slices[j].end.format()).subtract(delta+subjectTime, "minutes").toDate(),
                                         end: moment(revisionChunks[i].slices[j].end.format()).subtract(delta, "minutes").toDate(),
                                         allDay: false,
+                                        editable: false,
                                         color: revisionChunks[i].exams[k].color
                                     });
                                     delta += subjectTime;
@@ -227,6 +228,7 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                                         start: moment(revisionChunks[i].slices[j].end.format()).subtract(delta+subtask.time, "minutes").toDate(),
                                         end: moment(revisionChunks[i].slices[j].end.format()).subtract(delta, "minutes").toDate(),
                                         allDay: false,
+                                        editable: false,
                                         color: revisionChunks[i].exams[k].color
                                     });
                                     delta += subtask.time;

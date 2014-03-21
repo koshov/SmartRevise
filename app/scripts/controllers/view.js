@@ -2,7 +2,83 @@
 
 angular.module('SmartReviseApp')
   .controller('ViewCtrl', function ($rootScope, $scope, $resource, $location, Auth) {
+    // API services
+    var user_data = $resource('/api/users/data/:id', {
+                          id: '@id'
+                        }, {
+                          update: {
+                            method: 'POST',
+                            params: {}
+                          },
+                          get: {
+                            method: 'GET',
+                            params: {}
+                          }
+                        });
+
+    var set_user_data = function(callback) {
+                var cb = callback || angular.noop;
+
+                return user_data.update({
+                  data: $scope.exams
+                }, function(user_data) {
+                  return cb(user_data);
+                }, function(err) {
+                  return cb(err);
+                }).$promise;
+            };
+
+    var get_user_data = function(callback) {
+                return user_data.get().$promise;
+            };
+
+    // Day start & end times
+    $scope.selectTimes = ["0:00", "0:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"]
+    $scope.times = {
+        start: "9:00",
+        end: "18:00"
+    };
+    $scope.dayLen = 11;
+    $scope.$watch('times', function(){
+        if ($scope.exams) runAlgorithm($scope.exams);
+        $scope.dayLen = moment("01/01/12 " + $scope.times.end).diff(moment("01/01/12 " + $scope.times.start), 'hours') + 2;
+    }, true);
+
+    // Fetch data
+    if (locache.get('exams')) {
+            console.log("Cache");
+            $scope.exams = locache.get('exams');
+            for (var i = $scope.exams.length - 1; i >= 0; i--) {
+                $scope.exams[i].date = moment($scope.exams[i].date);
+                $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
+            }
+            runAlgorithm($scope.exams);
+    } else if ($rootScope.currentUser) {
+        user_data.get(function(res) {
+            console.log(res.data);
+            $scope.exams = res.data;
+            for (var i = $scope.exams.length - 1; i >= 0; i--) {
+                $scope.exams[i].date = moment($scope.exams[i].date);
+                $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
+            }
+            runAlgorithm($scope.exams);
+        }, function(error) {
+            console.log("Oh scheisse!");
+        });
+    } else {
+        $location.path( 'setup' );
+    };
+
+
     function runAlgorithm(exams, revisionStart) {
+        locache.set('exams', $scope.exams);
+
+        if ($rootScope.currentUser) {
+            set_user_data().then(function() {
+                console.log("User data set");
+            });
+        };
+
         var algoResult = algo(exams,
                               // Random dates since we only use the times
                               moment("01/01/01 " + $scope.times.start),
@@ -17,81 +93,47 @@ angular.module('SmartReviseApp')
         if ($scope.blocking) {
             if ($scope.blocking.type == "add") {
                 $scope.exams.push($scope.blocking.blocking_event);
-            } else {
+            } else if ($scope.blocking.type == "remove") {
                 for (var i = 0; i < $scope.exams.length; i++) {
                     if ($scope.exams[i].date.format() == moment($scope.blocking.blocking_event.start).format()
                         && $scope.exams[i].title == $scope.blocking.blocking_event.title) {
                         $scope.exams.splice(i,1);
-                        console.log($scope.exams[i]);
+                        break;
+                    }
+                };
+            } else if ($scope.blocking.type == "edit") {
+                for (var i = 0; i < $scope.exams.length; i++) {
+                    if ($scope.exams[i].date.format() == moment($scope.blocking.blocking_event.start).format()
+                        && $scope.exams[i].title == $scope.blocking.blocking_event.title) {
+                        $scope.exams.splice(i,1);
+                        var old_event = $scope.blocking.blocking_event;
+                        var new_event = {
+                              title: old_event.title,
+                              blocking: true,
+                              portion: 0,
+                              time: 0,
+                              components: [],
+                              date: moment(old_event.start),
+                              duration: moment.duration(moment(old_event.end).diff(moment(old_event.start), "minutes"), "minutes"),
+                              duration_int: moment(old_event.end).diff(moment(old_event.start), "minutes"),
+                              start: moment(old_event.start).toDate(),
+                              end: moment(old_event.end).toDate()
+                            };
+                        $scope.exams.push(new_event);
                         break;
                     }
                 };
             }
 
-            locache.set('exams', $scope.exams);
-
-            if ($rootScope.currentUser) {
-
-                var user = $resource('/api/users/data/:id', {
-                                      id: '@id'
-                                    }, { //parameters default
-                                      update: {
-                                        method: 'POST',
-                                        params: {}
-                                      }
-                                    });
-
-                var pr = function(callback) {
-                            var cb = callback || angular.noop;
-
-                            return user.update({
-                              data: $scope.exams
-                            }, function(user) {
-                              return cb(user);
-                            }, function(err) {
-                              return cb(err);
-                            }).$promise;
-                        };
-
-                pr().then(function() {
-                    console.log("Yes");
-                });
-
-            };
-
             runAlgorithm($scope.exams);
         }
     }, false);
-
-    // Day start & end times
-    $scope.selectTimes = ["0:00", "0:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"]
-    $scope.times = {
-        start: "9:00",
-        end: "18:00"
-    };
-    $scope.dayLen = 11;
-    $scope.$watch('times', function(){
-        if ($scope.exams) runAlgorithm($scope.exams);
-        $scope.dayLen = moment("01/01/12 " + $scope.times.end).diff(moment("01/01/12 " + $scope.times.start), 'hours') + 2;
-    }, true);
 
     // Revision start date
     $scope.revisionStart = "";
     $scope.$watch('revisionStart', function() {
         if ($scope.exams) runAlgorithm($scope.exams, $scope.revisionStart);
     }, true);
-
-
-    if (locache.get('exams')) {
-        $scope.exams = locache.get('exams');
-        for (var i = $scope.exams.length - 1; i >= 0; i--) {
-            $scope.exams[i].date = moment($scope.exams[i].date);
-            $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
-        }
-        runAlgorithm($scope.exams);
-    } else {
-        $location.path( 'setup' );
-    };
 
     $scope.newComponent = "";
     $scope.subtaskDeadline = function(exam, component) {

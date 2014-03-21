@@ -1,6 +1,5 @@
 ===== High Priority =====
 locache.set more :D
-deleting of blocking events?
 percent to time
 Persistency
 Revision start date in future does not end allocation until current date
@@ -28,6 +27,7 @@ User evaluation....
 
 DONE DONE DONE
 ==============
+deleting of blocking events?
 View - Free days/portions of days
 Reigtration and authentication
 What happens if exam is outside revision times, e.g. 6am??

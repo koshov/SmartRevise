@@ -13,6 +13,8 @@ angular.module('SmartReviseApp')
         srDaylen: '='
       },
       link: function postLink(scope, element, attrs) {
+        scope.$watch('srDate', function() {createCalendar()});
+        function createCalendar() {
           // Show current time in timeline
           // http://stackoverflow.com/questions/8813454/fullcalendar-current-time-line-on-week-view-and-day-view
           function setTimeline(view) {
@@ -103,6 +105,22 @@ angular.module('SmartReviseApp')
                   }
                 }
               },
+              eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+                  scope.$apply(function() {
+                    scope.srBlocking = {
+                      type: "edit",
+                      blocking_event: event
+                    }
+                  });
+              },
+              eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+                  scope.$apply(function() {
+                    scope.srBlocking = {
+                      type: "edit",
+                      blocking_event: event
+                    }
+                  });
+              },
               editable: true,
               firstDay: 1,  // Sets Monday to first day of week
               firstHour: 8,
@@ -118,7 +136,7 @@ angular.module('SmartReviseApp')
                   $('#calendar').fullCalendar('renderEvent', scope.srEvents[i], true);
               };
           };
-
+        }
       }
     };
   });
