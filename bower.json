@@ -16,7 +16,8 @@
     "fullcalendar": "~1.6.4",
     "angular-bootstrap-datetimepicker": "latest",
     "locache": "~0.4.1",
-    "jquery-ui": "~1.10.4"
+    "jquery-ui": "~1.10.4",
+    "foundation-icon-fonts": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

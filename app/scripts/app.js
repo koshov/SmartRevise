@@ -10,15 +10,15 @@ angular.module('SmartReviseApp', [
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/landing.html',
+        templateUrl: 'partials/landing.html',
         controller: 'LandingCtrl'
       })
       .when('/setup', {
-        templateUrl: 'views/setup.html',
+        templateUrl: 'partials/setup.html',
         controller: 'SetupCtrl'
       })
       .when('/view', {
-        templateUrl: 'views/view.html',
+        templateUrl: 'partials/view.html',
         controller: 'ViewCtrl'
       })
       .when('/login', {

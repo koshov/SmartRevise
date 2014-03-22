@@ -155,6 +155,7 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/views/*',
             '<%= yeoman.dist %>/public/*',
             '!<%= yeoman.dist %>/public/.git*',
+            '!<%= yeoman.dist %>/public/Procfile',
           ]
         }]
       },
@@ -319,18 +320,6 @@ module.exports = function (grunt) {
           src: 'foundation-icons.{eot,svg,ttf,woff}'
         }, {
           expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>/bower_components/font-awesome/fonts',
-          dest: '<%= yeoman.dist %>/public/fonts',
-          src: 'fontawesome-webfont.{eot,svg,ttf,woff}'
-        }, {
-          expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>/bower_components/font-awesome/fonts',
-          dest: '<%= yeoman.dist %>/public/styles',
-          src: 'fontawesome-webfont.{eot,svg,ttf,woff}'
-        }, {
-          expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/public/images',
           src: ['generated/*']
@@ -415,12 +404,12 @@ module.exports = function (grunt) {
     grunt.task.run([
       'shell:mongo',
       'clean:server',
-      'bower-install',
+      // 'bower-install',
       'sass:nested',
       'concurrent:server',
       'autoprefixer',
       'express:dev',
-      'open',
+      // 'open',
       'watch'
     ]);
   });
@@ -439,7 +428,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bower-install',
+    // 'bower-install',
     'sass:compressed',
     'useminPrepare',
     'concurrent:dist',
