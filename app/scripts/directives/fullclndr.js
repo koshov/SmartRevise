@@ -13,10 +13,18 @@ angular.module('SmartReviseApp')
         srDaylen: '='
       },
       link: function postLink(scope, element, attrs) {
-        scope.$watch('srDate', function() {createCalendar()});
+
+        // Create calendar after data has been fetched from server
+        var created = false;
+        scope.$watch('srDate', function() {
+          if (!created) {
+            created = true;
+            createCalendar()
+          }
+        });
+
         function createCalendar() {
           // Show current time in timeline
-          // http://stackoverflow.com/questions/8813454/fullcalendar-current-time-line-on-week-view-and-day-view
           function setTimeline(view) {
               var parentDiv = jQuery(".fc-agenda-slots:visible").parent();
               var timeline = parentDiv.children(".timeline");
@@ -52,6 +60,7 @@ angular.module('SmartReviseApp')
               }
           }
 
+          // Initialize calendar
           $('#calendar').fullCalendar({
               header: {
                   left: 'prev,next today',
