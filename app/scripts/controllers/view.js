@@ -1,36 +1,20 @@
 'use strict';
 
 angular.module('SmartReviseApp')
-  .controller('ViewCtrl', function ($rootScope, $scope, $resource, $location, Auth) {
+  .controller('ViewCtrl', function ($rootScope, $scope, $resource, $location, Auth, Userdata) {
     // API services
-    var user_data = $resource('/api/users/data/:id', {
-                          id: '@id'
-                        }, {
-                          update: {
-                            method: 'POST',
-                            params: {}
-                          },
-                          get: {
-                            method: 'GET',
-                            params: {}
-                          }
-                        });
-
     var set_user_data = function(callback) {
                 var cb = callback || angular.noop;
 
-                return user_data.update({
+                return Userdata.update({
                   data: $scope.exams
-                }, function(user_data) {
-                  return cb(user_data);
+                }, function(Userdata) {
+                  return cb(Userdata);
                 }, function(err) {
                   return cb(err);
                 }).$promise;
             };
 
-    var get_user_data = function(callback) {
-                return user_data.get().$promise;
-            };
 
     // Day start & end times
     $scope.selectTimes = ["0:00", "0:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"]
@@ -45,7 +29,30 @@ angular.module('SmartReviseApp')
     }, true);
 
     // Fetch data
-    if (locache.get('exams')) {
+    if ($rootScope.currentUser) {
+        console.log("Logged in");
+        Userdata.get(function(res) {
+            if (res.data) {
+                $scope.exams = res.data;
+                for (var i = $scope.exams.length - 1; i >= 0; i--) {
+                    $scope.exams[i].date = moment($scope.exams[i].date);
+                    $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
+                }
+                runAlgorithm($scope.exams);
+            } else if (locache.get('exams')) {
+                $scope.exams = locache.get('exams');
+                for (var i = $scope.exams.length - 1; i >= 0; i--) {
+                    $scope.exams[i].date = moment($scope.exams[i].date);
+                    $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
+                }
+                runAlgorithm($scope.exams);
+            } else {
+                $location.path( 'setup' );
+            }
+        }, function(error) {
+            console.log(error);
+        });
+    } else if (locache.get('exams')) {
             console.log("Cache");
             $scope.exams = locache.get('exams');
             for (var i = $scope.exams.length - 1; i >= 0; i--) {
@@ -53,20 +60,8 @@ angular.module('SmartReviseApp')
                 $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
             }
             runAlgorithm($scope.exams);
-    } else if ($rootScope.currentUser) {
-        user_data.get(function(res) {
-            console.log(res.data);
-            $scope.exams = res.data;
-            for (var i = $scope.exams.length - 1; i >= 0; i--) {
-                $scope.exams[i].date = moment($scope.exams[i].date);
-                $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
-            }
-            runAlgorithm($scope.exams);
-        }, function(error) {
-            console.log("Oh scheisse!");
-        });
     } else {
-        $location.path( 'setup' );
+        $location.path( 'login' );
     };
 
 
@@ -75,6 +70,7 @@ angular.module('SmartReviseApp')
 
         if ($rootScope.currentUser) {
             set_user_data().then(function() {
+                // TODO: set only if changed
                 console.log("User data set");
             });
         };

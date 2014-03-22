@@ -16,8 +16,8 @@ angular.module('SmartReviseApp')
 
         // Create calendar after data has been fetched from server
         var created = false;
-        scope.$watch('srDate', function() {
-          if (!created) {
+        scope.$watch('srEvents', function() {
+          if (scope.srEvents && !created) {
             created = true;
             createCalendar()
           }
