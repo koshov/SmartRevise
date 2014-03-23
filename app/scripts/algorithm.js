@@ -3,10 +3,13 @@
 var DEBUG = false;
 
 function algo(pExams, pStart, pEnd, pRevisionStart) {
-    if (pRevisionStart === undefined || pRevisionStart === '') {
+    if (pRevisionStart === '') {
         var revisionStart = moment();
     } else {
         var revisionStart = moment(pRevisionStart);
+        if (moment(pRevisionStart).hours() < pStart.hours()) {
+            revisionStart.hours(pStart.hours());
+        }
     }
 
     var startHour = pStart.hours(),
@@ -114,9 +117,9 @@ function algo(pExams, pStart, pEnd, pRevisionStart) {
                 if (DEBUG) console.log(revisionTime);
             } else {
                 // First day's revision begins now
-                var todayHour = moment().hours(),
-                    todayMinute = Math.ceil(moment().minutes() / 30) * 30,
-                    todayStart = moment(moment().format("YYYY-MM-DD")).hours(todayHour).minutes(todayMinute),
+                var todayHour = revisionStart.hours(),
+                    todayMinute = Math.ceil(revisionStart.minutes() / 30) * 30,
+                    todayStart = moment(revisionStart.format("YYYY-MM-DD")).hours(todayHour).minutes(todayMinute),
                     todayEnd = moment(examinedDate.format()).hours(endHour).minutes(endMinute);
                 if (todayEnd.diff(todayStart) > 0) {
                     currentChunk.slices.push({

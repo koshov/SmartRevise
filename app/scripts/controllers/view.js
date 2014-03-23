@@ -7,7 +7,11 @@ angular.module('SmartReviseApp')
                 var cb = callback || angular.noop;
 
                 return Userdata.update({
-                  data: $scope.exams
+                  data: {
+                    exams: $scope.exams,
+                    revisionStart: $scope.revisionStart,
+                    times: $scope.times
+                  }
                 }, function(Userdata) {
                   return cb(Userdata);
                 }, function(err) {
@@ -17,6 +21,11 @@ angular.module('SmartReviseApp')
 
 
     // Day start & end times
+    // Revision start date
+    $scope.revisionStart = "";
+    $scope.$watch('revisionStart', function() {
+        if ($scope.exams) runAlgorithm({});
+    }, true);
     $scope.selectTimes = ["0:00", "0:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"]
     $scope.times = {
         start: "9:00",
@@ -24,62 +33,63 @@ angular.module('SmartReviseApp')
     };
     $scope.dayLen = 11;
     $scope.$watch('times', function(){
-        if ($scope.exams) runAlgorithm($scope.exams);
         $scope.dayLen = moment("01/01/12 " + $scope.times.end).diff(moment("01/01/12 " + $scope.times.start), 'hours') + 2;
+        if ($scope.exams) runAlgorithm({});
     }, true);
 
     // Fetch data
     if ($rootScope.currentUser) {
-        console.log("Logged in");
         Userdata.get(function(res) {
             if (res.data) {
-                $scope.exams = res.data;
-                for (var i = $scope.exams.length - 1; i >= 0; i--) {
-                    $scope.exams[i].date = moment($scope.exams[i].date);
-                    $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
-                }
-                runAlgorithm($scope.exams);
-            } else if (locache.get('exams')) {
-                $scope.exams = locache.get('exams');
-                for (var i = $scope.exams.length - 1; i >= 0; i--) {
-                    $scope.exams[i].date = moment($scope.exams[i].date);
-                    $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
-                }
-                runAlgorithm($scope.exams);
+                $scope.exams = res.data.exams;
+                $scope.revisionStart = res.data.revisionStart;
+                $scope.times = res.data.times;
+                runAlgorithm({newData: true, fromAPI: true});
+            } else if (locache.get('srExamsData')) {
+                var data = locache.get('srExamsData');
+                $scope.exams = data.exams;
+                $scope.revisionStart = data.revisionStart;
+                $scope.times = data.times;
+                runAlgorithm({newData: true, fromCache: true});
             } else {
                 $location.path( 'setup' );
             }
         }, function(error) {
             console.log(error);
         });
-    } else if (locache.get('exams')) {
-            console.log("Cache");
-            $scope.exams = locache.get('exams');
-            for (var i = $scope.exams.length - 1; i >= 0; i--) {
-                $scope.exams[i].date = moment($scope.exams[i].date);
-                $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
-            }
-            runAlgorithm($scope.exams);
+    } else if (locache.get('srExamsData')) {
+            data = locache.get('srExamsData');
+            $scope.exams = data.exams;
+            $scope.revisionStart = data.revisionStart;
+            $scop.times = data.times;
+            runAlgorithm({newData: true, fromCache: true});
     } else {
         $location.path( 'login' );
     };
 
-
-    function runAlgorithm(exams, revisionStart) {
-        locache.set('exams', $scope.exams);
-
-        if ($rootScope.currentUser) {
-            set_user_data().then(function() {
-                // TODO: set only if changed
-                console.log("User data set");
+    function runAlgorithm(params) {
+        if (params.newData) {
+            for (var i = $scope.exams.length - 1; i >= 0; i--) {
+                $scope.exams[i].date = moment($scope.exams[i].date);
+                $scope.exams[i].duration = moment.duration($scope.exams[i].duration_int, "minutes");
+            }
+        }
+        if (!params.fromCache) {
+            locache.set('srExamsData', {
+              exams: $scope.exams,
+              revisionStart: $scope.revisionStart,
+              times: $scope.times
             });
-        };
+        }
 
-        var algoResult = algo(exams,
+        if ($rootScope.currentUser && !params.fromAPI) {
+            set_user_data();
+        };
+        var algoResult = algo($scope.exams,
                               // Random dates since we only use the times
                               moment("01/01/01 " + $scope.times.start),
                               moment("01/01/01 " + $scope.times.end),
-                              revisionStart);
+                              $scope.revisionStart);
         $scope.calendarEvents = algoResult.events;
         $scope.firstDay = algoResult.firstDay;
     };
@@ -121,15 +131,9 @@ angular.module('SmartReviseApp')
                 };
             }
 
-            runAlgorithm($scope.exams);
+            runAlgorithm({});
         }
     }, false);
-
-    // Revision start date
-    $scope.revisionStart = "";
-    $scope.$watch('revisionStart', function() {
-        if ($scope.exams) runAlgorithm($scope.exams, $scope.revisionStart);
-    }, true);
 
     $scope.newComponent = "";
     $scope.subtaskDeadline = function(exam, component) {
@@ -149,12 +153,12 @@ angular.module('SmartReviseApp')
                 }
             );
             $scope.newComponent = "";
-            runAlgorithm($scope.exams, $scope.revisionStart);
+            runAlgorithm({});
         }
     };
     $scope.deleteComponent = function(exam, component) {
         $scope.exams[exam].components.splice(component, 1);
-        runAlgorithm($scope.exams, $scope.revisionStart);
+        runAlgorithm({});
     }
 
 
@@ -188,7 +192,7 @@ angular.module('SmartReviseApp')
                 };
             };
         };
-        runAlgorithm(exams);
+        runAlgorithm({});
 
     };
 

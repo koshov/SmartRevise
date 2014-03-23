@@ -1,26 +1,18 @@
 ===== High Priority =====
-locache.set more :D
-percent to time
-Persistency
-Revision start date in future does not end allocation until current date
-Setup - same time exams validation?
-View - if exam portion is greater than available time - messy things happen
-
-
+Display resulting hours?
 
 After sub-task events have been created, store their end time and indicate in task list if there are any overdue tasks
     sub-tasks show in all input fields?
     changing priority and order
 
 
-
-
-===== Writing topics =====
 api/user/data is totally unsecure
 Mocha tests for sample algo output
 RWD tests :?
 User evaluation....
 
+View - if exam portion is greater than available time - messy things happen
+Currently server is flooded by API calls whenever user drags thr slider. Might be a bad idea... ;)
 
 
 Show current time in timeline
@@ -31,6 +23,9 @@ Show current time in timeline
 
 DONE DONE DONE
 ==============
+locache.set more :D
+Revision start date in future does not end allocation until current date
+Persistency
 deleting of blocking events?
 View - Free days/portions of days
 Reigtration and authentication

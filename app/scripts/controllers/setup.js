@@ -71,7 +71,14 @@ angular.module('SmartReviseApp')
             exams[i].duration_int = 120;
             exams[i].editable = false;
         };
-        locache.set('exams', exams);
+        locache.set('srExamsData', {
+          exams: $scope.exams,
+          revisionStart: "",
+          times: {
+              start: "9:00",
+              end: "18:00"
+          }
+        });
         $location.path( 'view' );
     };
   });
