@@ -58,10 +58,10 @@ angular.module('SmartReviseApp')
             console.log(error);
         });
     } else if (locache.get('srExamsData')) {
-            data = locache.get('srExamsData');
+            var data = locache.get('srExamsData');
             $scope.exams = data.exams;
             $scope.revisionStart = data.revisionStart;
-            $scop.times = data.times;
+            $scope.times = data.times;
             runAlgorithm({newData: true, fromCache: true});
     } else {
         $location.path( 'login' );

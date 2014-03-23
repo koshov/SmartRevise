@@ -39,7 +39,10 @@
 
     <!-- Navigation -->
     <div class="row collapse">
-        <button class="button success small-5 small-offset-7 column" ng-disabled="setupInvalid()" ng-click="nextStep()">Next</button>
+        <div class="small-12 large-7 columns">
+            <p class="setup_validation_message" ng-show="exams.length && setupInvalid()">Please select a time in the future for all exams entered.</p>
+        </div>
+        <button class="button success small-12 large-5 columns" ng-disabled="setupInvalid()" ng-click="nextStep()">Next</button>
     </div>
 </form>
 

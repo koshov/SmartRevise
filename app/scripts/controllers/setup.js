@@ -36,14 +36,18 @@ angular.module('SmartReviseApp')
         return true;
     }
 
+    // $scope.
+
     $scope.setupInvalid = function() {
         function validDates() {
             for (var i = 0; i < $scope.exams.length; i++) {
-                if ($scope.exams[i].date === '') return false;
+                if ($scope.exams[i].date === '' ||
+                    moment($scope.exams[i].date).diff(moment()) < 0 ) {
+                        return false;
+                }
             };
             return true;
         }
-
         if ($scope.exams.length && validDates()) return false;
         return true;
     }
