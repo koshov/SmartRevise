@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.1.21)  25 MAR 2014 00:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.1.21)  27 MAR 2014 17:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -288,6 +288,47 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip43
 )
+(/usr/local/texlive/2013/texmf-dist/tex/latex/paralist/paralist.sty
+Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
+\pltopsep=\skip44
+\plpartopsep=\skip45
+\plitemsep=\skip46
+\plparsep=\skip47
+\pl@lab=\toks17
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+\Gin@req@height=\dimen126
+\Gin@req@width=\dimen127
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count111
+\c@subtable=\count112
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip48
+\f@ncyO@elh=\skip49
+\f@ncyO@erh=\skip50
+\f@ncyO@olh=\skip51
+\f@ncyO@orh=\skip52
+\f@ncyO@elf=\skip53
+\f@ncyO@erf=\skip54
+\f@ncyO@olf=\skip55
+\f@ncyO@orf=\skip56
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
+\ttl@box=\box28
+\beforetitleunit=\skip57
+\aftertitleunit=\skip58
+\ttl@plus=\dimen128
+\ttl@minus=\dimen129
+\ttl@toksa=\toks18
+\titlewidth=\dimen130
+\titlewidthlast=\dimen131
+\titlewidthfirst=\dimen132
+)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
@@ -313,48 +354,42 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 )))
 (/usr/local/texlive/2013/texmf-dist/tex/latex/abstract/abstract.sty
 Package: abstract 2009/06/08 v1.2a configurable abstracts
-\abstitleskip=\skip44
-\absleftindent=\skip45
-\absrightindent=\skip46
-\absparindent=\skip47
-\absparsep=\skip48
+\abstitleskip=\skip59
+\absleftindent=\skip60
+\absrightindent=\skip61
+\absparindent=\skip62
+\absparsep=\skip63
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
-\ttl@box=\box28
-\beforetitleunit=\skip49
-\aftertitleunit=\skip50
-\ttl@plus=\dimen126
-\ttl@minus=\dimen127
-\ttl@toksa=\toks17
-\titlewidth=\dimen128
-\titlewidthlast=\dimen129
-\titlewidthfirst=\dimen130
+(./skeleton.aux
+
+LaTeX Warning: Label `fig:result_menu_mobile' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:result_menu_mobile' multiply defined.
+
 )
-(./skeleton.aux)
 \openout1 = `skeleton.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 69.
-LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 69
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 85.
+LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 85
 .
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omspzccm.fd
+ (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omspzccm.fd
 File: omspzccm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
 )
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Try loading font information for T1+bch on input line 69.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Try loading font information for T1+bch on input line 85.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/t1bch.fd
 File: t1bch.fd 2004/10/18 font definitions for T1/bch.
@@ -395,17 +430,17 @@ File: t1bch.fd 2004/10/18 font definitions for T1/bch.
 
 (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count111
-\scratchdimen=\dimen131
+\scratchcounter=\count113
+\scratchdimen=\dimen133
 \scratchbox=\box29
-\nofMPsegments=\count112
-\nofMParguments=\count113
-\everyMPshowfont=\toks18
-\MPscratchCnt=\count114
-\MPscratchDim=\dimen132
-\MPnumerator=\count115
-\makeMPintoPDFobject=\count116
-\everyMPtoPDFconversion=\toks19
+\nofMPsegments=\count114
+\nofMParguments=\count115
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count116
+\MPscratchDim=\dimen134
+\MPnumerator=\count117
+\makeMPintoPDFobject=\count118
+\everyMPtoPDFconversion=\toks20
 ) (/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -425,9 +460,9 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count117
+\c@lstlisting=\count119
 \AtBeginShipoutBox=\box30
-Package hyperref Info: Link coloring OFF on input line 69.
+Package hyperref Info: Link coloring OFF on input line 85.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -435,39 +470,39 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count118
+\c@section@level=\count120
 )
-LaTeX Info: Redefining \ref on input line 69.
-LaTeX Info: Redefining \pageref on input line 69.
-LaTeX Info: Redefining \nameref on input line 69.
+LaTeX Info: Redefining \ref on input line 85.
+LaTeX Info: Redefining \pageref on input line 85.
+LaTeX Info: Redefining \nameref on input line 85.
 
 (./skeleton.out) (./skeleton.out)
 \@outlinefile=\write3
 \openout3 = `skeleton.out'.
 
 
-<university.jpg, id=108, 228.855pt x 168.8709pt>
+<university.jpg, id=176, 228.855pt x 168.8709pt>
 File: university.jpg Graphic file (type jpg)
  <use university.jpg>
-Package pdftex.def Info: university.jpg used on input line 98.
+Package pdftex.def Info: university.jpg used on input line 114.
 (pdftex.def)             Requested size: 228.85443pt x 168.87047pt.
  [1
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./unive
 rsity.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 106--107
+Underfull \hbox (badness 10000) in paragraph at lines 122--123
 
  []
 
 
 LaTeX Warning: Hyper reference `http://smartrevise.herokuapp.com/' on page 1 un
-defined on input line 109.
+defined on input line 125.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.110 \end{abstract}
+l.126 \end{abstract}
                      [1] [2
 
 ] (./skeleton.toc
@@ -495,59 +530,96 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
-)
+ [3])
 \tf@toc=\write4
 \openout4 = `skeleton.toc'.
 
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 124.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.124 \chapter
+l.140 \chapter
               {Introduction} [1]pdfTeX warning (ext4): destination with the sam
 e identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.124 \chapter
+l.140 \chapter
               {Introduction} [2
 
 ]
 Chapter 1.
-LaTeX Font Info:    Try loading font information for OMS+bch on input line 133.
+LaTeX Font Info:    Try loading font information for OMS+bch on input line 153.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omsbch.fd
 File: omsbch.fd 
 )
 LaTeX Font Info:    Font shape `OMS/bch/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 133.
- [3]
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <12> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 160.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 10.79993pt on input line 160.
- [4]
-Chapter 2.
-[5
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 153.
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.156 		  \item N
+                 o revision is scheduled outside user-definable working hours
+[3] [4] [5] [6
 
 ]
-Overfull \hbox (15.19751pt too wide) in paragraph at lines 196--196
+Chapter 2.
+
+LaTeX Warning: Hyper reference `htttp://www.examtime.com/' on page 7 undefined 
+on input line 218.
+
+[7]
+
+LaTeX Warning: Hyper reference `http://www.getrevising.co.uk/' on page 8 undefi
+ned on input line 224.
+
+
+LaTeX Warning: Hyper reference `http://www.s-cool.co.uk/' on page 8 undefined o
+n input line 232.
+
+
+Overfull \hbox (15.19751pt too wide) in paragraph at lines 239--239
 |[] \T1/bch/b/n/17.28 2.1.4 SQA "My Study Plan" and "My Ex-ams" for iPhone| 
  []
 
-[6]
-Overfull \hbox (7.40808pt too wide) in paragraph at lines 199--200
+
+LaTeX Warning: Hyper reference `http://www.sqa.org.uk/sqa/1439.html' on page 8 
+undefined on input line 240.
+
+[8]
+Overfull \hbox (7.40808pt too wide) in paragraph at lines 243--244
 []\T1/bch/m/n/12 However, the ap-pli-ca-tion lacks in-te-gra-tion with desk-top
  tools, while the timetable
  []
 
-[7] [8
 
-]
+Overfull \hbox (3.09782pt too wide) in paragraph at lines 266--270
+[]\T1/bch/m/n/12 http://www.gantter.com/ - Free - in-te-grates with Google Docs
+. A tool for GANTT
+ []
+
+
+Overfull \hbox (3.25864pt too wide) in paragraph at lines 266--270
+\T1/bch/m/n/12 http://www.wrike.com/tour/#getting-things-done - Freemium - a mo
+re feature-
+ []
+
+
+Overfull \hbox (6.79137pt too wide) in paragraph at lines 266--270
+\T1/bch/m/n/12 http://office.microsoft.com/en-gb/project/ - Paid - Now part of 
+Of-fice 365, there-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--270
+
+ []
+
+[9] [10]
 Chapter 3.
 
-Overfull \hbox (20.21451pt too wide) in paragraph at lines 222--223
+Overfull \hbox (20.21451pt too wide) in paragraph at lines 292--293
 \T1/bch/m/n/12 Several op-tions for schedul-ing of con-cur-rent events ex-ist i
 n the project-management
  []
@@ -555,74 +627,138 @@ n the project-management
 
 Underfull \vbox (badness 4569) has occurred while \output is active []
 
- [9]
-Overfull \hbox (3.38329pt too wide) in paragraph at lines 238--239
+ [11
+
+]
+Overfull \hbox (3.38329pt too wide) in paragraph at lines 308--309
 \T1/bch/m/n/12 tion, by lim-it-ing the do-main and in-tro-duc-ing a sin-gle re-
 laxed con-straint - amount
  []
 
-[10] [11] [12] [13] [14
+[12]
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 10.79993pt on input line 330.
+ [13] [14] [15] [16
 
 ]
 Chapter 4.
 
-Overfull \hbox (0.64728pt too wide) in paragraph at lines 330--331
+Overfull \hbox (0.64728pt too wide) in paragraph at lines 400--401
 []\T1/bch/m/n/12 Application de-ploy-ment, pro-vi-sion-ing of the en-vi-ron-men
 t and de-pen-dency man-
  []
 
-[15]
-Overfull \hbox (5.8093pt too wide) in paragraph at lines 351--353
+[17]
+Overfull \hbox (5.8093pt too wide) in paragraph at lines 421--423
 \T1/bch/m/n/12 The above items out-line Mon-goDB's ad-van-tages dur-ing de-vel-
 op-ment. Since
  []
 
-[16]
-Overfull \hbox (1.16922pt too wide) in paragraph at lines 377--378
-[]\T1/bch/m/n/12 Package man-age-ment is tra-di-tion-ally con-sid-ered a triv-i
-al prob-lem for mod-
- []
-
-[17] [18
+[18] [19] [20
 
 ]
 Chapter 5.
 
-Overfull \hbox (3.71376pt too wide) in paragraph at lines 390--391
-[]\T1/bch/m/n/12 A num-ber of con-straints can be as-so-ci-ated with the sched-
-ule de-rived by SmartRe-
+Overfull \hbox (3.75064pt too wide) in paragraph at lines 454--455
+\T1/bch/m/n/12 Chapter []5[] de-scribes the ac-tions that were taken in or-der 
+to eval-u-ate the SmartRe-
  []
 
-[19] [20
+
+Overfull \hbox (1.87854pt too wide) in paragraph at lines 472--473
+\T1/bch/m/n/12 The most im-me-di-ate form of val-i-da-tion for the core func-ti
+on-al-ity of the SmartRe-
+ []
+
+[21] [22] [23]
+Underfull \vbox (badness 2790) has occurred while \output is active []
+
+ [24]
+<home.jpg, id=498, 1137.24875pt x 1812.7725pt>
+File: home.jpg Graphic file (type jpg)
+ <use home.jpg>
+Package pdftex.def Info: home.jpg used on input line 617.
+(pdftex.def)             Requested size: 206.28249pt x 328.8021pt.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 9.85492pt on input line 618.
+
+<setup.jpg, id=499, 1145.27875pt x 1832.8475pt>
+File: setup.jpg Graphic file (type jpg)
+ <use setup.jpg>
+Package pdftex.def Info: setup.jpg used on input line 624.
+(pdftex.def)             Requested size: 206.28249pt x 330.12206pt.
+
+Overfull \hbox (5.064pt too wide) in paragraph at lines 616--628
+ [][]  [] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25]
+<result.jpg, id=505, 1145.27875pt x 3110.62125pt>
+File: result.jpg Graphic file (type jpg)
+ <use result.jpg>
+Package pdftex.def Info: result.jpg used on input line 633.
+(pdftex.def)             Requested size: 248.27477pt x 674.33032pt.
+
+
+LaTeX Warning: Float too large for page by 24.49998pt on input line 636.
+
+<result_menu_collapsed.png, id=506, 572.1375pt x 116.435pt>
+File: result_menu_collapsed.png Graphic file (type png)
+
+<use result_menu_collapsed.png>
+Package pdftex.def Info: result_menu_collapsed.png used on input line 641.
+(pdftex.def)             Requested size: 412.56497pt x 83.96104pt.
+
+<result_menu_expanded.png, id=507, 573.14125pt x 183.68625pt>
+File: result_menu_expanded.png Graphic file (type png)
+
+<use result_menu_expanded.png>
+Package pdftex.def Info: result_menu_expanded.png used on input line 647.
+(pdftex.def)             Requested size: 412.56497pt x 132.22595pt.
+
+<result_menu_normal.png, id=508, 695.59875pt x 130.4875pt>
+File: result_menu_normal.png Graphic file (type png)
+
+<use result_menu_normal.png>
+Package pdftex.def Info: result_menu_normal.png used on input line 653.
+(pdftex.def)             Requested size: 412.56497pt x 77.39313pt.
+ [26 <./home.jpg> <./setup.jpg>] [27 <./result.jpg>] [28 <./result_menu_collaps
+ed.png> <./result_menu_expanded.png> <./result_menu_normal.png>] [29] [30
 
 ]
 Chapter 6.
-[21] [22
+[31] [32
 
 ]
 Chapter 7.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 438.
-[23]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 438.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 697.
+[33]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 697.
  (./skeleton.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 438.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 438.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 697.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 697.
 Package rerunfilecheck Info: File `skeleton.out' has not changed.
-(rerunfilecheck)             Checksum: 88D3A62549F03426153CA0596C6AD76A;1747.
+(rerunfilecheck)             Checksum: B2B1BFE6119C68CA002185799B070EF8;3187.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 438.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 697.
  ) 
 Here is how much of TeX's memory you used:
- 9141 strings out of 493315
- 137218 string characters out of 6137904
- 254303 words of memory out of 5000000
- 12359 multiletter control sequences out of 15000+600000
- 53940 words of font info for 67 fonts, out of 8000000 for 9000
+ 9699 strings out of 493315
+ 145163 string characters out of 6137904
+ 270261 words of memory out of 5000000
+ 12788 multiletter control sequences out of 15000+600000
+ 53814 words of font info for 67 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 43i,7n,40p,1130b,1745s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,12n,43p,1131b,1749s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2013/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texl
 ive/2013/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive
@@ -632,13 +768,12 @@ ive/2013/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013/
 texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2013/texmf-di
 st/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/font
-s/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type
-1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/time
-s/utmri8a.pfb>
-Output written on skeleton.pdf (26 pages, 217277 bytes).
+s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/ur
+w/times/utmri8a.pfb>
+Output written on skeleton.pdf (37 pages, 1127054 bytes).
 PDF statistics:
- 372 PDF objects out of 1000 (max. 8388607)
- 328 compressed objects within 4 object streams
- 99 named destinations out of 1000 (max. 500000)
- 214 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 628 PDF objects out of 1000 (max. 8388607)
+ 566 compressed objects within 6 object streams
+ 211 named destinations out of 1000 (max. 500000)
+ 380 words of extra memory for PDF output out of 10000 (max. 10000000)
 

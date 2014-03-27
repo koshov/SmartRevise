@@ -3,8 +3,24 @@
 % please un-comment just one of the following
 \documentclass[bsc,frontabs,twoside,singlespacing,parskip]{infthesis}     % for BSc, BEng etc.
 
-% Code snippet settings
-\usepackage{listings, color, hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{paralist}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Put page numbers in the middle of the footer
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\assignpagestyle{\chapter}{fancy}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
 % Set chapter font
 \usepackage{sectsty}
@@ -122,46 +138,70 @@
 
 
 \chapter{Introduction}
-	- explain the problem and justify the need for the app
-	- explain things such as your desire for a portable tool
+
+	Revising for exams can be a daunting task. Students often have to prepare for several subjects while going to classes and working on coursework. Furthermore, preparing for a single examination topic involves several phases of study such as revising lecture notes, reading examinable material and revisiting tutorial questions. These tasks, combined with stress and anxiety may lead to lack of concentration, sleep deprivation and total chaos in some extreme cases.
+
+	While computer science does not provide any magic cures for common problems such as short attention spam and lack of interest, the available tools and powerful personal computers make it nearly trivial to design and develop tools that can support students in the chaos called exam revision.
+
+	The objective of this project is to create an application that helps students plan and manage their exam revision. The aim is to make rational assumptions in order to produce a meaningful revision schedule with minimum data. Additionally the application has to allow its users to modify all defaults and let them tailor the results. Finally the goal of this project is to use cutting-edge technologies in order to produce a portable and lightweight app that can be used on desktop PCs as well as on smartphones, thus fitting appealing to a wider range of users and providing useful assistance whenever needed.
 
 	\section{Application overview}
 
-		The objective of this project is to create an application that allows students to enter a list of subjects and their corresponding examination dates, and produce a revision schedule that fits the following criteria:
+		One of the key aims when designing the application was to produce a result with minimum data required from the user and dynamically visualise the impact of any additional entries or constraints. Therefore students should be able to enter just a list of subjects and their corresponding examination dates, and have a revision schedule generated for them. In addition the produced plan should adhere to the following constraints:
 
-		\begin{itemize}
-		  \item The available revision time is split proportionally between all subjects
-		  \item The subtasks of a subject are scheduled in order
+		\begin{compactitem}
+		  \item The available revision time is split proportionally between subjects
+		  \item No revision is scheduled during exams
+		  \item Revision for a given subject should only occur prior to the examination
 		  \item No revision is scheduled outside user-definable working hours
-		  \item No revision is scheduled during examinations
-		  \item ...
-		\end{itemize}
+		  \item Only one revision event should be scheduled at a given time
+		  \item The subtasks of a subject are scheduled in the order entered
+		  \item If possible, a subjects are allocated some time every day
+		\end{compactitem}
 
-		Additionally users have the option to enter periods when they are not available or change subject priorities and receive immediate feedback.
+		Additionally users should have the option to enter periods when they are not available or change the relative priorities of subjects and receive immediate feedback in the form of a new revision schedule.
 
-		There are several key problems that need to be solved in order to successfully achieve the conceptual aims of the project and to ensure that the minimal viable product could potentially survive and be successful in a commercial setting.
+		\subsection{Application portability}
 
-	\section{Application portability}
-	the application should be accessible from a wide range of devices with varying screen-sizes and computational resources,
+			With the introduction of powerful portable devices that achieve desktop-grade performance in terms of web browsing, it is no longer safe to make assumptions about the screen size or computational resources of the device used to access a web application. Furthermore students are becoming increasingly accustomed to mobile productivity tools and are starting to expect from every modern application a level of accessibility from their smartphones. On top of that, the latest web standards and browser technologies empower developers and provide a good foundation for the rapid creation of portable high-performance applications.
 
-		With the introduction of powerful portable devices that achieve desktop-grade performance in terms of web browsing, it is no longer safe to make assumptions about the screen size or the browser of a given user. Therefore the design of SmartRevise has to be very agile and flexible: the interface elements need to have adequate size in case the user is navigating via touch, the interface has to be fluid, so that it makes the best of both desktop and mobile screens, the technology behind the application should use well adopted web-standards that have been integrated in the majority of modern browsers.
+			Therefore this project has been envisioned and implemented with flexibility in mind: all design elements are responsive - the layout adjusts to various screen sizes, while interface elements retain adequate sizes in relation to the input device; the application was built using widely adopted web-standards and can be executed on all modern web browsers on both desktop and mobile applications.
 
-	\section{Solving the scheduling problem}
+			Ultimately, this approach proved beneficial not only because it allowed rapid prototyping and delivery, but also because it gave the author an excellent insight into continuous delivery, full-stack JavaScript development and valuable knowledge about cutting-edge web technologies.
 
-		Arguably the most critical task for successful completion of the project is developing a correct and efficient scheduling algorithm that is compact enough to be understood and discussed in its entirety. One might be tempted to implement a full-blown constraint satisfaction framework that allows the user to define sets of constraints imposing conditions on variables. A number of search techniques such as backtracking or local search could be used to derive a solution to a system of constraints on a finite domain. However I will argue in Section \ref{algo} that such solution is not required to successfully solve the problem as defined in this report. Furthermore constraint satisfaction algorithms are inherently incomplete, that is an algorithm may solve a problem or prove that it is unsatisfiable, but there are some exceptions when a solution can never be derived. Therefore I have decided to focus on user experience, responsiveness and managed to develop an algorithm that is a fraction of the size of a traditional constraint satisfaction toolkit and is provably correct.
+		\subsection{Solving the scheduling problem}
 
-	\section{Integration with existing organisation tools}
+			Arguably the most critical task for successful completion of the project is developing a correct and efficient scheduling algorithm that is compact enough to be understood and discussed in its entirety. One might be tempted to implement a full-blown constraint satisfaction framework that allows the user to define sets of constraints imposing conditions on variables. A number of search techniques such as backtracking or local search could be used to derive a solution to a system of constraints on a finite domain. However I will argue in Section \ref{algo} that such solution is not required to successfully solve the problem as defined in this report. Furthermore constraint satisfaction algorithms are inherently incomplete, that is an algorithm may solve a problem or prove that it is unsatisfiable, but there are some exceptions when a solution can never be derived. Therefore I have decided to focus on user experience, responsiveness and managed to develop an algorithm that is a fraction of the size of a traditional constraint satisfaction toolkit and is provably correct.
 
-		A lot of students use free tools such as Google Calendar or Apple Calendar to organise their schedules and have the information served to all digital devices they use. Google provides an API for developing applications using Calendar's infrastructure and the set up process required for a user to connect their Google Calendar with an external application is mostly effortless and arguably intuitive. Therefore on of the design goals for SmartRevise would be integration with Google's Calendar API and adding support for exporting the generated calendar events to a User's calendar. Additionally, creating a calendar experience within SmartRevise that resembles Google's will make the user's interaction less difficult and considerably more intuitive.
+	\section{Success criteria} \label{success_criteria}
+
+		TODO: add some discussion
+
+		The application should:
+		\begin{compactitem}
+			\item work as intended and as expected
+			\item produce realistic and correct revision schedules
+			\item provide the same experience on both desktop and mobile devices
+			\item give access to the generated schedule from multiple devices
+			\item be intuitive and easy to use
+			\item be visually appealing and well structured
+		\end{compactitem}
+
+	\section{Report Structure}
+
+		The following chapters outline the planning, development and evaluation of the project:
+
+		\begin{compactitem}
+			\item Chapter \ref{background} Background provides overview and discussion of similar tools and applications.
+			\item In chapter \ref{algo_design} Scheduling Algorithm Design we discuss possible algorithms and describe in detail the solution for the scheduling problem.
+			\item Chapter \ref{architecture} Architecture and Implementation includes description of the project's structure and design decisions that were taken during development.
+			\item Chapter \ref{evaluation} Evaluation gives arguments in support of the claim that the project was successfully completed.
+			\item Chapter \ref{further_work} Further Work outlines useful features that were not implemented but would be good to have and will add to the value of the project.
+		\end{compactitem}
 
 
 
-
-\chapter{Background}
-		- describe existing tools which do similar things
-		  you probably want to try and say something more general about a wider range of existing work,
-		  rather than your more detailed comments on just a couple of application.
-
+\chapter{Background}\label{background}
 		In this chapter a brief outline of the available revision planning tools and technology choices will be given.
 		In section \ref{apps} we discuss existing software with similar functionality and how that compares to the specification for SmartRevise.
 
@@ -170,16 +210,18 @@
 
 		During the project's planning phase a thorough study of the existing applications with related functionality was conducted. The aim was to set realistic goals and success criteria, identify potential pitfalls and justify the need for such application.
 
-		While none of the examined products provided the full set of features - particularly the ability to auto-generate revision schedules - the four applications described below came close to the intended functionality of this project and proveded useful insight during the design phase.
+		While none of the examined products provided the full set of features - particularly the ability to auto-generate revision schedules - the four applications described below came close to the intended functionality of this project and provided useful insight during the design phase. All applications provide a list or calendar view for examination timetable. Get Revising is the only product that automatically produced a revision plan, while some of the other applications allowed the user the manually add study periods.
+
+		Overall, none of the currently available revision planning applications were suited for students of all ages or study systems, were able to schedule revisions automatically or offered both desktop and mobile presence. These features combined make a strong case for the practicality of the application developed for this project.
 
 		\subsection{ExamTime}
-		htttp://www.examtime.com/
+		\textbf{\hyperref[htttp://www.examtime.com/]{htttp://www.examtime.com/}}\\
 		ExamTime is the simpler of the two applications. After registering with the service, the user is prompted to add subjects to their dashboard. Subjects are in fact collections of mind maps, quizzes, flash cards and notes, organised under topics.
 
 		There is a calendar view where the user can manually add calendar events for exams, revision sessions or other activities. The application does not allow for the automatic generation of a revision schedule and the user has to complete this activity by themselves.
 
 		\subsection{Get Revising}
-		http://www.getrevising.co.uk/
+		\textbf{\hyperref[http://www.getrevising.co.uk/]{http://www.getrevising.co.uk/}}\\
 		Get Revising offers a larger number of features such as Flashcards, Revision Notes, Quizzes, Mind maps and the ability to share resources between students. Some built-in layouts are provided for common GCSE, A Level and University courses that include exam dates and simple content structure for common subjects.
 
 		The user of the study planner feature of Get Revising can set School hours that should be excluded from the revision schedule and the application has the ability to split the time prior to exam dates equally between selected subjects.
@@ -187,6 +229,7 @@
 		However Get Revising does not allow for a deeper level of detail when it comes to creating a schedule - only events for revising a particular subject can be created, therefore a user cannot include items such as\textit{read textbook, solve tutorials, do past papers, etc.}
 
 		\subsection{S-cool}
+		\textbf{\hyperref[http://www.s-cool.co.uk/]{http://www.s-cool.co.uk/}}\\
 		S-cool is primarily targeted at high-school students doing GCSE and A Level courses. The web-site requires visitors to create an account before accessing any of its features, prompting for potentially sensible data such as full name, birth date and postcode. Furthermore, a confirmation e-mail was sent immediately following the registration, that contained a plain text record of the password entered in the website.
 
 		Although discussion of the potential security implications caused by these design decisions is beyond the scope of this thesis, security best-practices have been followed while developing this project and further details can be found in section \ref{security} Security.
@@ -194,14 +237,41 @@
 		After registering, users can create an exam timetable and manually enter multiple revision periods. The simple month view calendar only allows students to enter the date, but not the exact time of events, rather they are displayed as items in a task-list for a given day.
 
 		\subsection{SQA "My Study Plan" and "My Exams" for iPhone}
+		\textbf{\hyperref[http://www.sqa.org.uk/sqa/1439.html]{http://www.sqa.org.uk/}}\\
 		These two mobile applications were created in conjunction with the Scottish Qualifications Authority to help pupils in secondary school to organise their studies and revision. "My Study Plan" was last updated on 8 April 2011 and does not appear to be actively developed, while "My Exams" is still maintained. The iPhone app is targeted at students in Scottish secondary school and allows them to create exam timetables, add notes to subject areas and share their timetables.
 
 		However, the application lacks integration with desktop tools, while the timetable only allows users to see a list of upcoming exams.
 
+		\subsection{Existing revision scheduling applications - results}
+		TODO\\
+		- brief discussion of the need for a tool that is not solely targeted at school pupils\\
+		- summary of common issues:
+
+		\hspace{10 mm}	- tedious registration process
+
+		\hspace{10 mm}	- lack of portability - the tools are not mobile-friendly
+
+		\hspace{10 mm}	- calendar views are somewhat limited and lack detail
+
+		\hspace{10 mm}	- no notion of instant feedback when changing the parameters of the revision (or lack of such parameters altogether)
 
 
+	\section{General scheduling and planning applications}
+		Note to Paul:
+		In your feedback from the Interim report you mentioned that:
+		"you probably want to try and say something more general about a wider range of existing work, rather than your more detailed comments on just a couple of application."
 
-\chapter{Scheduling Algorithm Design}
+		I have selected 5 web applications for project management that are most suitable to the task, i.e. someone can theoretically plan a revision schedule using them. Also according to various sources on the internet, these are currently the best web-based project management tools.
+
+		http://www.gantter.com/ - Free - integrates with Google Docs. A tool for GANTT charts.\\
+		http://www.wrike.com/tour/\#getting-things-done - Freemium - a more feature-complete application with mobile apps and collaboration tools.\\
+		http://www.aceproject.com/tour/ - Freemium - pretty much the same thing as Wrinkle.\\
+		http://office.microsoft.com/en-gb/project/ - Paid - Now part of Office 365, therefore it is technically a web app. Also one of the best project management tools.\\
+
+		My question is whether you meant this by "existing work" or rather algorithms and scheduling techniques, since I will include those in the next chapter?
+
+
+\chapter{Scheduling Algorithm Design}\label{algo_design}
 
 	- what criteria are you going to allow the user to specify?
 	- how did you decide that these are appropriate?
@@ -318,7 +388,7 @@ for (chunk in chunks.reverse) {
 
 
 
-\chapter{Architecture and Implementation}
+\chapter{Architecture and Implementation}\label{architecture}
 
 	- choice of tools and justification
 	- RWD
@@ -361,8 +431,7 @@ for (chunk in chunks.reverse) {
 
 		This section will provide a review of the miscellaneous software packages that were used in order to ease development, improve the quality of the software and simulate as closely as possible a real production environment.
 
-		\begin{description}
-			\item[Grunt] \hfill \\
+		\subsection{Grunt}
 			Grunt is a JavaScript Task Runner. It allows the developer to automate repetitive tasks by defining a Gruntfile.js with automation parameters. The biggest advantage of Grunt over similar technologies such as Puppet or Chef is its growing environment focused on JavaScripts.
 
 			In the setup for SmartRevise, Grunt is used to compile multiple JavaScript libraries to a single script file, compress the code using best practices in order to achieve faster and smoother experience for the user, run the database and server applications as well as monitor the project directory for file writes and automatically recompile the application.
@@ -371,46 +440,253 @@ for (chunk in chunks.reverse) {
 
 			In summary, Grunt is a crucial component in every professional toolkit nowadays and helps deliver ideas very quickly without technology getting in the way.
 
-			\item[Bower] \hfill \\
+		\subsection{Bower}
 			Bower is the first JavaScript package manager for front-end web projects. It makes downloading and managing a large number of external dependencies effortless compared to manual management of libraries.
 
 			Package management is traditionally considered a trivial problem for modern software engineering, but since the majority of JavaScript tools are relatively young and less developed, being able to manage the entire stack of a web application with ease and convenience is a significant step forwards that makes this project better suited for future development.
 
-		\end{description}
+
+
+
+\chapter{Evaluation}\label{evaluation}
+
+	Chapter \ref{evaluation} describes the actions that were taken in order to evaluate the SmartRevise scheduling application.
+
+	The chapter includes discussion of four aspects of the evaluation: correctness of the scheduling algorithm in section \ref{algo_eval}; usability testing and user feedback in section \ref{user_eval}; experiments related to portability and accessibility of the responsive design in section \ref{portability_eval}, and overall performance metrics of the production environment in section \ref{prod_eval}.
+
+	The purpose of this chapter is to assess the applications against the goals that were defined at the beginning of the project, i.e. the application should:
+	\begin{compactitem}
+		\item work as intended and as expected
+		\item produce realistic and correct revision schedules
+		\item provide the same experience on both desktop and mobile devices
+		\item give access to the generated schedule from multiple devices
+		\item be intuitive and easy to use
+		\item be visually appealing and well structured
+	\end{compactitem}
+
+	With the support of these arguments I will argue that the task was successfully completed and adheres to high professional standards.
+
+	\section{Unit testing of algorithm}\label{algo_eval}
+
+		The most immediate form of validation for the core functionality of the SmartRevise revision planner was the development of unit tests that check the output of the scheduling algorithm against some basic correctness criteria:
+
+		\begin{compactitem}
+		  \item The available revision time should be split proportionally between subjects
+		  \item Revision for a given subject should only occur prior to the examination
+		  \item No revision should be scheduled during exams
+		  \item No revision should be scheduled outside user-definable working hours
+		  \item Only one revision event should be scheduled at a given time
+		  \item The subtasks of a subject are scheduled in the order entered
+		  \item If possible, all subjects are allocated revision time every day
+		\end{compactitem}
+
+		A core part of the application stack that was used to create SmartRevise is a unit testing framework that allows the development of both functional and interface tests for all components of the application. The project setup allows automatic generation of test scripts for all application components generated by the Yeoman recipes (see chapter \ref{architecture} Architecture and Implementation). This means that the developer is encouraged to employ a Test Driven Design pattern and define some basic correctness criteria before actually implementing the components of the system.
+
+		During the development of SmartRevise, I decided to use these facilities while extending the scheduling algorithm. This was inspired by the involuntary introduction of several regressions after adding features to the initial algorithm. After I added the tests described below, the unit tests were ran before each deployment to the application host which guaranteed that the application will not be broken by a subtle change in the code.
+
+		All algorithm unit tests use the same pseudo data of 5 exams situated 10 days ahead of the current date, over the span of 5 days. The reason to choose exam dates on a fixed point in the future is to guarantee that the tests are deterministic and negative test results can be replicated.
+
+		\subsection{Revision for a given subject should only occur prior to the examination}
+		The first unit test examines whether all revision sessions for a given subject are scheduled before the corresponding exam:
+
+		\begin{lstlisting}
+it('all revision events for a given exam should end before the exam\'s date', function () {
+  // Run algorithm
+  scope.runAlgorithm({newData: true, fromCache: true});
+
+  var correct = true;
+  for (var i = 0; i < scope.exams.length; i++) {
+    var title = scope.exams[i].title;
+    for (var j = 0; j < scope.calendarEvents.length; j++) {
+      if (// select revision events for this exam
+          scope.calendarEvents[j].title.indexOf(title) != -1 &&
+          // make sure this is not the exam itself
+          scope.calendarEvents[j].title !== scope.exams[i].title &&
+          // check if the revision precedes the exam (time diff is >= 0)
+          scope.exams[i].date.diff(moment(scope.calendarEvents[j].start)) < 0 &&
+          scope.exams[i].date.diff(moment(scope.calendarEvents[j].end)) < 0
+          ) {
+        correct = false;
+      }
+    };
+  };
+  expect(correct).toBe(true);
+});
+		\end{lstlisting}
+
+		If the scenario comes across a calendar event whose title suggests that it belongs to the revision of a subject, whose exam is over, the test case fails.
+
+		\subsection{Events in the schedule should not overlap}
+		The second test case ensures that no two events in the algorithm output overlap.
+
+		\begin{lstlisting}
+it('events in the schedule do not overlap', function () {
+  // Run algorithm
+  scope.runAlgorithm({newData: true, fromCache: true});
+
+  var correct = true;
+  for (var i = 0; i < scope.calendarEvents.length; i++) {
+    var event_start = moment(scope.calendarEvents[i].start);
+    var event_end = moment(scope.calendarEvents[i].end);
+    for (var j = 0; j < scope.calendarEvents.length; j++) {
+      var other_start = moment(scope.calendarEvents[j].start);
+      var other_end = moment(scope.calendarEvents[j].end);
+      // make sure we are not checking against the same event
+      if (j !== i) {
+        if (// event J starts before event I and they overlap
+            (event_start.diff(other_start) >= 0 && event_start.diff(other_end) < 0) ||
+            // event J starts after event I and they overlap
+            (event_start.diff(other_start) < 0 && event_end.diff(other_start) > 0)) {
+          console.log(scope.calendarEvents[i], scope.calendarEvents[j]);
+          correct = false;
+        }
+      }
+    };
+
+  };
+  expect(correct).toBe(true);
+});
+		\end{lstlisting}
+
+		In this case the JavaScript Date Objects are manipulated using the MomentJS library in order to find the absolute difference between the start and end dates of every pair of events in the output schedule. If an illegal overlap is detected, the test fails.
+
+		\subsection{No revision should be scheduled outside user-definable working hours}
+		The last two tests follow a similar structure and check that no revision events are scheduled outside of the default revision times - 9AM to 6PM.
+
+		\begin{lstlisting}
+it('all revision events should begin after the daily start time - 9AM by default', function () {
+  // Run algorithm
+  scope.runAlgorithm({newData: true, fromCache: true});
+
+  var correct = true;
+  for (var i = 0; i < scope.calendarEvents.length; i++) {
+    // Check if this is a revision event, not an exam (exams could be any time)
+    if (scope.calendarEvents[i].title.indexOf('revision') !== -1) {
+      if (moment(scope.calendarEvents[i].start).hour() < 9) {
+        correct = false;
+      }
+    }
+  };
+  expect(correct).toBe(true);
+});
+
+it('all revision events should end before the daily end time - 6PM by default', function () {
+  // Run algorithm
+  scope.runAlgorithm({newData: true, fromCache: true});
+
+  var correct = true;
+  for (var i = 0; i < scope.calendarEvents.length; i++) {
+    // Check if this is a revision event, not an exam (exams could be any time)
+    if (scope.calendarEvents[i].title.indexOf('revision') !== -1) {
+      if (moment(scope.calendarEvents[i].end).hour() > 18) {
+        correct = false;
+      }
+    }
+  };
+  expect(correct).toBe(true);
+});
+		\end{lstlisting}
+
+		\subsection{Unit testing summary}
+		Using the set of tests I was able to identify a bug which caused revision events to be scheduled beyond the pre-defined working times. This issue was occurring because exams can have arbitrary starting times but initially I had not taken this into account while dividing the free time between exams into revision "slices".
+
+		Overall unit tests helped identify some weaknesses in the design of the algorithm and prevented the pushing of bugs to the live environment. The test scenarios described above cover the more subtle aspects of the scheduling algorithm, while requirements such as the proportional distribution of time were omitted since those were either guaranteed by the core logic of the scheduling algorithm or were inherently non-deterministic due to the varying time availability, e.g. if a user enters two exams - the first in one week, the second in a few months - it would be impossible to split the available revision time equally without penalising one of the subjects.
+
+		As a final note it is worth mentioning that it would be trivial to define a Git pre-commit hook that runs all unit tests prior to pushing changes in the source code. In case a richer set of tests is used, this can prevent poorly planned or executed code changes from breaking the live environment of the application.
+
+
+	\section{Evaluate usability of application}\label{user_eval}
+
+		Arguably the biggest challenge is developing a visually appealing, intuitive user interface that suits the needs of test users and can provide some value if added to a student's workflow.
+
+		Unfortunately testing the finished application in a real exam setting would be impossible before the deadline of this project, but the author intends to evaluate the application extensively with fellow students in order to identify potential sources of confusion, any shortcomings or inconsistency. However there are few well-studied methods for formally evaluating user experience, therefore the main form of evaluation will be verbal feedback and observation.
+
+		\subsection{Preliminary usability testing}
+
+		\subsection{Feedback from final version}
+
+
+	\section{Portability and accessibility}\label{portability_eval}
+
+		\subsection{Mobile performance}
+
+
+		\subsection{Responsive web design}
+
+			\begin{figure}
+			        \centering
+			        \begin{subfigure}[b]{0.5\textwidth}
+			                \includegraphics[width=\textwidth]{home}
+			                \caption{Home page}
+			                \label{fig:home}
+			        \end{subfigure}%
+			        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+			          %(or a blank line to force the subfigure onto a new line)
+			        \begin{subfigure}[b]{0.5\textwidth}
+			                \includegraphics[width=\textwidth]{setup}
+			                \caption{Setup page}
+			                \label{fig:setup}
+			        \end{subfigure}
+			        \caption{SmartRevise on Nexus 7 tablet - 800px by 1280px}\label{fig:setup_and_home}
+			\end{figure}
+
+			\begin{figure}[p]
+			    \centering
+				\includegraphics[height=\textheight]{result}
+			    \caption{Generated revision plan}
+			    \label{fig:result}
+			\end{figure}
+
+			\begin{figure}
+			        \centering
+			        \begin{subfigure}[b]{\textwidth}
+						\includegraphics[width=\linewidth]{result_menu_collapsed}
+					    \caption{Navigation bar on mobile devices - collapsed}
+					    \label{fig:result_menu_mobile}
+			        \end{subfigure}
+
+	                \begin{subfigure}[b]{\textwidth}
+	        			\includegraphics[width=\linewidth]{result_menu_expanded}
+	        		    \caption{Navigation bar on mobile devices - expanded}
+	        		    \label{fig:result_menu_mobile}
+	                \end{subfigure}
+
+			        \begin{subfigure}[b]{\textwidth}
+						\includegraphics[width=\linewidth]{result_menu_normal}
+					    \caption{Navigation bar on large screens (wider than 640px)}
+					    \label{fig:result_menu_desktop}
+			        \end{subfigure}
+			        \caption{Navigation bar}\label{fig:navbar}
+			\end{figure}
+
+
+		\subsection{Accessibility}
+
+			em units - good for higher DPI and devices for disabled people
+
+			semantic markup
+
+
+
+	\section{Performance in production environment}\label{prod_eval}
+
+		NewRelic uptime and JavaScript strict mode
+
+		No previous experience with live systems of larger and no exposure to the implications of high availability systems.
+
+		Peak of 100 server requests per minute - which could bring down a poorly optimized app on a small gear. - talk about Heroku...
 
 
 
 
-\chapter{Evaluation}
+\chapter{Further work}\label{further_work}
 
-	Evaluating the correctness and completeness of this project involves a two-step process.
+	\section{Integration with existing organisation tools}
 
-	\textbf{Determine corectness of developed algorithm}
+		A lot of students use free tools such as Google Calendar or Apple Calendar to organise their schedules and have the information served to all digital devices they use. Google provides an API for developing applications using Calendar's infrastructure and the set up process required for a user to connect their Google Calendar with an external application is mostly effortless and arguably intuitive. Therefore on of the design goals for SmartRevise would be integration with Google's Calendar API and adding support for exporting the generated calendar events to a User's calendar. Additionally, creating a calendar experience within SmartRevise that resembles Google's will make the user's interaction less difficult and considerably more intuitive.
 
-	A number of constraints can be associated with the schedule derived by SmartRevise:
+		\textbf{NOTE} Google Calendar has not been integrated with the application, although the calendar view is visually similar to Google Calendar and several of the features were inspired by it. Should I include this as a good to have/future work?
 
-	\begin{itemize}
-		\item Revision for a given subject should only occur prior to the examination
-		\item Revision events should not be allocated during sleep hours
-	  	\item Only one revision event should be scheduled at a given time
-		\item etc.
-	\end{itemize}
-
-	The application stack used for this project allows the creation of unit tests. It is trivial to generate a set of example subjects and examination dates and test the produced schedule against the constraints listed above. Together with a study of some known edge-cases this can give a sensible evaluation of the correctness of the proposed algorithm.
-
-	\textbf{Evaluate usability of application}
-	TODO - RWD tests?
-
-	Arguably the biggest challenge is developing a visually appealing, intuitive user interface that suits the needs of test users and can provide some value if added to a student's workflow.
-
-	Unfortunately testing the finished application in a real exam setting would be impossible before the deadline of this project, but the author intends to evaluate the application extensively with fellow students in order to identify potential sources of confusion, any shortcomings or inconsistency. However there are few well-studied methods for formally evaluating user experience, therefore the main form of evaluation will be verbal feedback and observation.
-
-
-
-
-\chapter{Further work}
-	Integration with existing tools
-	etc.
 
 
 
@@ -426,13 +702,6 @@ for (chunk in chunks.reverse) {
 % otherwise generate bibtem entries
 %\bibliographystyle{plain}
 %\bibliography{mybibfile}
-
-
-
-
-
-
-
 
 
 \end{document}

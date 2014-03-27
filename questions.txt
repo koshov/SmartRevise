@@ -1,6 +1,0 @@
-Broader overview of similar tools - is it fine adding 3 more, or should I look for other apps as well?
-
-Should I capitalize the name of each chapter, e.g. Scheduling Algo Design vs. Scheduling algo design?
-
-Links to applications in subsections or as references?
-2.1.3 S-cool - discussion of security - do I need a reference for man-in-the-middle attacks of email and is it a good idea to discuss this at all?
